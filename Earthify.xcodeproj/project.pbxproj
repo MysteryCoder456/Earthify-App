@@ -11,6 +11,10 @@
 		34CA7A54269756A800EA637E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA7A53269756A800EA637E /* ContentView.swift */; };
 		34CA7A56269756AD00EA637E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34CA7A55269756AD00EA637E /* Assets.xcassets */; };
 		34CA7A59269756AD00EA637E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34CA7A58269756AD00EA637E /* Preview Assets.xcassets */; };
+		34CA7A622697573F00EA637E /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA7A612697573F00EA637E /* SplashScreen.swift */; };
+		34CA7A65269773B700EA637E /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34CA7A64269773B700EA637E /* Montserrat-Regular.ttf */; };
+		34CA7A67269773CE00EA637E /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34CA7A66269773CE00EA637E /* Montserrat-Bold.ttf */; };
+		34CA7A69269773E200EA637E /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34CA7A68269773E200EA637E /* Montserrat-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +24,10 @@
 		34CA7A55269756AD00EA637E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34CA7A58269756AD00EA637E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		34CA7A5A269756AD00EA637E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34CA7A612697573F00EA637E /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		34CA7A64269773B700EA637E /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		34CA7A66269773CE00EA637E /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		34CA7A68269773E200EA637E /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +62,10 @@
 			children = (
 				34CA7A51269756A800EA637E /* EarthifyApp.swift */,
 				34CA7A53269756A800EA637E /* ContentView.swift */,
+				34CA7A612697573F00EA637E /* SplashScreen.swift */,
+				34CA7A602697570A00EA637E /* Authentication */,
 				34CA7A55269756AD00EA637E /* Assets.xcassets */,
+				34CA7A632697738500EA637E /* Fonts */,
 				34CA7A5A269756AD00EA637E /* Info.plist */,
 				34CA7A57269756AD00EA637E /* Preview Content */,
 			);
@@ -67,6 +78,23 @@
 				34CA7A58269756AD00EA637E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		34CA7A602697570A00EA637E /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		34CA7A632697738500EA637E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				34CA7A66269773CE00EA637E /* Montserrat-Bold.ttf */,
+				34CA7A68269773E200EA637E /* Montserrat-SemiBold.ttf */,
+				34CA7A64269773B700EA637E /* Montserrat-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,8 +154,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34CA7A67269773CE00EA637E /* Montserrat-Bold.ttf in Resources */,
+				34CA7A65269773B700EA637E /* Montserrat-Regular.ttf in Resources */,
 				34CA7A59269756AD00EA637E /* Preview Assets.xcassets in Resources */,
 				34CA7A56269756AD00EA637E /* Assets.xcassets in Resources */,
+				34CA7A69269773E200EA637E /* Montserrat-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34CA7A622697573F00EA637E /* SplashScreen.swift in Sources */,
 				34CA7A54269756A800EA637E /* ContentView.swift in Sources */,
 				34CA7A52269756A800EA637E /* EarthifyApp.swift in Sources */,
 			);
