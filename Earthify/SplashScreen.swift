@@ -16,7 +16,7 @@ struct SplashScreen: View {
                 Image("forest")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(height: deviceDimensions.height * 0.44)
+                    .frame(height: deviceDimensions.height * 0.5)
                     .ignoresSafeArea()
                 
                 Spacer()
@@ -84,7 +84,7 @@ struct SplashScreen: View {
                     .padding(.horizontal, 40)
                     
                 }
-                .frame(width: deviceDimensions.width, height: deviceDimensions.height * 0.56, alignment: .center)
+                .frame(width: deviceDimensions.width, height: deviceDimensions.height * 0.55, alignment: .center)
                 .background(Color.primary.colorInvert())
                 .clipShape(RoundedRectangle(cornerRadius: 30))
                 .multilineTextAlignment(.center)
