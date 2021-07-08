@@ -15,6 +15,7 @@
 		34CA7A65269773B700EA637E /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34CA7A64269773B700EA637E /* Montserrat-Regular.ttf */; };
 		34CA7A67269773CE00EA637E /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34CA7A66269773CE00EA637E /* Montserrat-Bold.ttf */; };
 		34CA7A69269773E200EA637E /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34CA7A68269773E200EA637E /* Montserrat-SemiBold.ttf */; };
+		34CA7A6B26978DD600EA637E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA7A6A26978DD600EA637E /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		34CA7A64269773B700EA637E /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		34CA7A66269773CE00EA637E /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		34CA7A68269773E200EA637E /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		34CA7A6A26978DD600EA637E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 		34CA7A602697570A00EA637E /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				34CA7A6A26978DD600EA637E /* SignUpView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34CA7A6B26978DD600EA637E /* SignUpView.swift in Sources */,
 				34CA7A622697573F00EA637E /* SplashScreen.swift in Sources */,
 				34CA7A54269756A800EA637E /* ContentView.swift in Sources */,
 				34CA7A52269756A800EA637E /* EarthifyApp.swift in Sources */,
