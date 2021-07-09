@@ -6,9 +6,17 @@
 //
 
 import SwiftUI
+import GoogleSignIn
 
 struct SplashScreen: View {
+    @EnvironmentObject var env: EnvironmentObjects
+    
     let deviceDimensions = UIScreen.main.bounds.size
+    
+    func signIn() {
+        GIDSignIn.sharedInstance().presentingViewController  = UIApplication.shared.windows.first?.rootViewController
+        GIDSignIn.sharedInstance().signIn()
+    }
     
     var body: some View {
         ZStack {
@@ -45,43 +53,27 @@ struct SplashScreen: View {
                         .font(.custom("Montserrat", size: 18))
                     
                     
-                    // -------- Authentication Buttons --------
-                    
-                    VStack(spacing: 15) {
-                        Button(action: {}) {
-                            HStack {
-                                Spacer()
+                    // -------- Google Sign In Button --------
+                    VStack {
+                        Button(action: signIn) {
+                            HStack(spacing: 12) {
+                                Image("google_logo")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30)
                                 
-                                Text("Sign Up")
+                                Text("Sign In With Google")
                                     .font(.custom("Montserrat", size: 20))
                                     .foregroundColor(.white)
                                     .fontWeight(.semibold)
-                                
-                                Spacer()
                             }
+                            .padding(.horizontal, 20)
                         }
                         .padding(.vertical)
                         .background(Color(.sRGB, red: 0.39, green: 0.77, blue: 0.21, opacity: 1.0))
                         .clipShape(RoundedRectangle(cornerRadius: 12.0, style: .circular))
-                        
-                        Button(action: {}) {
-                            HStack {
-                                Spacer()
-                                
-                                Text("Login")
-                                    .font(.custom("Montserrat", size: 20))
-                                    .foregroundColor(.white)
-                                    .fontWeight(.semibold)
-                                
-                                Spacer()
-                            }
-                        }
-                        .padding(.vertical)
-                        .background(Color.secondary)
-                        .clipShape(RoundedRectangle(cornerRadius: 12.0, style: .circular))
                     }
-                    .padding(.top, 30)
-                    .padding(.horizontal, 40)
+                    .padding(.top, 50)
                     
                 }
                 .frame(width: deviceDimensions.width, height: deviceDimensions.height * 0.55, alignment: .center)

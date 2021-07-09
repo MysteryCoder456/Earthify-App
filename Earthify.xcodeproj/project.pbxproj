@@ -3,113 +3,138 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		34CA7A52269756A800EA637E /* EarthifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA7A51269756A800EA637E /* EarthifyApp.swift */; };
-		34CA7A54269756A800EA637E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA7A53269756A800EA637E /* ContentView.swift */; };
-		34CA7A56269756AD00EA637E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34CA7A55269756AD00EA637E /* Assets.xcassets */; };
-		34CA7A59269756AD00EA637E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34CA7A58269756AD00EA637E /* Preview Assets.xcassets */; };
-		34CA7A622697573F00EA637E /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA7A612697573F00EA637E /* SplashScreen.swift */; };
-		34CA7A65269773B700EA637E /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34CA7A64269773B700EA637E /* Montserrat-Regular.ttf */; };
-		34CA7A67269773CE00EA637E /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34CA7A66269773CE00EA637E /* Montserrat-Bold.ttf */; };
-		34CA7A69269773E200EA637E /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34CA7A68269773E200EA637E /* Montserrat-SemiBold.ttf */; };
-		34CA7A6B26978DD600EA637E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA7A6A26978DD600EA637E /* SignUpView.swift */; };
+		2703C6A2B6E6271CB6372299 /* Pods_Earthify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6CA30F38E7D30DEEB77EFC /* Pods_Earthify.framework */; };
+		34F1FB632698528D0050BFE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB622698528D0050BFE7 /* AppDelegate.swift */; };
+		34F1FB652698528D0050BFE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB642698528D0050BFE7 /* SceneDelegate.swift */; };
+		34F1FB672698528D0050BFE7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB662698528D0050BFE7 /* ContentView.swift */; };
+		34F1FB692698528E0050BFE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34F1FB682698528E0050BFE7 /* Assets.xcassets */; };
+		34F1FB6C2698528E0050BFE7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34F1FB6B2698528E0050BFE7 /* Preview Assets.xcassets */; };
+		34F1FB6F2698528E0050BFE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34F1FB6D2698528E0050BFE7 /* LaunchScreen.storyboard */; };
+		34F1FB77269853C50050BFE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F1FB76269853C50050BFE7 /* GoogleService-Info.plist */; };
+		34F1FB7E269861D30050BFE7 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34F1FB7B269861D30050BFE7 /* Montserrat-Bold.ttf */; };
+		34F1FB7F269861D30050BFE7 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34F1FB7C269861D30050BFE7 /* Montserrat-Regular.ttf */; };
+		34F1FB80269861D30050BFE7 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34F1FB7D269861D30050BFE7 /* Montserrat-SemiBold.ttf */; };
+		34F1FB82269862180050BFE7 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB81269862180050BFE7 /* SplashScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		34CA7A4E269756A800EA637E /* Earthify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Earthify.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		34CA7A51269756A800EA637E /* EarthifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthifyApp.swift; sourceTree = "<group>"; };
-		34CA7A53269756A800EA637E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		34CA7A55269756AD00EA637E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		34CA7A58269756AD00EA637E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		34CA7A5A269756AD00EA637E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		34CA7A612697573F00EA637E /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
-		34CA7A64269773B700EA637E /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
-		34CA7A66269773CE00EA637E /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
-		34CA7A68269773E200EA637E /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
-		34CA7A6A26978DD600EA637E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		036A8436C01959B24F2C2DBF /* Pods-Earthify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Earthify.release.xcconfig"; path = "Target Support Files/Pods-Earthify/Pods-Earthify.release.xcconfig"; sourceTree = "<group>"; };
+		34F1FB5F2698528D0050BFE7 /* Earthify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Earthify.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		34F1FB622698528D0050BFE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		34F1FB642698528D0050BFE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		34F1FB662698528D0050BFE7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		34F1FB682698528E0050BFE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		34F1FB6B2698528E0050BFE7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		34F1FB6E2698528E0050BFE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		34F1FB702698528E0050BFE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34F1FB76269853C50050BFE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		34F1FB7B269861D30050BFE7 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		34F1FB7C269861D30050BFE7 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		34F1FB7D269861D30050BFE7 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		34F1FB81269862180050BFE7 /* SplashScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		6B6CA30F38E7D30DEEB77EFC /* Pods_Earthify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Earthify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFAD6CF667B4CD3120654361 /* Pods-Earthify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Earthify.debug.xcconfig"; path = "Target Support Files/Pods-Earthify/Pods-Earthify.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		34CA7A4B269756A800EA637E /* Frameworks */ = {
+		34F1FB5C2698528D0050BFE7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2703C6A2B6E6271CB6372299 /* Pods_Earthify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		34CA7A45269756A800EA637E = {
+		1EC25EC58D2A49320ABDC627 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				34CA7A50269756A800EA637E /* Earthify */,
-				34CA7A4F269756A800EA637E /* Products */,
+				6B6CA30F38E7D30DEEB77EFC /* Pods_Earthify.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		34F1FB562698528C0050BFE7 = {
+			isa = PBXGroup;
+			children = (
+				34F1FB612698528D0050BFE7 /* Earthify */,
+				34F1FB602698528D0050BFE7 /* Products */,
+				8D9CFB96670BFC71C355BD37 /* Pods */,
+				1EC25EC58D2A49320ABDC627 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		34CA7A4F269756A800EA637E /* Products */ = {
+		34F1FB602698528D0050BFE7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				34CA7A4E269756A800EA637E /* Earthify.app */,
+				34F1FB5F2698528D0050BFE7 /* Earthify.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		34CA7A50269756A800EA637E /* Earthify */ = {
+		34F1FB612698528D0050BFE7 /* Earthify */ = {
 			isa = PBXGroup;
 			children = (
-				34CA7A51269756A800EA637E /* EarthifyApp.swift */,
-				34CA7A53269756A800EA637E /* ContentView.swift */,
-				34CA7A612697573F00EA637E /* SplashScreen.swift */,
-				34CA7A602697570A00EA637E /* Authentication */,
-				34CA7A55269756AD00EA637E /* Assets.xcassets */,
-				34CA7A632697738500EA637E /* Fonts */,
-				34CA7A5A269756AD00EA637E /* Info.plist */,
-				34CA7A57269756AD00EA637E /* Preview Content */,
+				34F1FB622698528D0050BFE7 /* AppDelegate.swift */,
+				34F1FB642698528D0050BFE7 /* SceneDelegate.swift */,
+				34F1FB662698528D0050BFE7 /* ContentView.swift */,
+				34F1FB81269862180050BFE7 /* SplashScreen.swift */,
+				34F1FB682698528E0050BFE7 /* Assets.xcassets */,
+				34F1FB7A269861C00050BFE7 /* Fonts */,
+				34F1FB6D2698528E0050BFE7 /* LaunchScreen.storyboard */,
+				34F1FB702698528E0050BFE7 /* Info.plist */,
+				34F1FB76269853C50050BFE7 /* GoogleService-Info.plist */,
+				34F1FB6A2698528E0050BFE7 /* Preview Content */,
 			);
 			path = Earthify;
 			sourceTree = "<group>";
 		};
-		34CA7A57269756AD00EA637E /* Preview Content */ = {
+		34F1FB6A2698528E0050BFE7 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				34CA7A58269756AD00EA637E /* Preview Assets.xcassets */,
+				34F1FB6B2698528E0050BFE7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		34CA7A602697570A00EA637E /* Authentication */ = {
+		34F1FB7A269861C00050BFE7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				34CA7A6A26978DD600EA637E /* SignUpView.swift */,
-			);
-			path = Authentication;
-			sourceTree = "<group>";
-		};
-		34CA7A632697738500EA637E /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				34CA7A66269773CE00EA637E /* Montserrat-Bold.ttf */,
-				34CA7A68269773E200EA637E /* Montserrat-SemiBold.ttf */,
-				34CA7A64269773B700EA637E /* Montserrat-Regular.ttf */,
+				34F1FB7B269861D30050BFE7 /* Montserrat-Bold.ttf */,
+				34F1FB7D269861D30050BFE7 /* Montserrat-SemiBold.ttf */,
+				34F1FB7C269861D30050BFE7 /* Montserrat-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		8D9CFB96670BFC71C355BD37 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DFAD6CF667B4CD3120654361 /* Pods-Earthify.debug.xcconfig */,
+				036A8436C01959B24F2C2DBF /* Pods-Earthify.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		34CA7A4D269756A800EA637E /* Earthify */ = {
+		34F1FB5E2698528D0050BFE7 /* Earthify */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 34CA7A5D269756AD00EA637E /* Build configuration list for PBXNativeTarget "Earthify" */;
+			buildConfigurationList = 34F1FB732698528F0050BFE7 /* Build configuration list for PBXNativeTarget "Earthify" */;
 			buildPhases = (
-				34CA7A4A269756A800EA637E /* Sources */,
-				34CA7A4B269756A800EA637E /* Frameworks */,
-				34CA7A4C269756A800EA637E /* Resources */,
+				F5E958B807E4494D465AA4F9 /* [CP] Check Pods Manifest.lock */,
+				34F1FB5B2698528D0050BFE7 /* Sources */,
+				34F1FB5C2698528D0050BFE7 /* Frameworks */,
+				34F1FB5D2698528D0050BFE7 /* Resources */,
+				9760303DA197270275D14140 /* [CP] Embed Pods Frameworks */,
+				4154BCC428C44AD2082866D2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -117,24 +142,24 @@
 			);
 			name = Earthify;
 			productName = Earthify;
-			productReference = 34CA7A4E269756A800EA637E /* Earthify.app */;
+			productReference = 34F1FB5F2698528D0050BFE7 /* Earthify.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		34CA7A46269756A800EA637E /* Project object */ = {
+		34F1FB572698528C0050BFE7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
-					34CA7A4D269756A800EA637E = {
+					34F1FB5E2698528D0050BFE7 = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
 				};
 			};
-			buildConfigurationList = 34CA7A49269756A800EA637E /* Build configuration list for PBXProject "Earthify" */;
+			buildConfigurationList = 34F1FB5A2698528D0050BFE7 /* Build configuration list for PBXProject "Earthify" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -142,47 +167,119 @@
 				en,
 				Base,
 			);
-			mainGroup = 34CA7A45269756A800EA637E;
-			productRefGroup = 34CA7A4F269756A800EA637E /* Products */;
+			mainGroup = 34F1FB562698528C0050BFE7;
+			productRefGroup = 34F1FB602698528D0050BFE7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				34CA7A4D269756A800EA637E /* Earthify */,
+				34F1FB5E2698528D0050BFE7 /* Earthify */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		34CA7A4C269756A800EA637E /* Resources */ = {
+		34F1FB5D2698528D0050BFE7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34CA7A67269773CE00EA637E /* Montserrat-Bold.ttf in Resources */,
-				34CA7A65269773B700EA637E /* Montserrat-Regular.ttf in Resources */,
-				34CA7A59269756AD00EA637E /* Preview Assets.xcassets in Resources */,
-				34CA7A56269756AD00EA637E /* Assets.xcassets in Resources */,
-				34CA7A69269773E200EA637E /* Montserrat-SemiBold.ttf in Resources */,
+				34F1FB7F269861D30050BFE7 /* Montserrat-Regular.ttf in Resources */,
+				34F1FB7E269861D30050BFE7 /* Montserrat-Bold.ttf in Resources */,
+				34F1FB6F2698528E0050BFE7 /* LaunchScreen.storyboard in Resources */,
+				34F1FB80269861D30050BFE7 /* Montserrat-SemiBold.ttf in Resources */,
+				34F1FB77269853C50050BFE7 /* GoogleService-Info.plist in Resources */,
+				34F1FB6C2698528E0050BFE7 /* Preview Assets.xcassets in Resources */,
+				34F1FB692698528E0050BFE7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4154BCC428C44AD2082866D2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9760303DA197270275D14140 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5E958B807E4494D465AA4F9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Earthify-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		34CA7A4A269756A800EA637E /* Sources */ = {
+		34F1FB5B2698528D0050BFE7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34CA7A6B26978DD600EA637E /* SignUpView.swift in Sources */,
-				34CA7A622697573F00EA637E /* SplashScreen.swift in Sources */,
-				34CA7A54269756A800EA637E /* ContentView.swift in Sources */,
-				34CA7A52269756A800EA637E /* EarthifyApp.swift in Sources */,
+				34F1FB82269862180050BFE7 /* SplashScreen.swift in Sources */,
+				34F1FB632698528D0050BFE7 /* AppDelegate.swift in Sources */,
+				34F1FB652698528D0050BFE7 /* SceneDelegate.swift in Sources */,
+				34F1FB672698528D0050BFE7 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		34F1FB6D2698528E0050BFE7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34F1FB6E2698528E0050BFE7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		34CA7A5B269756AD00EA637E /* Debug */ = {
+		34F1FB712698528E0050BFE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -243,7 +340,7 @@
 			};
 			name = Debug;
 		};
-		34CA7A5C269756AD00EA637E /* Release */ = {
+		34F1FB722698528E0050BFE7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -298,8 +395,9 @@
 			};
 			name = Release;
 		};
-		34CA7A5E269756AD00EA637E /* Debug */ = {
+		34F1FB742698528F0050BFE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFAD6CF667B4CD3120654361 /* Pods-Earthify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -308,7 +406,6 @@
 				DEVELOPMENT_TEAM = U29V6K83J6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Earthify/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -320,8 +417,9 @@
 			};
 			name = Debug;
 		};
-		34CA7A5F269756AD00EA637E /* Release */ = {
+		34F1FB752698528F0050BFE7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 036A8436C01959B24F2C2DBF /* Pods-Earthify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -330,7 +428,6 @@
 				DEVELOPMENT_TEAM = U29V6K83J6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Earthify/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -345,25 +442,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		34CA7A49269756A800EA637E /* Build configuration list for PBXProject "Earthify" */ = {
+		34F1FB5A2698528D0050BFE7 /* Build configuration list for PBXProject "Earthify" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				34CA7A5B269756AD00EA637E /* Debug */,
-				34CA7A5C269756AD00EA637E /* Release */,
+				34F1FB712698528E0050BFE7 /* Debug */,
+				34F1FB722698528E0050BFE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		34CA7A5D269756AD00EA637E /* Build configuration list for PBXNativeTarget "Earthify" */ = {
+		34F1FB732698528F0050BFE7 /* Build configuration list for PBXNativeTarget "Earthify" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				34CA7A5E269756AD00EA637E /* Debug */,
-				34CA7A5F269756AD00EA637E /* Release */,
+				34F1FB742698528F0050BFE7 /* Debug */,
+				34F1FB752698528F0050BFE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 34CA7A46269756A800EA637E /* Project object */;
+	rootObject = 34F1FB572698528C0050BFE7 /* Project object */;
 }

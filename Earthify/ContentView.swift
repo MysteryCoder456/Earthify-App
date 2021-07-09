@@ -2,15 +2,21 @@
 //  ContentView.swift
 //  Earthify
 //
-//  Created by Rehatbir Singh on 08/07/2021.
+//  Created by Rehatbir Singh on 09/07/2021.
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ContentView: View {
+    @EnvironmentObject var env: EnvironmentObjects
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        if env.authenticated {
+            Text("Coming Soon!\nCurrently Signed In as \(Auth.auth().currentUser?.email ?? "No Email")")
+        } else {
+            SplashScreen()
+        }
     }
 }
 

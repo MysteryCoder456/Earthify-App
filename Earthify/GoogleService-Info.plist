@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>207963653599-als94nldittvb2615j31pcb0bigfu76g.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.207963653599-als94nldittvb2615j31pcb0bigfu76g</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAp79bmSdBkwKlOKxf7KcHfDreUdjV7Vjw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>207963653599</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mysterycoder456.Earthify</string>
+	<key>PROJECT_ID</key>
+	<string>earthify-886cf</string>
+	<key>STORAGE_BUCKET</key>
+	<string>earthify-886cf.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:207963653599:ios:fd7f4349be49d15eccf06a</string>
+</dict>
+</plist>
