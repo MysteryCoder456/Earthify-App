@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2703C6A2B6E6271CB6372299 /* Pods_Earthify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6CA30F38E7D30DEEB77EFC /* Pods_Earthify.framework */; };
+		3491DCD42699902F002C0C80 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491DCD32699902F002C0C80 /* UserRepository.swift */; };
+		3491DCD72699905A002C0C80 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491DCD62699905A002C0C80 /* AppUser.swift */; };
 		34F1FB632698528D0050BFE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB622698528D0050BFE7 /* AppDelegate.swift */; };
 		34F1FB652698528D0050BFE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB642698528D0050BFE7 /* SceneDelegate.swift */; };
 		34F1FB672698528D0050BFE7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB662698528D0050BFE7 /* ContentView.swift */; };
@@ -23,6 +25,8 @@
 
 /* Begin PBXFileReference section */
 		036A8436C01959B24F2C2DBF /* Pods-Earthify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Earthify.release.xcconfig"; path = "Target Support Files/Pods-Earthify/Pods-Earthify.release.xcconfig"; sourceTree = "<group>"; };
+		3491DCD32699902F002C0C80 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		3491DCD62699905A002C0C80 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		34F1FB5F2698528D0050BFE7 /* Earthify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Earthify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34F1FB622698528D0050BFE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34F1FB642698528D0050BFE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +64,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3491DCD226999012002C0C80 /* DataRepositories */ = {
+			isa = PBXGroup;
+			children = (
+				3491DCD32699902F002C0C80 /* UserRepository.swift */,
+			);
+			path = DataRepositories;
+			sourceTree = "<group>";
+		};
+		3491DCD526999049002C0C80 /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				3491DCD62699905A002C0C80 /* AppUser.swift */,
+			);
+			path = DataModels;
+			sourceTree = "<group>";
+		};
 		34F1FB562698528C0050BFE7 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +105,8 @@
 				34F1FB642698528D0050BFE7 /* SceneDelegate.swift */,
 				34F1FB662698528D0050BFE7 /* ContentView.swift */,
 				34F1FB81269862180050BFE7 /* SplashScreen.swift */,
+				3491DCD526999049002C0C80 /* DataModels */,
+				3491DCD226999012002C0C80 /* DataRepositories */,
 				34F1FB682698528E0050BFE7 /* Assets.xcassets */,
 				34F1FB7A269861C00050BFE7 /* Fonts */,
 				34F1FB6D2698528E0050BFE7 /* LaunchScreen.storyboard */,
@@ -261,6 +283,8 @@
 				34F1FB82269862180050BFE7 /* SplashScreen.swift in Sources */,
 				34F1FB632698528D0050BFE7 /* AppDelegate.swift in Sources */,
 				34F1FB652698528D0050BFE7 /* SceneDelegate.swift in Sources */,
+				3491DCD42699902F002C0C80 /* UserRepository.swift in Sources */,
+				3491DCD72699905A002C0C80 /* AppUser.swift in Sources */,
 				34F1FB672698528D0050BFE7 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

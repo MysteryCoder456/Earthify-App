@@ -13,6 +13,7 @@ import GoogleSignIn
 class EnvironmentObjects: ObservableObject {
     
     @Published var authenticated: Bool
+    @Published var userRepository: UserRepository
     
     init() {
         if GIDSignIn.sharedInstance().hasPreviousSignIn() {
@@ -20,17 +21,33 @@ class EnvironmentObjects: ObservableObject {
         }
         
         authenticated = Auth.auth().currentUser != nil
+        userRepository = UserRepository()
         
+        // Listen for Sign In and Sign Out notifications
         let nc = NotificationCenter.default
-        nc.addObserver(self, selector: #selector(enableAuthenticatedFlag), name: Notification.Name("UserSignedIn"), object: nil)
-        nc.addObserver(self, selector: #selector(disableAuthenticationFlag), name: Notification.Name("UserSignedOut"), object: nil)
+        nc.addObserver(self, selector: #selector(didUserSignIn), name: Notification.Name("UserSignedIn"), object: nil)
+        nc.addObserver(self, selector: #selector(didUserSignOut), name: Notification.Name("UserSignedOut"), object: nil)
     }
     
-    @objc func enableAuthenticatedFlag() {
+    @objc func didUserSignIn() {
         authenticated = true
+        
+        // Add/Update user details in Firestore
+        
+        if let currentUID = Auth.auth().currentUser?.uid {
+            if let googleProfile = GIDSignIn.sharedInstance().currentUser.profile {
+                let user = AppUser(uid: currentUID, firstName: googleProfile.givenName, lastName: googleProfile.familyName, email: googleProfile.email)
+                
+                do {
+                    try userRepository.updateUser(user: user)
+                } catch {
+                    print("Failed to update user details in Firestore: \(error.localizedDescription)")
+                }
+            }
+        }
     }
     
-    @objc func disableAuthenticationFlag() {
+    @objc func didUserSignOut() {
         authenticated = false
     }
     
