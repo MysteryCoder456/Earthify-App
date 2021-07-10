@@ -45,7 +45,6 @@ struct SplashScreen: View {
                     Text("Welcome to Earthify")
                         .font(.custom("Montserrat", size: 31))
                         .bold()
-                        .foregroundColor(Color(.sRGB, red: 0.07, green: 0.23, blue: 0.0, opacity: 1.0))
                         .padding(.horizontal)
                         .padding(.bottom, 20)
                     
