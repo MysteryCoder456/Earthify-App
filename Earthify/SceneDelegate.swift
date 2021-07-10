@@ -13,6 +13,7 @@ import UIKit
 class EnvironmentObjects: ObservableObject {
     @Published var authenticated: Bool
     @Published var userRepository: UserRepository
+    @Published var listingRepository: ItemListingRepository
 
     init() {
         if GIDSignIn.sharedInstance().hasPreviousSignIn() {
@@ -21,6 +22,7 @@ class EnvironmentObjects: ObservableObject {
 
         authenticated = Auth.auth().currentUser != nil
         userRepository = UserRepository()
+        listingRepository = ItemListingRepository()
 
         // Listen for Sign In and Sign Out notifications
         let nc = NotificationCenter.default

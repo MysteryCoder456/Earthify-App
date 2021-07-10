@@ -18,14 +18,6 @@ class UserRepository: ObservableObject {
         readUsers()
     }
 
-    func createUser(user: AppUser) {
-        do {
-            _ = try db.collection("users").addDocument(from: user)
-        } catch {
-            print(error)
-        }
-    }
-
     func readUsers() {
         db.collection("users").addSnapshotListener { querySnapshot, error in
             if let querySnapshot = querySnapshot {

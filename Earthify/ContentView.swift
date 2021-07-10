@@ -13,7 +13,7 @@ struct ContentView: View {
 
     var body: some View {
         if env.authenticated {
-            Text("Coming Soon!\nCurrently Signed In as \(Auth.auth().currentUser?.email ?? "No Email")")
+            HomeScreen()
         } else {
             SplashScreen()
         }
