@@ -5,22 +5,22 @@
 //  Created by Rehatbir Singh on 10/07/2021.
 //
 
-import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import Foundation
 
 class UserRepository: ObservableObject {
     let db = Firestore.firestore()
 
-    @Published var users: Array<AppUser> = []
-    
+    @Published var users: [AppUser] = []
+
     init() {
         readUsers()
     }
 
     func createUser(user: AppUser) {
         do {
-            let _ = try db.collection("users").addDocument(from: user)
+            _ = try db.collection("users").addDocument(from: user)
         } catch {
             print(error)
         }
@@ -42,7 +42,7 @@ class UserRepository: ObservableObject {
             }
         }
     }
-    
+
     func updateUser(user: AppUser) throws {
         if let uid = user.uid {
             // If the specified document does not exist, a new document will be created
