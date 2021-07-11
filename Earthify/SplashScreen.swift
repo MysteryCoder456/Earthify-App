@@ -68,13 +68,13 @@ struct SplashScreen: View {
                         }
                         .padding(.vertical)
                         .background(Color(.sRGB, red: 0.39, green: 0.77, blue: 0.21, opacity: 1.0))
-                        .clipShape(RoundedRectangle(cornerRadius: 12.0, style: .circular))
+                        .cornerRadius(12)
                     }
                     .padding(.top, 50)
                 }
                 .frame(width: deviceDimensions.width, height: deviceDimensions.height * 0.55, alignment: .center)
                 .background(Color.primary.colorInvert())
-                .clipShape(RoundedRectangle(cornerRadius: 30))
+                .cornerRadius(30)
                 .multilineTextAlignment(.center)
             }
         }

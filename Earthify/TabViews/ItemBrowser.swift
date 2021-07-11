@@ -27,7 +27,7 @@ struct SearchBar: View {
             }
         }
         .background(Color.secondary.opacity(0.4))
-        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .cornerRadius(8)
         .padding(10)
     }
 }

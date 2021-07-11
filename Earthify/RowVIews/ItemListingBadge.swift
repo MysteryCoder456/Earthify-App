@@ -20,7 +20,7 @@ struct ItemListingBadge: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: imageSize.width, height: imageSize.height)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .cornerRadius(15)
             
             Text(item.name)
                 .font(.headline)
