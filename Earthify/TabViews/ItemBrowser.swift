@@ -7,6 +7,31 @@
 
 import SwiftUI
 
+struct SearchBar: View {
+    let label: String
+    @State var text: Binding<String>
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "text.magnifyingglass")
+                .padding(.leading, 10)
+                .foregroundColor(.secondary)
+            
+            TextField("Search", text: text)
+                .padding(.vertical, 7)
+            
+            Button(action: { text.wrappedValue = "" }) {
+                Image(systemName: "xmark.circle.fill")
+                    .padding(.trailing, 10)
+                    .foregroundColor(.secondary)
+            }
+        }
+        .background(Color.secondary.opacity(0.4))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .padding(10)
+    }
+}
+
 struct ItemBrowser: View {
     @EnvironmentObject var env: EnvironmentObjects
     @State var searchText = ""
@@ -19,13 +44,13 @@ struct ItemBrowser: View {
     
     var body: some View {
         NavigationView {
-            // TODO: Add search bar
-            
             ScrollView {
+                SearchBar(label: "Search for items...", text: $searchText)
+                
                 LazyVGrid(columns: columns, spacing: 25) {
                     let listings = runningForPreviews ? previewItemListings : env.listingRepository.itemListings
                     
-                    ForEach(listings, id: \.self) { listing in
+                    ForEach(listings.filter({ searchText.isEmpty || $0.name.lowercased().contains(searchText.lowercased()) || $0.description.lowercased().contains(searchText.lowercased()) }), id: \.self) { listing in
                         ItemListingBadge(item: listing)
                     }
                     .navigationTitle("Search Earthify")
