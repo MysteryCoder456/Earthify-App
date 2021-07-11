@@ -17,7 +17,7 @@ struct SearchBar: View {
                 .padding(.leading, 10)
                 .foregroundColor(.secondary)
             
-            TextField("Search", text: text)
+            TextField(label, text: text)
                 .padding(.vertical, 7)
             
             Button(action: { text.wrappedValue = "" }) {
