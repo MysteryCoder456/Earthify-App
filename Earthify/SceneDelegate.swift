@@ -15,6 +15,8 @@ class EnvironmentObjects: ObservableObject {
     @Published var userRepository: UserRepository
     @Published var listingRepository: ItemListingRepository
 
+    let listingImageMaximumSize: Int64 = 8_388_608
+
     init() {
         if GIDSignIn.sharedInstance().hasPreviousSignIn() {
             GIDSignIn.sharedInstance().restorePreviousSignIn()
