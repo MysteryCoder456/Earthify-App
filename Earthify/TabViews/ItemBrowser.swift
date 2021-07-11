@@ -9,15 +9,28 @@ import SwiftUI
 
 struct ItemBrowser: View {
     @EnvironmentObject var env: EnvironmentObjects
+    @State var searchText = ""
+    
+    let columns = [
+        GridItem(.adaptive(minimum: 150))
+    ]
     
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     
     var body: some View {
         NavigationView {
-            List(runningForPreviews ? previewItemListings : env.listingRepository.itemListings, id: \.self) { listing in
-                Text(listing.name)
+            // TODO: Add search bar
+            
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 25) {
+                    let listings = runningForPreviews ? previewItemListings : env.listingRepository.itemListings
+                    
+                    ForEach(listings, id: \.self) { listing in
+                        ItemListingBadge(item: listing)
+                    }
+                    .navigationTitle("Search Earthify")
+                }
             }
-            .navigationTitle("Search Earthify")
         }
     }
 }
@@ -25,5 +38,6 @@ struct ItemBrowser: View {
 struct ItemBrowser_Previews: PreviewProvider {
     static var previews: some View {
         ItemBrowser()
+            .environmentObject(EnvironmentObjects())
     }
 }
