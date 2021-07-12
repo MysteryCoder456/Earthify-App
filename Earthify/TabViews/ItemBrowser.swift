@@ -34,12 +34,14 @@ struct ItemBrowser: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Menu {
+                        // TODO: Add item listing sorting
+                        
                         Button(action: {}) {
                             Label("New Item Listing", systemImage: "list.bullet.rectangle")
                         }
                     }
                     label: {
-                        Label("Add", systemImage: "plus")
+                        Label("Add", systemImage: "ellipsis")
                     }
                 }
             }
