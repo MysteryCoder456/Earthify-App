@@ -35,7 +35,7 @@ struct ItemBrowser: View {
                 ToolbarItem(placement: .primaryAction) {
                     Menu {
                         Button(action: {}) {
-                            Label("New Item Listing", systemImage: "archivebox")
+                            Label("New Item Listing", systemImage: "list.bullet.rectangle")
                         }
                     }
                     label: {
