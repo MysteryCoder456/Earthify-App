@@ -12,7 +12,7 @@ struct ItemBrowser: View {
     @State var searchText = ""
 
     let columns = [
-        GridItem(.adaptive(minimum: 150)),
+        GridItem(.adaptive(minimum: 150, maximum: 175)),
     ]
 
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"

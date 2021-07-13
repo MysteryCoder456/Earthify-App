@@ -13,7 +13,7 @@ struct ItemListingBadge: View {
     @State var itemImage = UIImage()
 
     let item: ItemListing
-    let imageSize = CGSize(width: 160, height: 110)
+    let imageSize = CGSize(width: 170, height: 117)
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
 
     var body: some View {
@@ -30,6 +30,7 @@ struct ItemListingBadge: View {
             Text(item.description)
                 .font(.caption)
                 .foregroundColor(.secondary)
+                .lineLimit(1)
         }
         .frame(width: imageSize.width)
         .onAppear {
