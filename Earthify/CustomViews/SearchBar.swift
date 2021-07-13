@@ -47,6 +47,5 @@ struct SearchBar: View {
                 .animation(.default)
             }
         }
-        .padding(10)
     }
 }

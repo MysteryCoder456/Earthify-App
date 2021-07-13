@@ -45,7 +45,7 @@ struct AddListingView: View {
                 guard let imageData = itemImage.jpegData(compressionQuality: 0.5) else { return }
                 
                 let sizeLimit = env.listingImageMaximumSize
-                let sizeLimitMB = sizeLimit * 1048576
+                let sizeLimitMB = sizeLimit / 1048576
                 
                 // Check if the image is within the size limit
                 if imageData.count > sizeLimit {
@@ -77,6 +77,7 @@ struct AddListingView: View {
                     // Add listing to Firestore if image upload was successful
                     do {
                         try env.listingRepository.updateListing(listing: newItemListing)
+                        print("Listing added to Firestore successfully")
                         
                         // Reset content fields
                         itemImage = UIImage()

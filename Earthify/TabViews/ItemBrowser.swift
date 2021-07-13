@@ -21,6 +21,7 @@ struct ItemBrowser: View {
         NavigationView {
             ScrollView {
                 SearchBar(label: "Search for items...", text: $searchText)
+                    .padding([.horizontal, .bottom], 10)
 
                 LazyVGrid(columns: columns, spacing: 25) {
                     let listings = runningForPreviews ? previewItemListings : env.listingRepository.itemListings
