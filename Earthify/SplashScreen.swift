@@ -53,17 +53,20 @@ struct SplashScreen: View {
                     // -------- Google Sign In Button --------
                     VStack {
                         Button(action: signIn) {
-                            HStack(spacing: 12) {
-                                Image("google_logo")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 30)
-
-                                Text("Sign In With Google")
-                                    .font(.custom("Montserrat", size: 20))
-                                    .foregroundColor(.white)
-                                    .fontWeight(.semibold)
-                            }
+                            Label(
+                                title: {
+                                    Text("Sign In With Google")
+                                        .font(.custom("Montserrat", size: 20))
+                                        .foregroundColor(.white)
+                                        .fontWeight(.semibold)
+                                },
+                                icon: {
+                                    Image("google_logo")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 30)
+                                }
+                            )
                             .padding(.horizontal, 20)
                         }
                         .padding(.vertical)

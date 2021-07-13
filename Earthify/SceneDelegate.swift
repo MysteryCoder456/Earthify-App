@@ -9,6 +9,7 @@ import FirebaseAuth
 import GoogleSignIn
 import SwiftUI
 import UIKit
+import Combine
 
 class EnvironmentObjects: ObservableObject {
     @Published var authenticated: Bool
@@ -16,6 +17,8 @@ class EnvironmentObjects: ObservableObject {
     @Published var listingRepository: ItemListingRepository
 
     let listingImageMaximumSize: Int64 = 8_388_608
+    var userRepoCancellable: AnyCancellable? = nil
+    var listingRepoCancellable: AnyCancellable? = nil
 
     init() {
         if GIDSignIn.sharedInstance().hasPreviousSignIn() {
@@ -25,6 +28,14 @@ class EnvironmentObjects: ObservableObject {
         authenticated = Auth.auth().currentUser != nil
         userRepository = UserRepository()
         listingRepository = ItemListingRepository()
+        
+        // Notify EnvironmentObjects when published repository attributes change
+        userRepoCancellable = userRepository.objectWillChange.sink { (_) in
+            self.objectWillChange.send()
+        }
+        listingRepoCancellable = listingRepository.objectWillChange.sink { (_) in
+            self.objectWillChange.send()
+        }
 
         // Listen for Sign In and Sign Out notifications
         let nc = NotificationCenter.default

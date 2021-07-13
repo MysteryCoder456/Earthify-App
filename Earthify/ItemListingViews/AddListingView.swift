@@ -6,56 +6,207 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseStorage
 
 struct AddListingView: View {
-    @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var env: EnvironmentObjects
     
     @State var showingImagePicker = false
     @State var showingImageSourceSelector = false
-    
     @State var imageSource: UIImagePickerController.SourceType?
+    
+    // Alert details
+    @State var primaryAlertMessage = ""
+    @State var secondaryAlertMessage = ""
+    @State var showingAlert = false
+    
+    // New Item's Details
     @State var itemImage = UIImage()
+    @State var itemName = ""
+    @State var itemDescription = ""
     
-    let maxImageSize = CGSize(width: 320, height: 220)
+    let maxImageSize = CGSize(width: 250, height: 172)
     
-    var body: some View {
-        ScrollView {
-            VStack {
-                VStack {
-                    Button(action: { showingImageSourceSelector = true }) {
-                        if itemImage.size == CGSize.zero {
-                            Image(systemName: "camera")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .padding(75)
-                                .foregroundColor(colorScheme == .dark ? .black : .white)
-                        } else {
-                            Image(uiImage: itemImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(maxWidth: maxImageSize.width, maxHeight: maxImageSize.height)
-                        }
-                    }
-                    .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: maxImageSize.width, maxHeight: maxImageSize.height)
-                    .background(Color(.sRGB, red: 0.2, green: 0.8, blue: 0.2, opacity: 1.0))
-                    .cornerRadius(30)
-                    .actionSheet(isPresented: $showingImageSourceSelector) {
-                        ActionSheet(
-                            title: Text("Select Image Source"),
-                            buttons: [
-                                .cancel() { print("Cancelled source selection") },
-                                .default(Text("Camera")) { imageSource = .camera; showingImagePicker = true },
-                                .default(Text("Photo Library")) { imageSource = .photoLibrary; showingImagePicker = true }
-                            ]
-                        )
+    func addItemListing() {
+        if let currentUID = Auth.auth().currentUser?.uid {
+            // Remove extra whitespace and new lines
+            itemName = itemName.trimmingCharacters(in: .whitespacesAndNewlines)
+            itemDescription = itemDescription.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            // Check if all content fields are filled
+            if !itemName.isEmpty && !itemDescription.isEmpty && itemImage.size != CGSize.zero {
+                
+                let newItemListing = ItemListing(id: UUID().uuidString, name: itemName, description: itemDescription, ownerID: currentUID)
+                
+                // Add listing to Firestore
+                do {
+                    try env.listingRepository.updateListing(listing: newItemListing)
+                } catch {
+                    print("Could not add new item listing: \(error.localizedDescription)")
+                    
+                    primaryAlertMessage = "Unable to add a new listing"
+                    secondaryAlertMessage = error.localizedDescription
+                    showingAlert = true
+                    
+                    return
+                }
+                
+                // Upload image to Firebase Storage
+                let storageRef = Storage.storage().reference(withPath: "listingImages/\(newItemListing.id!).jpg")
+                
+                guard let imageData = itemImage.jpegData(compressionQuality: 0.5) else {
+                    // If converting UIImage to JPG fails, delete the listing from Firestore
+                    env.listingRepository.deleteListing(listing: newItemListing)
+                    return
+                }
+                
+                let sizeLimit = env.listingImageMaximumSize
+                let sizeLimitMB = sizeLimit * 1048576
+                
+                // Check if the image is within the size limit
+                if imageData.count > sizeLimit {
+                    // If image is too large, delete the listing from Firestore and show alert
+                    env.listingRepository.deleteListing(listing: newItemListing)
+                    print("Could not upload item listing image: Image is more than \(sizeLimitMB) MB")
+                    
+                    primaryAlertMessage = "Unable to upload image"
+                    secondaryAlertMessage = "Image must be smaller than \(sizeLimitMB) MB"
+                    showingAlert = true
+                    
+                    return
+                }
+                
+                let uploadMetadata = StorageMetadata()
+                uploadMetadata.contentType = "image/jpeg"
+                
+                storageRef.putData(imageData, metadata: uploadMetadata) { downloadMetadata, error in
+                    if let error = error {
+                        // If an errors occur during image upload, delete the listing from Firestore and show alert
+                        env.listingRepository.deleteListing(listing: newItemListing)
+                        
+                        print("Could not upload item listing image: \(error.localizedDescription)")
+                        
+                        primaryAlertMessage = "Unable to upload image"
+                        secondaryAlertMessage = error.localizedDescription
+                        showingAlert = true
+                        
+                        return
                     }
                     
-                    Text("Take a picture of your item. Make sure that it is clearly visible.")
-                        .multilineTextAlignment(.center)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+                    print("Item listing image uploaded successfully")
+                    
+                    // Reset content fields
+                    itemImage = UIImage()
+                    itemName = ""
+                    itemDescription = ""
+                    
+                    primaryAlertMessage = "Item Added Successfully"
+                    secondaryAlertMessage = "Check it out in the Item Browser!"
+                    showingAlert = true
                 }
+            }
+        }
+    }
+    
+    var body: some View {
+        VStack(spacing: 10) {
+            VStack {
+                Text("Click a picture of your item:")
+                    .font(.headline)
+                
+                Button(action: { showingImageSourceSelector = true }) {
+                    if itemImage.size == CGSize.zero {
+                        Image(systemName: "camera")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .padding(50)
+                            .foregroundColor(.white)
+                    } else {
+                        Image(uiImage: itemImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(maxWidth: maxImageSize.width, maxHeight: maxImageSize.height)
+                    }
+                }
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: maxImageSize.width, maxHeight: maxImageSize.height)
+                .background(Color(.sRGB, red: 0.2, green: 0.8, blue: 0.2, opacity: 1.0))
+                .cornerRadius(30)
+                .actionSheet(isPresented: $showingImageSourceSelector) {
+                    ActionSheet(
+                        title: Text("Select Image Source"),
+                        buttons: [
+                            .cancel() { print("Cancelled source selection") },
+                            .default(Text("Camera")) { imageSource = .camera; showingImagePicker = true },
+                            .default(Text("Photo Library")) { imageSource = .photoLibrary; showingImagePicker = true }
+                        ]
+                    )
+                }
+                
+                Text("Make sure that your item is clearly visible in the picture")
+                    .multilineTextAlignment(.center)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            
+            // Item Name
+            VStack {
+                Text("Enter a title for your listing:")
+                    .font(.headline)
+                
+                TextField("Title", text: $itemName)
+                    .padding(6)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(lineWidth: 1.5)
+                            .fill(Color.secondary)
+                    )
+            }
+            .padding()
+            
+            // Item Description
+            VStack {
+                Text("Enter a short description of your item:")
+                    .font(.headline)
+                
+                TextField("Description", text: $itemDescription)
+                    .padding(6)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(lineWidth: 1.5)
+                            .fill(Color.secondary)
+                    )
+            }
+            .padding()
+            
+            // Add Item Button
+            Button(action: addItemListing) {
+                Label(
+                    title: {
+                        Text("Add Listing")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                    },
+                    icon: {
+                        Image(systemName: "archivebox")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30)
+                    }
+                )
+                .padding(.horizontal, 30)
+            }
+            .padding(.vertical)
+            .foregroundColor(.white)
+            .background(Color.accentColor)
+            .cornerRadius(12)
+            .alert(isPresented: $showingAlert) {
+                Alert(
+                    title: Text(primaryAlertMessage),
+                    message: Text(secondaryAlertMessage),
+                    dismissButton: .default(Text("OK"))
+                )
             }
         }
         .navigationTitle("New Item Listing")

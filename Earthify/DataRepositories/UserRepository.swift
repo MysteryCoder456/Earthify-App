@@ -26,7 +26,7 @@ class UserRepository: ObservableObject {
                         let x = try document.data(as: AppUser.self)
                         return x
                     } catch {
-                        print(error)
+                        print("Could not fetch user document: \(error.localizedDescription)")
                     }
 
                     return nil
