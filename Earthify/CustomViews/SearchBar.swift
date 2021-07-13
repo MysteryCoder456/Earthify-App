@@ -37,13 +37,12 @@ struct SearchBar: View {
 
             if isEditing {
                 Button("Cancel") {
-                    self.isEditing = false
-                    self.text = ""
+                    isEditing = false
+                    text = ""
 
                     // Dismiss keyboard
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }
-//                .padding(.horizontal, 3)
                 .transition(.move(edge: .trailing))
                 .animation(.default)
             }

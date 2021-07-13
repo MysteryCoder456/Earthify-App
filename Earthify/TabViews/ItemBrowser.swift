@@ -32,16 +32,19 @@ struct ItemBrowser: View {
             }
             .navigationTitle("Search Earthify")
             .toolbar {
-                ToolbarItem(placement: .primaryAction) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
                         // TODO: Add item listing sorting
-                        
-                        Button(action: {}) {
-                            Label("New Item Listing", systemImage: "list.bullet.rectangle")
-                        }
+                        Text("Sorting Coming Soon...")
                     }
                     label: {
-                        Label("Add", systemImage: "ellipsis")
+                        Label("Add", systemImage: "arrow.up.arrow.down")
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: AddListingView()) {
+                        Label("New Item Listing", systemImage: "plus")
                     }
                 }
             }

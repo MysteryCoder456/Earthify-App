@@ -38,7 +38,7 @@ struct SplashScreen: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 55)
-                        .foregroundColor(themeColor)
+                        .foregroundColor(.accentColor)
                         .padding(.bottom)
 
                     Text("Welcome to Earthify")
@@ -67,7 +67,7 @@ struct SplashScreen: View {
                             .padding(.horizontal, 20)
                         }
                         .padding(.vertical)
-                        .background(themeColor)
+                        .background(Color.accentColor)
                         .cornerRadius(12)
                     }
                     .padding(.top, 50)
