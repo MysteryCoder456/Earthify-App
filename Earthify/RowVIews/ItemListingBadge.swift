@@ -29,6 +29,7 @@ struct ItemListingBadge: View {
 
             Text(item.description)
                 .font(.caption)
+                .foregroundColor(.secondary)
         }
         .frame(width: imageSize.width)
         .onAppear {
