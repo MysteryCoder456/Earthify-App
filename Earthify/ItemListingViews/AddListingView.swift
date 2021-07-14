@@ -109,6 +109,7 @@ struct AddListingView: View {
     
     var body: some View {
         VStack(spacing: 5) {
+            // Image Picker
             VStack {
                 Text("Click a picture of your item:")
                     .font(.headline)
@@ -154,7 +155,7 @@ struct AddListingView: View {
                     .font(.headline)
                 
                 TextField("Title", text: $itemName)
-                    .padding(6)
+                    .padding(7)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(lineWidth: 1.5)
@@ -169,7 +170,7 @@ struct AddListingView: View {
                     .font(.headline)
                 
                 TextField("Description", text: $itemDescription)
-                    .padding(6)
+                    .padding(7)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(lineWidth: 1.5)

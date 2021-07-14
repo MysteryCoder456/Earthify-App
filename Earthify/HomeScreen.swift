@@ -12,7 +12,7 @@ struct HomeScreen: View {
         TabView {
             ItemBrowser()
                 .tabItem {
-                    Label("Home", systemImage: "house.fill")
+                    Label("Item Browser", systemImage: "magnifyingglass")
                 }
         }
     }
