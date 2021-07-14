@@ -27,7 +27,9 @@ struct ItemBrowser: View {
                     let listings = runningForPreviews ? previewItemListings : env.listingRepository.itemListings
 
                     ForEach(listings.filter { searchText.isEmpty || $0.name.lowercased().contains(searchText.lowercased()) || $0.description.lowercased().contains(searchText.lowercased()) }, id: \.self) { listing in
-                        ItemListingBadge(item: listing)
+                        NavigationLink(destination: ListingDetailView(item: listing)) {
+                            ItemListingBadge(item: listing)
+                        }
                     }
                 }
             }

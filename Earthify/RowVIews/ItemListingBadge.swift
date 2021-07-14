@@ -26,6 +26,7 @@ struct ItemListingBadge: View {
 
             Text(item.name)
                 .font(.headline)
+                .foregroundColor(.primary)
 
             Text(item.description)
                 .font(.caption)
