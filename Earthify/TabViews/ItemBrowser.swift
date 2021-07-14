@@ -44,7 +44,7 @@ struct ItemBrowser: View {
                         Label("Add", systemImage: "arrow.up.arrow.down")
                     }
                 }
-                
+
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: AddListingView()) {
                         Label("New Item Listing", systemImage: "plus")

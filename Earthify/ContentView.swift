@@ -10,8 +10,8 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var env: EnvironmentObjects
-    
-    let themeColor = Color.green //(.sRGB, red: 0.39, green: 0.77, blue: 0.21, opacity: 1.0)
+
+    let themeColor = Color.green // (.sRGB, red: 0.39, green: 0.77, blue: 0.21, opacity: 1.0)
 
     var body: some View {
         if env.authenticated {

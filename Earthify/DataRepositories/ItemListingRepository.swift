@@ -41,7 +41,7 @@ class ItemListingRepository: ObservableObject {
             try db.collection("listings").document(listingID).setData(from: listing)
         }
     }
-    
+
     func deleteListing(listing: ItemListing) {
         if let listingID = listing.id {
             db.collection("listings").document(listingID).delete()
