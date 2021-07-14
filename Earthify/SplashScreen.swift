@@ -77,7 +77,7 @@ struct SplashScreen: View {
                 }
                 .frame(width: deviceDimensions.width, height: deviceDimensions.height * 0.55, alignment: .center)
                 .background(Color.primary.colorInvert())
-                .cornerRadius(30)
+                .cornerRadius(50)
                 .multilineTextAlignment(.center)
             }
         }
