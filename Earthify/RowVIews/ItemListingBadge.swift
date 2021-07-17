@@ -35,20 +35,20 @@ struct ItemListingBadge: View {
         }
         .frame(width: imageSize.width)
         .onAppear {
-            if !runningForPreviews {
-                let storageRef = Storage.storage().reference(withPath: "listingImages/\(item.id!).jpg")
-                let sizeLimit = env.listingImageMaximumSize
+            guard !runningForPreviews else { return }
+            
+            let storageRef = Storage.storage().reference(withPath: "listingImages/\(item.id!).jpg")
+            let sizeLimit = env.listingImageMaximumSize
 
-                storageRef.getData(maxSize: sizeLimit) { data, error in
-                    if let error = error {
-                        print("Could not fetch Item Listing image for \(item.id!): \(error.localizedDescription)")
-                        return
-                    }
+            storageRef.getData(maxSize: sizeLimit) { data, error in
+                if let error = error {
+                    print("Could not fetch Item Listing image for \(item.id!): \(error.localizedDescription)")
+                    return
+                }
 
-                    if let data = data {
-                        if let image = UIImage(data: data) {
-                            itemImage = image
-                        }
+                if let data = data {
+                    if let image = UIImage(data: data) {
+                        itemImage = image
                     }
                 }
             }

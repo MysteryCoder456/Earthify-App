@@ -93,6 +93,8 @@ struct ListingDetailView: View {
         }
         .navigationBarTitle("Item Listing Details", displayMode: .inline)
         .onAppear {
+            guard !runningForPreviews else { return }
+            
             let storageRef = Storage.storage().reference(withPath: "listingImages/\(item.id!).jpg")
             let sizeLimit = env.listingImageMaximumSize
 
