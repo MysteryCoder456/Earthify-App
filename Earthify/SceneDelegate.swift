@@ -16,7 +16,7 @@ class EnvironmentObjects: ObservableObject {
     @Published var userRepository: UserRepository
     @Published var listingRepository: ItemListingRepository
 
-    let listingImageMaximumSize: Int64 = 8_388_608
+    let listingImageMaximumSize: Int64 = 3145728  // bytes
     var userRepoCancellable: AnyCancellable?
     var listingRepoCancellable: AnyCancellable?
 
