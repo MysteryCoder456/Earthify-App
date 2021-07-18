@@ -50,7 +50,10 @@ class EnvironmentObjects: ObservableObject {
 
         if let currentUID = Auth.auth().currentUser?.uid {
             if let googleProfile = GIDSignIn.sharedInstance().currentUser.profile {
-                let user = AppUser(uid: currentUID, firstName: googleProfile.givenName, lastName: googleProfile.familyName, email: googleProfile.email)
+                let userHasImage = googleProfile.hasImage
+                let imageURL = userHasImage ? googleProfile.imageURL(withDimension: 128).absoluteString : nil
+                
+                let user = AppUser(uid: currentUID, firstName: googleProfile.givenName, lastName: googleProfile.familyName, email: googleProfile.email, profileImageURL: imageURL)
 
                 do {
                     try userRepository.updateUser(user: user)

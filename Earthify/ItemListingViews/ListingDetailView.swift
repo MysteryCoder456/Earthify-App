@@ -6,11 +6,16 @@
 //
 
 import FirebaseStorage
+import GoogleSignIn
 import SwiftUI
 
 struct ListingDetailView: View {
     @EnvironmentObject var env: EnvironmentObjects
     @State var itemImage = UIImage()
+    
+    // Owner details
+    @State var owner = previewUsers.first!
+    @State var ownerProfileImage = UIImage(systemName: "person.circle.fill")!
 
     // Alert details
     @State var primaryAlertMessage = ""
@@ -90,6 +95,35 @@ struct ListingDetailView: View {
             .padding(.top)
 
             Spacer()
+            
+            Text("Item By")
+                .font(.footnote)
+                .foregroundColor(.secondary)
+            
+            // Owner details
+            HStack {
+                let size: CGFloat = 40
+                let ownerFullname = "\(owner.firstName) \(owner.lastName)"
+                
+                // TODO: fix extra spacing issues
+                // Resize image according to width and height
+                if ownerProfileImage.size.width > ownerProfileImage.size.height {
+                    Image(uiImage: ownerProfileImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: size)
+                        .clipShape(Circle())
+                } else {
+                    Image(uiImage: ownerProfileImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: size)
+                        .clipShape(Circle())
+                }
+                
+                Text(ownerFullname)
+                    .font(.headline)
+            }
         }
         .navigationBarTitle("Item Listing Details", displayMode: .inline)
         .onAppear {
@@ -98,6 +132,7 @@ struct ListingDetailView: View {
             let storageRef = Storage.storage().reference(withPath: "listingImages/\(item.id!).jpg")
             let sizeLimit = env.listingImageMaximumSize
 
+            // Fetch item image
             storageRef.getData(maxSize: sizeLimit) { data, error in
                 if let error = error {
                     print("Could not fetch item listing image: \(error.localizedDescription)")
@@ -114,6 +149,43 @@ struct ListingDetailView: View {
                         itemImage = image
                     }
                 }
+            }
+            
+            // Fetch owner's profile image
+            guard let itemOwner = env.userRepository.users.first(where: { $0.uid == item.ownerID }) else { return }
+            self.owner = itemOwner
+            
+            if let profileImageURLString = owner.profileImageURL {
+                let profileImageURL = URL(string: profileImageURLString)!
+                
+                // Asynchronously fetch the owner's profile picture from Google Profile
+                let task = URLSession.shared.dataTask(with: profileImageURL) { data, response, error in
+                    // Print the HTTP response if it exists
+                    if let response = response {
+                        print(response)
+                    }
+                    
+                    if let error = error {
+                        print("Could not fetch item owner's profile image: \(error.localizedDescription)")
+                        
+                        primaryAlertMessage = "An error occured while fetching this item owner's profile picture"
+                        secondaryAlertMessage = error.localizedDescription
+                        showingAlert = true
+                        
+                        return
+                    }
+                    
+                    if let data = data {
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data) {
+                                ownerProfileImage = image
+                            }
+                        }
+                    }
+                }
+                
+                // Run the asynchronous task
+                task.resume()
             }
         }
     }
