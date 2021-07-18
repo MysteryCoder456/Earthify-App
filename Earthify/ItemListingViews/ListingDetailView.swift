@@ -116,7 +116,7 @@ struct ListingDetailView: View {
                 }
                 .padding()
                 .frame(width: deviceDimensions.width / 2.5)
-                .background(Color(.sRGB, red: 0.93, green: 0.78, blue: 0.07, opacity: 1.0))
+                .background(Color.yellow)
                 .cornerRadius(15)
             }
             .foregroundColor(.white)
