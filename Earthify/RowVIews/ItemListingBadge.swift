@@ -36,7 +36,7 @@ struct ItemListingBadge: View {
         .frame(width: imageSize.width)
         .onAppear {
             guard !runningForPreviews else { return }
-            
+
             let storageRef = Storage.storage().reference(withPath: "listingImages/\(item.id!).jpg")
             let sizeLimit = env.listingImageMaximumSize
 

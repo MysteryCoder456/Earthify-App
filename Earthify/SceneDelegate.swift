@@ -16,7 +16,7 @@ class EnvironmentObjects: ObservableObject {
     @Published var userRepository: UserRepository
     @Published var listingRepository: ItemListingRepository
 
-    let listingImageMaximumSize: Int64 = 3145728  // bytes
+    let listingImageMaximumSize: Int64 = 3_145_728 // bytes
     var userRepoCancellable: AnyCancellable?
     var listingRepoCancellable: AnyCancellable?
 
@@ -52,7 +52,7 @@ class EnvironmentObjects: ObservableObject {
             if let googleProfile = GIDSignIn.sharedInstance().currentUser.profile {
                 let userHasImage = googleProfile.hasImage
                 let imageURL = userHasImage ? googleProfile.imageURL(withDimension: 128).absoluteString : nil
-                
+
                 let user = AppUser(uid: currentUID, firstName: googleProfile.givenName, lastName: googleProfile.familyName, email: googleProfile.email, profileImageURL: imageURL)
 
                 do {

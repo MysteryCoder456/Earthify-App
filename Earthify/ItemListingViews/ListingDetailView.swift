@@ -12,7 +12,7 @@ import SwiftUI
 struct ListingDetailView: View {
     @EnvironmentObject var env: EnvironmentObjects
     @State var itemImage = UIImage()
-    
+
     // Owner details
     @State var owner = previewUsers.first!
     @State var ownerProfileImage = UIImage(systemName: "person.circle.fill")!
@@ -25,13 +25,13 @@ struct ListingDetailView: View {
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     let deviceDimensions = UIScreen.main.bounds.size
     var item: ItemListing
-    
+
     func cropToSquare(_ image: UIImage) -> UIImage {
         let imageWidth = image.size.width
         let imageHeight = image.size.height
         let cropSize = min(imageWidth, imageHeight)
         let cropRect: CGRect
-        
+
         if imageWidth > imageHeight {
             cropRect = CGRect(
                 x: (imageWidth - cropSize) / 2,
@@ -47,10 +47,10 @@ struct ListingDetailView: View {
                 height: cropSize
             )
         }
-        
+
         let cgImage = image.cgImage!
         let croppedCGImage = cgImage.cropping(to: cropRect)!
-        
+
         return UIImage(cgImage: croppedCGImage)
     }
 
@@ -123,21 +123,21 @@ struct ListingDetailView: View {
             .padding(.top)
 
             Spacer()
-            
+
             Text("Item By")
                 .font(.footnote)
                 .foregroundColor(.secondary)
-            
+
             // Owner details
             HStack {
                 let size: CGFloat = 40
                 let ownerFullname = "\(owner.firstName) \(owner.lastName)"
-                
+
                 Image(uiImage: ownerProfileImage)
                     .resizable()
                     .frame(width: size, height: size)
                     .clipShape(Circle())
-                
+
                 Text(ownerFullname)
                     .font(.headline)
             }
@@ -145,7 +145,7 @@ struct ListingDetailView: View {
         .navigationBarTitle("Item Listing Details", displayMode: .inline)
         .onAppear {
             guard !runningForPreviews else { return }
-            
+
             let storageRef = Storage.storage().reference(withPath: "listingImages/\(item.id!).jpg")
             let sizeLimit = env.listingImageMaximumSize
 
@@ -167,31 +167,31 @@ struct ListingDetailView: View {
                     }
                 }
             }
-            
-            // Fetch owner's profile image
+
             guard let itemOwner = env.userRepository.users.first(where: { $0.uid == item.ownerID }) else { return }
             self.owner = itemOwner
-            
+
+            // Fetch owner's profile image
             if let profileImageURLString = owner.profileImageURL {
                 let profileImageURL = URL(string: profileImageURLString)!
-                
+
                 // Asynchronously fetch the owner's profile picture from Google Profile
                 let task = URLSession.shared.dataTask(with: profileImageURL) { data, response, error in
                     // Print the HTTP response if it exists
                     if let response = response {
                         print(response)
                     }
-                    
+
                     if let error = error {
                         print("Could not fetch item owner's profile image: \(error.localizedDescription)")
-                        
+
                         primaryAlertMessage = "An error occured while fetching this item owner's profile picture"
                         secondaryAlertMessage = error.localizedDescription
                         showingAlert = true
-                        
+
                         return
                     }
-                    
+
                     if let data = data {
                         DispatchQueue.main.async {
                             if let image = UIImage(data: data) {
@@ -201,7 +201,7 @@ struct ListingDetailView: View {
                         }
                     }
                 }
-                
+
                 // Run the asynchronous task
                 task.resume()
             }
