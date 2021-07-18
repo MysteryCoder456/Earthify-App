@@ -25,6 +25,34 @@ struct ListingDetailView: View {
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     let deviceDimensions = UIScreen.main.bounds.size
     var item: ItemListing
+    
+    func cropToSquare(_ image: UIImage) -> UIImage {
+        let imageWidth = image.size.width
+        let imageHeight = image.size.height
+        let cropSize = min(imageWidth, imageHeight)
+        let cropRect: CGRect
+        
+        if imageWidth > imageHeight {
+            cropRect = CGRect(
+                x: (imageWidth - cropSize) / 2,
+                y: 0,
+                width: cropSize,
+                height: cropSize
+            )
+        } else {
+            cropRect = CGRect(
+                x: 0,
+                y: (imageHeight - cropSize) / 2,
+                width: cropSize,
+                height: cropSize
+            )
+        }
+        
+        let cgImage = image.cgImage!
+        let croppedCGImage = cgImage.cropping(to: cropRect)!
+        
+        return UIImage(cgImage: croppedCGImage)
+    }
 
     var body: some View {
         VStack {
@@ -105,21 +133,10 @@ struct ListingDetailView: View {
                 let size: CGFloat = 40
                 let ownerFullname = "\(owner.firstName) \(owner.lastName)"
                 
-                // TODO: fix extra spacing issues
-                // Resize image according to width and height
-                if ownerProfileImage.size.width > ownerProfileImage.size.height {
-                    Image(uiImage: ownerProfileImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: size)
-                        .clipShape(Circle())
-                } else {
-                    Image(uiImage: ownerProfileImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: size)
-                        .clipShape(Circle())
-                }
+                Image(uiImage: ownerProfileImage)
+                    .resizable()
+                    .frame(width: size, height: size)
+                    .clipShape(Circle())
                 
                 Text(ownerFullname)
                     .font(.headline)
@@ -178,7 +195,8 @@ struct ListingDetailView: View {
                     if let data = data {
                         DispatchQueue.main.async {
                             if let image = UIImage(data: data) {
-                                ownerProfileImage = image
+                                let croppedImage = cropToSquare(image)
+                                ownerProfileImage = croppedImage
                             }
                         }
                     }
