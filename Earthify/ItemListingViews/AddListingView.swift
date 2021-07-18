@@ -41,7 +41,7 @@ struct AddListingView: View {
                 // Upload image to Firebase Storage
                 let storageRef = Storage.storage().reference(withPath: "listingImages/\(newItemListing.id!).jpg")
 
-                guard let imageData = itemImage.jpegData(compressionQuality: 0.5) else { return }
+                guard let imageData = itemImage.jpegData(compressionQuality: 0.3) else { return }
 
                 let sizeLimit = env.listingImageMaximumSize
                 let sizeLimitMB = sizeLimit / 1_048_576
