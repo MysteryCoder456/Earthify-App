@@ -6,12 +6,16 @@
 //
 
 import FirebaseStorage
+import FirebaseAuth
 import GoogleSignIn
 import SwiftUI
 
 struct ListingDetailView: View {
     @EnvironmentObject var env: EnvironmentObjects
+    
+    // Other item details
     @State var itemImage = UIImage()
+    @State var itemIsStarred = false
 
     // Owner details
     @State var owner = previewUsers.first!
@@ -25,6 +29,42 @@ struct ListingDetailView: View {
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     let deviceDimensions = UIScreen.main.bounds.size
     var item: ItemListing
+    
+    func starItem() {
+        guard let currentUID = Auth.auth().currentUser?.uid else { return }
+        guard var currentUser = env.userRepository.users.first(where: { $0.uid == currentUID }) else { return }
+        currentUser.starredItems.append(item.id!)
+        
+        do {
+            try env.userRepository.updateUser(user: currentUser)
+            itemIsStarred = true
+            print("Starred Item \(item.id!)")
+        } catch {
+            print("Could not star item \(item.id!): \(error.localizedDescription)")
+            
+            primaryAlertMessage = "Unable to star item"
+            secondaryAlertMessage = error.localizedDescription
+            showingAlert = true
+        }
+    }
+    
+    func unstarItem() {
+        guard let currentUID = Auth.auth().currentUser?.uid else { return }
+        guard var currentUser = env.userRepository.users.first(where: { $0.uid == currentUID }) else { return }
+        currentUser.starredItems.removeAll(where: { $0 == item.id} )
+        
+        do {
+            try env.userRepository.updateUser(user: currentUser)
+            itemIsStarred = false
+            print("Unstarred Item \(item.id!)")
+        } catch {
+            print("Could not unstar item \(item.id!): \(error.localizedDescription)")
+            
+            primaryAlertMessage = "Unable to unstar item"
+            secondaryAlertMessage = error.localizedDescription
+            showingAlert = true
+        }
+    }
 
     func cropToSquare(_ image: UIImage) -> UIImage {
         let imageWidth = image.size.width
@@ -100,10 +140,10 @@ struct ListingDetailView: View {
                 .cornerRadius(15)
 
                 // Star Button
-                Button(action: {}) {
+                Button(action: itemIsStarred ? unstarItem : starItem) {
                     Label(
                         title: {
-                            Text("Star")
+                            Text(itemIsStarred ? "Unstar" : "Star")
                                 .fontWeight(.semibold)
                         },
                         icon: {
@@ -145,6 +185,13 @@ struct ListingDetailView: View {
         .navigationBarTitle("Item Listing Details", displayMode: .inline)
         .onAppear {
             guard !runningForPreviews else { return }
+            
+            // Determine if the item has been starred by the current user or not
+            if let currentUID = Auth.auth().currentUser?.uid {
+                if let currentUser = env.userRepository.users.first(where: { $0.uid == currentUID }) {
+                    itemIsStarred = currentUser.starredItems.contains(item.id!)
+                }
+            }
 
             let storageRef = Storage.storage().reference(withPath: "listingImages/\(item.id!).jpg")
             let sizeLimit = env.listingImageMaximumSize

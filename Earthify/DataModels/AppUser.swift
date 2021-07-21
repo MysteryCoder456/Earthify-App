@@ -14,6 +14,7 @@ struct AppUser: Codable {
     var lastName: String
     var email: String
     var profileImageURL: String?
+    var starredItems: Array<String> = []
 }
 
 var previewUsers = [
