@@ -36,7 +36,7 @@ class ItemListingRepository: ObservableObject {
             }
         }
     }
-    
+
     func readListingsZToA() {
         db.collection("listings").order(by: "name", descending: true).addSnapshotListener { querySnapshot, error in
             if let querySnapshot = querySnapshot {
@@ -47,7 +47,7 @@ class ItemListingRepository: ObservableObject {
                     } catch {
                         print("Could not fetch listing document: \(error.localizedDescription)")
                     }
-                    
+
                     return nil
                 }
             }

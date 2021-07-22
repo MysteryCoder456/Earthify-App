@@ -5,14 +5,14 @@
 //  Created by Rehatbir Singh on 15/07/2021.
 //
 
-import FirebaseStorage
 import FirebaseAuth
+import FirebaseStorage
 import GoogleSignIn
 import SwiftUI
 
 struct ListingDetailView: View {
     @EnvironmentObject var env: EnvironmentObjects
-    
+
     // Other item details
     @State var itemImage = UIImage()
     @State var itemIsStarred = false
@@ -29,37 +29,37 @@ struct ListingDetailView: View {
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     let deviceDimensions = UIScreen.main.bounds.size
     var item: ItemListing
-    
+
     func starItem() {
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
         guard var currentUser = env.userRepository.users.first(where: { $0.uid == currentUID }) else { return }
         currentUser.starredItems.append(item.id!)
-        
+
         do {
             try env.userRepository.updateUser(user: currentUser)
             itemIsStarred = true
             print("Starred Item \(item.id!)")
         } catch {
             print("Could not star item \(item.id!): \(error.localizedDescription)")
-            
+
             primaryAlertMessage = "Unable to star item"
             secondaryAlertMessage = error.localizedDescription
             showingAlert = true
         }
     }
-    
+
     func unstarItem() {
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
         guard var currentUser = env.userRepository.users.first(where: { $0.uid == currentUID }) else { return }
-        currentUser.starredItems.removeAll(where: { $0 == item.id} )
-        
+        currentUser.starredItems.removeAll(where: { $0 == item.id })
+
         do {
             try env.userRepository.updateUser(user: currentUser)
             itemIsStarred = false
             print("Unstarred Item \(item.id!)")
         } catch {
             print("Could not unstar item \(item.id!): \(error.localizedDescription)")
-            
+
             primaryAlertMessage = "Unable to unstar item"
             secondaryAlertMessage = error.localizedDescription
             showingAlert = true
@@ -185,7 +185,7 @@ struct ListingDetailView: View {
         .navigationBarTitle("Item Listing Details", displayMode: .inline)
         .onAppear {
             guard !runningForPreviews else { return }
-            
+
             // Determine if the item has been starred by the current user or not
             if let currentUID = Auth.auth().currentUser?.uid {
                 if let currentUser = env.userRepository.users.first(where: { $0.uid == currentUID }) {

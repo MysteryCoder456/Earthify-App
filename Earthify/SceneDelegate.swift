@@ -54,7 +54,7 @@ class EnvironmentObjects: ObservableObject {
                 let imageURL = userHasImage ? googleProfile.imageURL(withDimension: 128).absoluteString : nil
 
                 var user = AppUser(uid: currentUID, firstName: googleProfile.givenName, lastName: googleProfile.familyName, email: googleProfile.email, profileImageURL: imageURL)
-                
+
                 // Preserve user details not related to Google Account
                 if let existingUserEntry = userRepository.users.first(where: { $0.uid == currentUID }) {
                     user.starredItems = existingUserEntry.starredItems

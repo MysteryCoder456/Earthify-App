@@ -25,7 +25,7 @@ struct ItemBrowser: View {
 
     var body: some View {
         var listings: [ItemListing]
-        
+
         if runningForPreviews {
             listings = previewItemListings
         } else {
@@ -36,7 +36,7 @@ struct ItemBrowser: View {
                 listings = env.listingRepository.itemListingsZToA
             }
         }
-        
+
         return NavigationView {
             ScrollView {
                 SearchBar(label: "Search for items...", text: $searchText)
@@ -54,7 +54,6 @@ struct ItemBrowser: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
-                        // TODO: Add item listing sorting
                         Picker("Sort Listings", selection: $sortingSelection) {
                             ForEach(ListingSorting.allCases, id: \.self) {
                                 Text($0.rawValue)
