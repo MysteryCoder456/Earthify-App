@@ -12,16 +12,18 @@ import Foundation
 class ItemListingRepository: ObservableObject {
     let db = Firestore.firestore()
 
-    @Published var itemListings: [ItemListing] = []
+    @Published var itemListingsAToZ: [ItemListing] = []
+    @Published var itemListingsZToA: [ItemListing] = []
 
     init() {
-        readListings()
+        readListingsAToZ()
+        readListingsZToA()
     }
 
-    func readListings() {
-        db.collection("listings").addSnapshotListener { querySnapshot, error in
+    func readListingsAToZ() {
+        db.collection("listings").order(by: "name").addSnapshotListener { querySnapshot, error in
             if let querySnapshot = querySnapshot {
-                self.itemListings = querySnapshot.documents.compactMap { document in
+                self.itemListingsAToZ = querySnapshot.documents.compactMap { document in
                     do {
                         let x = try document.data(as: ItemListing.self)
                         return x
@@ -29,6 +31,23 @@ class ItemListingRepository: ObservableObject {
                         print("Could not fetch listing document: \(error.localizedDescription)")
                     }
 
+                    return nil
+                }
+            }
+        }
+    }
+    
+    func readListingsZToA() {
+        db.collection("listings").order(by: "name", descending: true).addSnapshotListener { querySnapshot, error in
+            if let querySnapshot = querySnapshot {
+                self.itemListingsZToA = querySnapshot.documents.compactMap { document in
+                    do {
+                        let x = try document.data(as: ItemListing.self)
+                        return x
+                    } catch {
+                        print("Could not fetch listing document: \(error.localizedDescription)")
+                    }
+                    
                     return nil
                 }
             }
