@@ -39,16 +39,15 @@ struct ItemBrowser: View {
             }
         }
 
-        let currentUID = Auth.auth().currentUser!.uid
-        let currentUser = env.userRepository.users.first(where: { $0.uid == currentUID })
-
         return NavigationView {
             ScrollView {
                 SearchBar(label: "Search for items...", text: $searchText)
                     .padding([.horizontal, .bottom], 10)
 
                 LazyVGrid(columns: columns, spacing: 25) {
-                    if let currentUser = currentUser {
+                    let currentUID = Auth.auth().currentUser!.uid
+                    if let currentUser = env.userRepository.users.first(where: { $0.uid == currentUID }) {
+                        
                         ForEach(listings.filter { searchText.isEmpty || $0.name.lowercased().contains(searchText.lowercased()) || $0.description.lowercased().contains(searchText.lowercased()) }, id: \.self) { listing in
                             let itemIsStarred = currentUser.starredItems.contains(listing.id!)
 
@@ -58,6 +57,7 @@ struct ItemBrowser: View {
                                 }
                             }
                         }
+                        
                     }
                 }
             }
