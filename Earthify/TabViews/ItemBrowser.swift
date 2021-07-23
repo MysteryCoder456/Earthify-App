@@ -5,6 +5,7 @@
 //  Created by Rehatbir Singh on 11/07/2021.
 //
 
+import FirebaseAuth
 import SwiftUI
 
 enum ListingSorting: String, CaseIterable {
@@ -16,6 +17,7 @@ struct ItemBrowser: View {
     @EnvironmentObject var env: EnvironmentObjects
     @State var searchText = ""
     @State var sortingSelection: ListingSorting = .alphabetic
+    @State var viewStarred = false
 
     let columns = [
         GridItem(.adaptive(minimum: 150, maximum: 175)),
@@ -37,6 +39,9 @@ struct ItemBrowser: View {
             }
         }
 
+        let currentUID = Auth.auth().currentUser!.uid
+        let currentUser = env.userRepository.users.first(where: { $0.uid == currentUID })
+
         return NavigationView {
             ScrollView {
                 SearchBar(label: "Search for items...", text: $searchText)
@@ -44,8 +49,15 @@ struct ItemBrowser: View {
 
                 LazyVGrid(columns: columns, spacing: 25) {
                     ForEach(listings.filter { searchText.isEmpty || $0.name.lowercased().contains(searchText.lowercased()) || $0.description.lowercased().contains(searchText.lowercased()) }, id: \.self) { listing in
-                        NavigationLink(destination: ListingDetailView(item: listing)) {
-                            ItemListingBadge(item: listing)
+
+                        if let currentUser = currentUser {
+                            let itemIsStarred = currentUser.starredItems.contains(listing.id!)
+
+                            if viewStarred == itemIsStarred || !viewStarred {
+                                NavigationLink(destination: ListingDetailView(item: listing)) {
+                                    ItemListingBadge(item: listing)
+                                }
+                            }
                         }
                     }
                 }
@@ -62,6 +74,12 @@ struct ItemBrowser: View {
                     }
                     label: {
                         Label("Add", systemImage: "arrow.up.arrow.down")
+                    }
+                }
+
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: { viewStarred.toggle() }) {
+                        Label("View Starred", systemImage: viewStarred ? "star.fill" : "star")
                     }
                 }
 
