@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
             // User logs out successfully
             NotificationCenter.default.post(name: Notification.Name("UserSignedOut"), object: nil)
-            print("User with email \(user.profile.email ?? "No Email") Signed Out")
+            print("User with email \(user?.profile.email ?? "No Email") Signed Out")
         } catch {
             print("Could not Sign Out of Firebase: \(error.localizedDescription)")
         }

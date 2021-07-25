@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2703C6A2B6E6271CB6372299 /* Pods_Earthify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6CA30F38E7D30DEEB77EFC /* Pods_Earthify.framework */; };
+		34386E9726AD220F0047895B /* SettingsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34386E9626AD220F0047895B /* SettingsMenu.swift */; };
 		3491DCD42699902F002C0C80 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491DCD32699902F002C0C80 /* UserRepository.swift */; };
 		3491DCD72699905A002C0C80 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491DCD62699905A002C0C80 /* AppUser.swift */; };
 		349580FB269CF971005A7B5B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349580FA269CF971005A7B5B /* SearchBar.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		036A8436C01959B24F2C2DBF /* Pods-Earthify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Earthify.release.xcconfig"; path = "Target Support Files/Pods-Earthify/Pods-Earthify.release.xcconfig"; sourceTree = "<group>"; };
+		34386E9626AD220F0047895B /* SettingsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenu.swift; sourceTree = "<group>"; };
 		3491DCD32699902F002C0C80 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		3491DCD62699905A002C0C80 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		349580FA269CF971005A7B5B /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				349E629C269A4C6D00F739D7 /* ItemBrowser.swift */,
+				34386E9626AD220F0047895B /* SettingsMenu.swift */,
 			);
 			path = TabViews;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				34F1FB82269862180050BFE7 /* SplashScreen.swift in Sources */,
 				349E62A3269A5F1300F739D7 /* ItemListing.swift in Sources */,
 				349E629D269A4C6E00F739D7 /* ItemBrowser.swift in Sources */,
+				34386E9726AD220F0047895B /* SettingsMenu.swift in Sources */,
 				349E62A5269A615000F739D7 /* ItemListingRepository.swift in Sources */,
 				34958105269D0B64005A7B5B /* ImagePickerView.swift in Sources */,
 				34F1FB632698528D0050BFE7 /* AppDelegate.swift in Sources */,

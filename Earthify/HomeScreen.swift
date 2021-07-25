@@ -14,6 +14,11 @@ struct HomeScreen: View {
                 .tabItem {
                     Label("Item Browser", systemImage: "magnifyingglass")
                 }
+            
+            SettingsMenu()
+                .tabItem {
+                    Label("Settings", systemImage: "gear")
+                }
         }
     }
 }

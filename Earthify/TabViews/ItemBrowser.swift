@@ -45,7 +45,7 @@ struct ItemBrowser: View {
                     .padding([.horizontal, .bottom], 10)
 
                 LazyVGrid(columns: columns, spacing: 25) {
-                    let currentUID = Auth.auth().currentUser!.uid
+                    let currentUID = Auth.auth().currentUser?.uid
                     if let currentUser = env.userRepository.users.first(where: { $0.uid == currentUID }) {
                         ForEach(listings.filter { searchText.isEmpty || $0.name.lowercased().contains(searchText.lowercased()) || $0.description.lowercased().contains(searchText.lowercased()) }, id: \.self) { listing in
                             let itemIsStarred = currentUser.starredItems.contains(listing.id!)
