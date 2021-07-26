@@ -26,7 +26,15 @@ struct ItemBrowser: View {
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
 
     var body: some View {
+        // TODO: Fix previews for ItemBrowser
+        var currentUser: AppUser = previewUsers.first!
         var listings: [ItemListing]
+        
+        if !runningForPreviews {
+            if let currentUID = Auth.auth().currentUser?.uid {
+                currentUser = env.userRepository.users.first(where: { $0.uid == currentUID }) ?? previewUsers.first!
+            }
+        }
 
         if runningForPreviews {
             listings = previewItemListings
@@ -38,22 +46,26 @@ struct ItemBrowser: View {
                 listings = env.listingRepository.itemListingsZToA
             }
         }
+        
+        // Filter by search text
+        listings = listings.filter {
+            searchText.isEmpty ||
+            $0.name.lowercased().contains(searchText.lowercased()) ||
+            $0.description.lowercased().contains(searchText.lowercased())
+        }
 
         return NavigationView {
             ScrollView {
                 SearchBar(label: "Search for items...", text: $searchText)
                     .padding([.horizontal, .bottom], 10)
-
+                
                 LazyVGrid(columns: columns, spacing: 25) {
-                    let currentUID = Auth.auth().currentUser?.uid
-                    if let currentUser = env.userRepository.users.first(where: { $0.uid == currentUID }) {
-                        ForEach(listings.filter { searchText.isEmpty || $0.name.lowercased().contains(searchText.lowercased()) || $0.description.lowercased().contains(searchText.lowercased()) }, id: \.self) { listing in
-                            let itemIsStarred = currentUser.starredItems.contains(listing.id!)
+                    ForEach(listings, id: \.self) { listing in
+                        let itemIsStarred = currentUser.starredItems.contains(listing.id!)
 
-                            if viewStarred == itemIsStarred || !viewStarred {
-                                NavigationLink(destination: ListingDetailView(item: listing)) {
-                                    ItemListingBadge(item: listing)
-                                }
+                        if viewStarred == itemIsStarred || !viewStarred {
+                            NavigationLink(destination: ListingDetailView(item: listing)) {
+                                ItemListingBadge(item: listing)
                             }
                         }
                     }
