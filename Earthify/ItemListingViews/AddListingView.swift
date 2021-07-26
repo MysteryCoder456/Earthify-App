@@ -12,6 +12,7 @@ import SwiftUI
 struct AddListingView: View {
     @EnvironmentObject var env: EnvironmentObjects
 
+    // Image Picker details
     @State var showingImagePicker = false
     @State var showingImageSourceSelector = false
     @State var imageSource: UIImagePickerController.SourceType?
@@ -35,69 +36,71 @@ struct AddListingView: View {
             itemDescription = itemDescription.trimmingCharacters(in: .whitespacesAndNewlines)
 
             // Check if all content fields are filled
-            if !itemName.isEmpty, !itemDescription.isEmpty, itemImage.size != CGSize.zero {
-                let newItemListing = ItemListing(id: UUID().uuidString, name: itemName, description: itemDescription, ownerID: currentUID)
+            guard !itemName.isEmpty,
+                  !itemDescription.isEmpty,
+                  itemImage.size != CGSize.zero else { return }
+            
+            let newItemListing = ItemListing(id: UUID().uuidString, name: itemName, description: itemDescription, ownerID: currentUID)
 
-                // Upload image to Firebase Storage
-                let storageRef = Storage.storage().reference(withPath: "listingImages/\(newItemListing.id!).jpg")
+            // Upload image to Firebase Storage
+            let storageRef = Storage.storage().reference(withPath: "listingImages/\(newItemListing.id!).jpg")
 
-                guard let imageData = itemImage.jpegData(compressionQuality: 0.3) else { return }
+            guard let imageData = itemImage.jpegData(compressionQuality: 0.3) else { return }
 
-                let sizeLimit = env.listingImageMaximumSize
-                let sizeLimitMB = sizeLimit / 1_048_576
+            let sizeLimit = env.listingImageMaximumSize
+            let sizeLimitMB = sizeLimit / 1_048_576
 
-                // Check if the image is within the size limit
-                if imageData.count > sizeLimit {
-                    print("Could not upload item listing image: Image is more than \(sizeLimitMB) MB")
+            // Check if the image is within the size limit
+            if imageData.count > sizeLimit {
+                print("Could not upload item listing image: Image is more than \(sizeLimitMB) MB")
+
+                primaryAlertMessage = "Unable to upload image"
+                secondaryAlertMessage = "Image must be smaller than \(sizeLimitMB) MB"
+                showingAlert = true
+
+                return
+            }
+
+            let uploadMetadata = StorageMetadata()
+            uploadMetadata.contentType = "image/jpeg"
+
+            storageRef.putData(imageData, metadata: uploadMetadata) { _, error in
+                if let error = error {
+                    print("Could not upload item listing image: \(error.localizedDescription)")
 
                     primaryAlertMessage = "Unable to upload image"
-                    secondaryAlertMessage = "Image must be smaller than \(sizeLimitMB) MB"
+                    secondaryAlertMessage = error.localizedDescription
                     showingAlert = true
 
                     return
                 }
 
-                let uploadMetadata = StorageMetadata()
-                uploadMetadata.contentType = "image/jpeg"
+                print("Item listing image uploaded successfully")
 
-                storageRef.putData(imageData, metadata: uploadMetadata) { _, error in
-                    if let error = error {
-                        print("Could not upload item listing image: \(error.localizedDescription)")
+                // Add listing to Firestore if image upload was successful
+                do {
+                    try env.listingRepository.updateListing(listing: newItemListing)
+                    print("Listing added to Firestore successfully")
 
-                        primaryAlertMessage = "Unable to upload image"
-                        secondaryAlertMessage = error.localizedDescription
-                        showingAlert = true
+                    // Reset content fields
+                    itemImage = UIImage()
+                    itemName = ""
+                    itemDescription = ""
 
-                        return
-                    }
+                    primaryAlertMessage = "Item Added Successfully"
+                    secondaryAlertMessage = "Check it out in the Item Browser!"
+                    showingAlert = true
+                } catch {
+                    print("Could not add new item listing: \(error.localizedDescription)")
 
-                    print("Item listing image uploaded successfully")
+                    primaryAlertMessage = "Unable to add a new listing"
+                    secondaryAlertMessage = error.localizedDescription
+                    showingAlert = true
 
-                    // Add listing to Firestore if image upload was successful
-                    do {
-                        try env.listingRepository.updateListing(listing: newItemListing)
-                        print("Listing added to Firestore successfully")
-
-                        // Reset content fields
-                        itemImage = UIImage()
-                        itemName = ""
-                        itemDescription = ""
-
-                        primaryAlertMessage = "Item Added Successfully"
-                        secondaryAlertMessage = "Check it out in the Item Browser!"
-                        showingAlert = true
-                    } catch {
-                        print("Could not add new item listing: \(error.localizedDescription)")
-
-                        primaryAlertMessage = "Unable to add a new listing"
-                        secondaryAlertMessage = error.localizedDescription
-                        showingAlert = true
-
-                        // Delete item image if listing was not added to Firestore
-                        storageRef.delete { error in
-                            if let error = error {
-                                print("Could not delete item listing image: \(error.localizedDescription)")
-                            }
+                    // Delete item image if listing was not added to Firestore
+                    storageRef.delete { error in
+                        if let error = error {
+                            print("Could not delete item listing image: \(error.localizedDescription)")
                         }
                     }
                 }
