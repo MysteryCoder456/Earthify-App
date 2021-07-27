@@ -220,7 +220,7 @@ struct EditListingView: View {
                         .fontWeight(.semibold)
                 },
                     icon: {
-                    Image(systemName: "pencil")
+                    Image(systemName: "square.and.pencil")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 30)
