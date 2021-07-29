@@ -40,7 +40,7 @@ struct AddListingView: View {
                   !itemDescription.isEmpty,
                   itemImage.size != CGSize.zero else { return }
             
-            let newItemListing = ItemListing(id: UUID().uuidString, name: itemName, description: itemDescription, ownerID: currentUID)
+            let newItemListing = ItemListing(name: itemName, description: itemDescription, ownerID: currentUID)
 
             // Upload image to Firebase Storage
             let storageRef = Storage.storage().reference(withPath: "listingImages/\(newItemListing.id!).jpg")

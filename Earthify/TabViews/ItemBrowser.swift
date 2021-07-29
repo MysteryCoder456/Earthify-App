@@ -26,7 +26,6 @@ struct ItemBrowser: View {
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
 
     var body: some View {
-        // TODO: Fix previews for ItemBrowser
         var currentUser: AppUser = previewUsers.first!
         var listings: [ItemListing]
         
@@ -105,6 +104,5 @@ struct ItemBrowser: View {
 struct ItemBrowser_Previews: PreviewProvider {
     static var previews: some View {
         ItemBrowser()
-            .environmentObject(EnvironmentObjects())
     }
 }
