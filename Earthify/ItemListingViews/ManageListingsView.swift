@@ -10,16 +10,16 @@ import SwiftUI
 
 struct ManageListingsView: View {
     @EnvironmentObject var env: EnvironmentObjects
-    
+
     let columns = [
         GridItem(.adaptive(minimum: 150, maximum: 175)),
     ]
-    
+
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
-    
+
     var body: some View {
         var listings: [ItemListing]
-        
+
         if runningForPreviews {
             listings = previewItemListings
         } else {
@@ -28,7 +28,7 @@ struct ManageListingsView: View {
                 $0.ownerID == currentUID
             }
         }
-        
+
         return ScrollView {
             LazyVGrid(columns: columns, spacing: 25) {
                 ForEach(listings, id: \.self) { listing in

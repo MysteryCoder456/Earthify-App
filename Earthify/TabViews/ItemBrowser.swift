@@ -28,7 +28,7 @@ struct ItemBrowser: View {
     var body: some View {
         var currentUser: AppUser = previewUsers.first!
         var listings: [ItemListing]
-        
+
         if !runningForPreviews {
             if let currentUID = Auth.auth().currentUser?.uid {
                 currentUser = env.userRepository.users.first(where: { $0.uid == currentUID }) ?? previewUsers.first!
@@ -45,19 +45,19 @@ struct ItemBrowser: View {
                 listings = env.listingRepository.itemListingsZToA
             }
         }
-        
+
         // Filter by search text
         listings = listings.filter {
             searchText.isEmpty ||
-            $0.name.lowercased().contains(searchText.lowercased()) ||
-            $0.description.lowercased().contains(searchText.lowercased())
+                $0.name.lowercased().contains(searchText.lowercased()) ||
+                $0.description.lowercased().contains(searchText.lowercased())
         }
 
         return NavigationView {
             ScrollView {
                 SearchBar(label: "Search for items...", text: $searchText)
                     .padding([.horizontal, .bottom], 10)
-                
+
                 LazyVGrid(columns: columns, spacing: 25) {
                     ForEach(listings, id: \.self) { listing in
                         let itemIsStarred = currentUser.starredItems.contains(listing.id!)

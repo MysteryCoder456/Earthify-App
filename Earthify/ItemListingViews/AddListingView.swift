@@ -39,7 +39,7 @@ struct AddListingView: View {
             guard !itemName.isEmpty,
                   !itemDescription.isEmpty,
                   itemImage.size != CGSize.zero else { return }
-            
+
             let newItemListing = ItemListing(name: itemName, description: itemDescription, ownerID: currentUID)
 
             // Upload image to Firebase Storage

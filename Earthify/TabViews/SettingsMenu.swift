@@ -10,20 +10,20 @@ import SwiftUI
 
 struct SettingsMenu: View {
     @State var showingSignOutAlert = false
-    
+
     func signOut() {
         let si = GIDSignIn.sharedInstance()
         si?.signOut()
         si?.disconnect()
     }
-    
+
     var body: some View {
         NavigationView {
             List {
                 NavigationLink(destination: ManageListingsView()) {
                     Text("Manage listings")
                 }
-                
+
                 Button(action: { showingSignOutAlert = true }) {
                     Text("Sign Out")
                         .bold()
