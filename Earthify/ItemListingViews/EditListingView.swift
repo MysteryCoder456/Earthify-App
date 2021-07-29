@@ -52,7 +52,7 @@ struct EditListingView: View {
             }
 
             // Delete listing from Firestore if image was successfully deleted
-            env.listingRepository.deleteListing(listing: item)
+            env.listingRepository.deleteListing(item)
             print("Item listing \(item.id!) was successfully deleted!")
 
             // Dismiss the current view
@@ -115,7 +115,7 @@ struct EditListingView: View {
 
                 // Update listing in Firestore if image upload was successful
                 do {
-                    try env.listingRepository.updateListing(listing: item)
+                    try env.listingRepository.updateListing(item)
                     print("Listing \(item.id!) updated successfully")
 
                     primaryAlertMessage = "Item Updated Successfully"

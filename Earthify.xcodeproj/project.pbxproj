@@ -23,6 +23,8 @@
 		349E62AA269AEAD500F739D7 /* ItemListingBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E62A9269AEAD500F739D7 /* ItemListingBadge.swift */; };
 		34A537B0269F80800010530A /* ListingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A537AF269F80800010530A /* ListingDetailView.swift */; };
 		34DE345C26B26B1A000542B3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DE345B26B26B1A000542B3 /* Message.swift */; };
+		34DE345E26B31091000542B3 /* ChatsBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DE345D26B31091000542B3 /* ChatsBrowser.swift */; };
+		34DE346026B3127E000542B3 /* MessageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DE345F26B3127E000542B3 /* MessageRepository.swift */; };
 		34F1FB632698528D0050BFE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB622698528D0050BFE7 /* AppDelegate.swift */; };
 		34F1FB652698528D0050BFE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB642698528D0050BFE7 /* SceneDelegate.swift */; };
 		34F1FB672698528D0050BFE7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB662698528D0050BFE7 /* ContentView.swift */; };
@@ -53,6 +55,8 @@
 		349E62A9269AEAD500F739D7 /* ItemListingBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListingBadge.swift; sourceTree = "<group>"; };
 		34A537AF269F80800010530A /* ListingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailView.swift; sourceTree = "<group>"; };
 		34DE345B26B26B1A000542B3 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		34DE345D26B31091000542B3 /* ChatsBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsBrowser.swift; sourceTree = "<group>"; };
+		34DE345F26B3127E000542B3 /* MessageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRepository.swift; sourceTree = "<group>"; };
 		34F1FB5F2698528D0050BFE7 /* Earthify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Earthify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34F1FB622698528D0050BFE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34F1FB642698528D0050BFE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 			children = (
 				3491DCD32699902F002C0C80 /* UserRepository.swift */,
 				349E62A4269A615000F739D7 /* ItemListingRepository.swift */,
+				34DE345F26B3127E000542B3 /* MessageRepository.swift */,
 			);
 			path = DataRepositories;
 			sourceTree = "<group>";
@@ -134,6 +139,7 @@
 			children = (
 				349E629C269A4C6D00F739D7 /* ItemBrowser.swift */,
 				34386E9626AD220F0047895B /* SettingsMenu.swift */,
+				34DE345D26B31091000542B3 /* ChatsBrowser.swift */,
 			);
 			path = TabViews;
 			sourceTree = "<group>";
@@ -359,8 +365,10 @@
 				34958105269D0B64005A7B5B /* ImagePickerView.swift in Sources */,
 				34F1FB632698528D0050BFE7 /* AppDelegate.swift in Sources */,
 				34DE345C26B26B1A000542B3 /* Message.swift in Sources */,
+				34DE345E26B31091000542B3 /* ChatsBrowser.swift in Sources */,
 				349580FB269CF971005A7B5B /* SearchBar.swift in Sources */,
 				3415D2F026AEDC6F00E8241E /* ManageListingsView.swift in Sources */,
+				34DE346026B3127E000542B3 /* MessageRepository.swift in Sources */,
 				34A537B0269F80800010530A /* ListingDetailView.swift in Sources */,
 				34F1FB652698528D0050BFE7 /* SceneDelegate.swift in Sources */,
 				349E629F269A4D0F00F739D7 /* HomeScreen.swift in Sources */,
@@ -514,6 +522,7 @@
 				DEVELOPMENT_TEAM = U29V6K83J6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Earthify/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -536,6 +545,7 @@
 				DEVELOPMENT_TEAM = U29V6K83J6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Earthify/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

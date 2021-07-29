@@ -79,7 +79,7 @@ struct AddListingView: View {
 
                 // Add listing to Firestore if image upload was successful
                 do {
-                    try env.listingRepository.updateListing(listing: newItemListing)
+                    try env.listingRepository.updateListing(newItemListing)
                     print("Listing added to Firestore successfully")
 
                     // Reset content fields

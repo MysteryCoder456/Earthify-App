@@ -54,14 +54,14 @@ class ItemListingRepository: ObservableObject {
         }
     }
 
-    func updateListing(listing: ItemListing) throws {
+    func updateListing(_ listing: ItemListing) throws {
         if let listingID = listing.id {
             // If the specified document does not exist, a new document will be created
             try db.collection("listings").document(listingID).setData(from: listing)
         }
     }
 
-    func deleteListing(listing: ItemListing) {
+    func deleteListing(_ listing: ItemListing) {
         if let listingID = listing.id {
             db.collection("listings").document(listingID).delete()
         }

@@ -8,6 +8,11 @@
 import FirebaseAuth
 import SwiftUI
 
+/* TODO: use iOS 15 SwiftUI features for
+ 1. Search Bar
+ 2. Profile picture image loading
+*/
+
 struct ContentView: View {
     @EnvironmentObject var env: EnvironmentObjects
 

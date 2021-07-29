@@ -15,10 +15,12 @@ class EnvironmentObjects: ObservableObject {
     @Published var authenticated: Bool
     @Published var userRepository: UserRepository
     @Published var listingRepository: ItemListingRepository
+    @Published var messageRepository: MessageRepository
 
     let listingImageMaximumSize: Int64 = 3_145_728 // bytes
     var userRepoCancellable: AnyCancellable?
     var listingRepoCancellable: AnyCancellable?
+    var messageRepoCancellable: AnyCancellable?
 
     init() {
         if GIDSignIn.sharedInstance().hasPreviousSignIn() {
@@ -28,12 +30,16 @@ class EnvironmentObjects: ObservableObject {
         authenticated = Auth.auth().currentUser != nil
         userRepository = UserRepository()
         listingRepository = ItemListingRepository()
+        messageRepository = MessageRepository()
 
         // Notify EnvironmentObjects when published repository attributes change
         userRepoCancellable = userRepository.objectWillChange.sink { _ in
             self.objectWillChange.send()
         }
         listingRepoCancellable = listingRepository.objectWillChange.sink { _ in
+            self.objectWillChange.send()
+        }
+        messageRepoCancellable = messageRepository.objectWillChange.sink { _ in
             self.objectWillChange.send()
         }
 

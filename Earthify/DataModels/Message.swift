@@ -11,13 +11,13 @@ import Foundation
 struct Message: Codable {
     @DocumentID var id = UUID().uuidString
     var senderID: String
-    var receiverID: String
+    var recipients: [String]
     var content: String
     var dateSent = Date()
 }
 
 let previewMessages = [
-    Message(senderID: "1", receiverID: "2", content: "Hi, I want this."),
-    Message(senderID: "2", receiverID: "1", content: "You want what?"),
-    Message(senderID: "1", receiverID: "2", content: "I want this cool thing."),
+    Message(senderID: "1", recipients: ["1", "2"], content: "Hi, I want this."),
+    Message(senderID: "2", recipients: ["1", "2"], content: "You want what?"),
+    Message(senderID: "1", recipients: ["1", "2"], content: "I want this cool thing."),
 ]
