@@ -17,7 +17,7 @@ struct AppUser: Codable {
     var starredItems: [String] = []
 }
 
-var previewUsers = [
+let previewUsers = [
     AppUser(uid: "1", firstName: "John", lastName: "Doe", email: "johndoe@gmail.com"),
     AppUser(uid: "2", firstName: "Joe", lastName: "Mama", email: "joemama@gmail.com"),
 ]

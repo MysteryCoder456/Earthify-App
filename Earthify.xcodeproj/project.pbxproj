@@ -22,6 +22,7 @@
 		349E62A5269A615000F739D7 /* ItemListingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E62A4269A615000F739D7 /* ItemListingRepository.swift */; };
 		349E62AA269AEAD500F739D7 /* ItemListingBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E62A9269AEAD500F739D7 /* ItemListingBadge.swift */; };
 		34A537B0269F80800010530A /* ListingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A537AF269F80800010530A /* ListingDetailView.swift */; };
+		34DE345C26B26B1A000542B3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DE345B26B26B1A000542B3 /* Message.swift */; };
 		34F1FB632698528D0050BFE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB622698528D0050BFE7 /* AppDelegate.swift */; };
 		34F1FB652698528D0050BFE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB642698528D0050BFE7 /* SceneDelegate.swift */; };
 		34F1FB672698528D0050BFE7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB662698528D0050BFE7 /* ContentView.swift */; };
@@ -51,6 +52,7 @@
 		349E62A4269A615000F739D7 /* ItemListingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListingRepository.swift; sourceTree = "<group>"; };
 		349E62A9269AEAD500F739D7 /* ItemListingBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListingBadge.swift; sourceTree = "<group>"; };
 		34A537AF269F80800010530A /* ListingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailView.swift; sourceTree = "<group>"; };
+		34DE345B26B26B1A000542B3 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		34F1FB5F2698528D0050BFE7 /* Earthify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Earthify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34F1FB622698528D0050BFE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34F1FB642698528D0050BFE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				3491DCD62699905A002C0C80 /* AppUser.swift */,
 				349E62A2269A5F1300F739D7 /* ItemListing.swift */,
+				34DE345B26B26B1A000542B3 /* Message.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				349E62A5269A615000F739D7 /* ItemListingRepository.swift in Sources */,
 				34958105269D0B64005A7B5B /* ImagePickerView.swift in Sources */,
 				34F1FB632698528D0050BFE7 /* AppDelegate.swift in Sources */,
+				34DE345C26B26B1A000542B3 /* Message.swift in Sources */,
 				349580FB269CF971005A7B5B /* SearchBar.swift in Sources */,
 				3415D2F026AEDC6F00E8241E /* ManageListingsView.swift in Sources */,
 				34A537B0269F80800010530A /* ListingDetailView.swift in Sources */,
