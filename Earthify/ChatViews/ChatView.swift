@@ -11,11 +11,15 @@ import SwiftUI
 
 struct ChatView: View {
     @EnvironmentObject var env: EnvironmentObjects
+    
     @State var messages: [Message] = []
     @State var messageRepoCancellable: AnyCancellable?
+    
     @State var newMessageText = ""
     
-    let user: AppUser
+    @State var currentUser: AppUser = previewUsers[1]
+    let recipient: AppUser
+    
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     
     func fetchMessages() {
@@ -27,11 +31,12 @@ struct ChatView: View {
     }
     
     var body: some View {
+        // TODO: make background of upper messages progressively fainter
         VStack {
             if messages.isEmpty {
                 Spacer()
                 
-                Text("This is the beginning of your conversation with \(user.firstName). Say hi!")
+                Text("This is the beginning of your conversation with \(recipient.firstName). Say hi!")
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
             } else {
@@ -39,15 +44,19 @@ struct ChatView: View {
                     ScrollViewReader { reader in
                         LazyVStack {
                             ForEach(messages, id: \.id) { message in
-                                Text(message.content)
+                                let sentByCurrentUser = currentUser.uid == message.senderID
+                                let author = sentByCurrentUser ? currentUser : recipient
+                                let position: MessagePosition = sentByCurrentUser ? .primary : .secondary
+                                
+                                ChatBubble(content: message.content, author: author.firstName, position: position)
                             }
-                        }
-                        // Scroll to bottom
-                        .onAppear {
-                            reader.scrollTo(messages.last?.id, anchor: .bottom)
-                        }
-                        .onChange(of: messages.count) { _ in
-                            reader.scrollTo(messages.last?.id, anchor: .bottom)
+                            // Scroll to bottom
+                            .onAppear {
+                                reader.scrollTo(messages.last?.id, anchor: .bottom)
+                            }
+                            .onChange(of: messages.count) { _ in
+                                reader.scrollTo(messages.last?.id, anchor: .bottom)
+                            }
                         }
                     }
                 }
@@ -70,14 +79,20 @@ struct ChatView: View {
             }
             .padding(10)
         }
-        .navigationBarTitle("Chat with \(user.firstName) \(user.lastName)", displayMode: .inline)
+        .navigationBarTitle("Chat with \(recipient.firstName) \(recipient.lastName)", displayMode: .inline)
         .onAppear {
             if !runningForPreviews {
                 // Fetch new messages whenever message repository updates
                 messageRepoCancellable = env.messageRepository.objectWillChange.sink { _ in
                     fetchMessages()
                 }
+                
+                let currentUID = Auth.auth().currentUser?.uid
+                if let user = env.userRepository.users.first(where: { $0.uid == currentUID }) {
+                    currentUser = user
+                }
             }
+            
             fetchMessages()
         }
     }
@@ -86,7 +101,7 @@ struct ChatView: View {
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ChatView(user: previewUsers.first!)
+            ChatView(recipient: previewUsers.first!)
         }
     }
 }
