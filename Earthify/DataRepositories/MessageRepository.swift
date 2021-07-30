@@ -25,7 +25,7 @@ class MessageRepository: ObservableObject {
         
         // Only fetch messages that the current user is related to
         db.collection("messages")
-            .order(by: "dateSent", descending: true)
+            .order(by: "dateSent")
             .whereField("recipients", arrayContains: currentUID)
             .addSnapshotListener { querySnapshot, error in
                 if let querySnapshot = querySnapshot {

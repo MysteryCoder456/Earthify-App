@@ -11,10 +11,6 @@ import SwiftUI
 
 struct ChatView: View {
     @EnvironmentObject var env: EnvironmentObjects
-    
-    @State var messages: [Message] = []
-    @State var messageRepoCancellable: AnyCancellable?
-    
     @State var newMessageText = ""
     
     @State var currentUser: AppUser = previewUsers[1]
@@ -22,15 +18,13 @@ struct ChatView: View {
     
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     
-    func fetchMessages() {
-        messages = runningForPreviews ? previewMessages : env.messageRepository.messages
-    }
-    
     func sendMessage() {
         // TODO: Make this function
     }
     
     var body: some View {
+        let messages = runningForPreviews ? previewMessages : env.messageRepository.messages.filter({ $0.recipients.contains(recipient.uid!) })
+        
         // TODO: make background of upper messages progressively fainter
         VStack {
             if messages.isEmpty {
@@ -82,18 +76,11 @@ struct ChatView: View {
         .navigationBarTitle("Chat with \(recipient.firstName) \(recipient.lastName)", displayMode: .inline)
         .onAppear {
             if !runningForPreviews {
-                // Fetch new messages whenever message repository updates
-                messageRepoCancellable = env.messageRepository.objectWillChange.sink { _ in
-                    fetchMessages()
-                }
-                
                 let currentUID = Auth.auth().currentUser?.uid
                 if let user = env.userRepository.users.first(where: { $0.uid == currentUID }) {
                     currentUser = user
                 }
             }
-            
-            fetchMessages()
         }
     }
 }
