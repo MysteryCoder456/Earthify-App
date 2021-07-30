@@ -8,7 +8,7 @@
 import FirebaseFirestoreSwift
 import Foundation
 
-struct Message: Codable {
+struct Message: Codable, Hashable {
     @DocumentID var id = UUID().uuidString
     var senderID: String
     var recipients: [String]

@@ -233,7 +233,7 @@ struct EditListingView: View {
             .background(Color.accentColor)
             .cornerRadius(12)
         }
-        .navigationBarTitle("Update Listing")
+        .navigationBarTitle("Update Listing", displayMode: .inline)
         .sheet(isPresented: $showingImagePicker) {
             if let source = imageSource {
                 ImagePickerView(sourceType: source) { image in

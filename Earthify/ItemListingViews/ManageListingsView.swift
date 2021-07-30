@@ -38,7 +38,7 @@ struct ManageListingsView: View {
                 }
             }
         }
-        .navigationBarTitle("Manage Listings")
+        .navigationBarTitle("Manage Listings", displayMode: .inline)
     }
 }
 

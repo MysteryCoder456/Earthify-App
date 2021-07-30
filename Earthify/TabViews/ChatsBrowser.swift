@@ -47,7 +47,9 @@ struct ChatsBrowser: View {
                     .refreshable(action: fetchChats)
                 } else {
                     List(chats, id: \.uid) { user in
-                        ChatRow(user: user)
+                        NavigationLink(destination: ChatView(user: user)) {
+                            ChatRow(user: user)
+                        }
                     }
                     .refreshable(action: fetchChats)
                 }

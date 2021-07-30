@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileImage: View {
     let image: Image
-    let imageSize = CGSize(width: 55, height: 55)
+    let imageSize = CGSize(width: 60, height: 60)
     
     var body: some View {
         image

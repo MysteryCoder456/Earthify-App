@@ -37,6 +37,7 @@
 		34F1FB7F269861D30050BFE7 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34F1FB7C269861D30050BFE7 /* Montserrat-Regular.ttf */; };
 		34F1FB80269861D30050BFE7 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34F1FB7D269861D30050BFE7 /* Montserrat-SemiBold.ttf */; };
 		34F1FB82269862180050BFE7 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB81269862180050BFE7 /* SplashScreen.swift */; };
+		34F39E6B26B4575A00626894 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F39E6A26B4575A00626894 /* ChatView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		34F1FB7C269861D30050BFE7 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		34F1FB7D269861D30050BFE7 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		34F1FB81269862180050BFE7 /* SplashScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		34F39E6A26B4575A00626894 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		6B6CA30F38E7D30DEEB77EFC /* Pods_Earthify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Earthify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAD6CF667B4CD3120654361 /* Pods-Earthify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Earthify.debug.xcconfig"; path = "Target Support Files/Pods-Earthify/Pods-Earthify.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +185,7 @@
 				349E629E269A4D0F00F739D7 /* HomeScreen.swift */,
 				349E629B269A4C5000F739D7 /* TabViews */,
 				349580FF269D07C3005A7B5B /* ItemListingViews */,
+				34F39E6926B4573800626894 /* ChatViews */,
 				349E62A6269AE9CA00F739D7 /* RowVIews */,
 				349580F7269CF90F005A7B5B /* CustomViews */,
 				3491DCD526999049002C0C80 /* DataModels */,
@@ -213,6 +216,14 @@
 				34F1FB7C269861D30050BFE7 /* Montserrat-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		34F39E6926B4573800626894 /* ChatViews */ = {
+			isa = PBXGroup;
+			children = (
+				34F39E6A26B4575A00626894 /* ChatView.swift */,
+			);
+			path = ChatViews;
 			sourceTree = "<group>";
 		};
 		8D9CFB96670BFC71C355BD37 /* Pods */ = {
@@ -362,6 +373,7 @@
 			files = (
 				34DE346626B3531A000542B3 /* ChatRow.swift in Sources */,
 				34F1FB82269862180050BFE7 /* SplashScreen.swift in Sources */,
+				34F39E6B26B4575A00626894 /* ChatView.swift in Sources */,
 				349E62A3269A5F1300F739D7 /* ItemListing.swift in Sources */,
 				349E629D269A4C6E00F739D7 /* ItemBrowser.swift in Sources */,
 				34386E9726AD220F0047895B /* SettingsMenu.swift in Sources */,
