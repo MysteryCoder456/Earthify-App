@@ -21,6 +21,7 @@ struct ChatsBrowser: View {
         }
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
         
+        chats = []
         let messages = env.messageRepository.messages
         var addedUsers: [String] = []
         
@@ -38,18 +39,14 @@ struct ChatsBrowser: View {
         NavigationView {
             VStack {
                 if chats.isEmpty {
-                    
                     Text("You don't have any chats yet.\nStart a conversation from an item's page")
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
-                    
                 } else {
-                    
                     List(chats, id: \.uid) { user in
-                        Text("\(user.firstName) \(user.lastName)")
+                        ChatRow(user: user)
                     }
                     .refreshable(action: fetchChats)
-            
                 }
             }
             .navigationTitle("Search Chats")

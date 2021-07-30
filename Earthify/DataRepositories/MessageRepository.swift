@@ -23,7 +23,7 @@ class MessageRepository: ObservableObject {
         // Make user is logged in
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
         
-        // Only fetch chats that the current user is a part of
+        // Only fetch messages that the current user is related to
         db.collection("messages")
             .order(by: "dateSent", descending: true)
             .whereField("recipients", arrayContains: currentUID)

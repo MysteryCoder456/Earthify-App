@@ -25,6 +25,7 @@
 		34DE345C26B26B1A000542B3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DE345B26B26B1A000542B3 /* Message.swift */; };
 		34DE345E26B31091000542B3 /* ChatsBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DE345D26B31091000542B3 /* ChatsBrowser.swift */; };
 		34DE346026B3127E000542B3 /* MessageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DE345F26B3127E000542B3 /* MessageRepository.swift */; };
+		34DE346626B3531A000542B3 /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DE346526B3531A000542B3 /* ChatRow.swift */; };
 		34F1FB632698528D0050BFE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB622698528D0050BFE7 /* AppDelegate.swift */; };
 		34F1FB652698528D0050BFE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB642698528D0050BFE7 /* SceneDelegate.swift */; };
 		34F1FB672698528D0050BFE7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1FB662698528D0050BFE7 /* ContentView.swift */; };
@@ -57,6 +58,7 @@
 		34DE345B26B26B1A000542B3 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		34DE345D26B31091000542B3 /* ChatsBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsBrowser.swift; sourceTree = "<group>"; };
 		34DE345F26B3127E000542B3 /* MessageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRepository.swift; sourceTree = "<group>"; };
+		34DE346526B3531A000542B3 /* ChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRow.swift; sourceTree = "<group>"; };
 		34F1FB5F2698528D0050BFE7 /* Earthify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Earthify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34F1FB622698528D0050BFE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34F1FB642698528D0050BFE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				349E62A9269AEAD500F739D7 /* ItemListingBadge.swift */,
+				34DE346526B3531A000542B3 /* ChatRow.swift */,
 			);
 			path = RowVIews;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34DE346626B3531A000542B3 /* ChatRow.swift in Sources */,
 				34F1FB82269862180050BFE7 /* SplashScreen.swift in Sources */,
 				349E62A3269A5F1300F739D7 /* ItemListing.swift in Sources */,
 				349E629D269A4C6E00F739D7 /* ItemBrowser.swift in Sources */,

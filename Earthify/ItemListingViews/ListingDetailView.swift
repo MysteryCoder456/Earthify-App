@@ -66,34 +66,6 @@ struct ListingDetailView: View {
         }
     }
 
-    func cropToSquare(_ image: UIImage) -> UIImage {
-        let imageWidth = image.size.width
-        let imageHeight = image.size.height
-        let cropSize = min(imageWidth, imageHeight)
-        let cropRect: CGRect
-
-        if imageWidth > imageHeight {
-            cropRect = CGRect(
-                x: (imageWidth - cropSize) / 2,
-                y: 0,
-                width: cropSize,
-                height: cropSize
-            )
-        } else {
-            cropRect = CGRect(
-                x: 0,
-                y: (imageHeight - cropSize) / 2,
-                width: cropSize,
-                height: cropSize
-            )
-        }
-
-        let cgImage = image.cgImage!
-        let croppedCGImage = cgImage.cropping(to: cropRect)!
-
-        return UIImage(cgImage: croppedCGImage)
-    }
-
     var body: some View {
         VStack {
             Image(uiImage: runningForPreviews ? UIImage(named: "Preview \(item.name)")! : itemImage)
@@ -175,7 +147,9 @@ struct ListingDetailView: View {
 
                 Image(uiImage: ownerProfileImage)
                     .resizable()
+                    .scaledToFill()
                     .frame(width: size, height: size)
+                    .clipped()
                     .clipShape(Circle())
 
                 Text(ownerFullname)
@@ -242,8 +216,7 @@ struct ListingDetailView: View {
                     if let data = data {
                         DispatchQueue.main.async {
                             if let image = UIImage(data: data) {
-                                let croppedImage = cropToSquare(image)
-                                ownerProfileImage = croppedImage
+                                ownerProfileImage = image
                             }
                         }
                     }
