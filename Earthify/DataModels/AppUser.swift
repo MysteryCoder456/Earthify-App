@@ -19,6 +19,6 @@ struct AppUser: Codable {
 
 let previewUsers = [
     // cool picture i know
-    AppUser(uid: "1", firstName: "John", lastName: "Doe", email: "johndoe@gmail.com", profileImageURL: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fen%2F1%2F1e%2FDerpTrolling_logo_200x200.png&f=1&nofb=1"),
+    AppUser(uid: "1", firstName: "John", lastName: "Doe", email: "johndoe@gmail.com", profileImageURL: "https://cdn.discordapp.com/avatars/400857098121904149/293891e78a07321dfd61ba58898b86db.webp"),
     AppUser(uid: "2", firstName: "Joe", lastName: "Mama", email: "joemama@gmail.com"),
 ]

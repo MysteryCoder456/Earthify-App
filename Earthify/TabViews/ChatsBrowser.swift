@@ -39,9 +39,12 @@ struct ChatsBrowser: View {
         NavigationView {
             VStack {
                 if chats.isEmpty {
-                    Text("You don't have any chats yet.\nStart a conversation from an item's page")
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
+                    List {
+                        Text("You don't have any chats yet.\nStart a conversation from an item's page")
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+                    .refreshable(action: fetchChats)
                 } else {
                     List(chats, id: \.uid) { user in
                         ChatRow(user: user)
