@@ -57,6 +57,7 @@ struct ChatView: View {
 
     var body: some View {
         // TODO: make background of upper messages progressively fainter
+        // TODO: animated smooth scrolling
         VStack {
             if messages.isEmpty {
                 Spacer()
