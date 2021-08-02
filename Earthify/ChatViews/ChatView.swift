@@ -6,20 +6,43 @@
 //
 
 import FirebaseAuth
-import Combine
 import SwiftUI
 
 struct ChatView: View {
     @EnvironmentObject var env: EnvironmentObjects
     @State var newMessageText = ""
     
+    // Alert details
+    @State var primaryAlertMessage = ""
+    @State var secondaryAlertMessage = ""
+    @State var showingAlert = false
+    
+    // Recipients
     @State var currentUser: AppUser = previewUsers[1]
     let recipient: AppUser
     
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     
     func sendMessage() {
-        // TODO: Make this function
+        // Ensure that user is signed in
+        guard let currentUID = Auth.auth().currentUser?.uid else { return }
+        
+        // Ensure that message content isn't empty
+        newMessageText = newMessageText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !newMessageText.isEmpty else { return }
+        
+        let newMessage = Message(senderID: currentUID, recipients: [currentUID, recipient.uid!], content: newMessageText)
+        
+        do {
+            try env.messageRepository.updateMessage(newMessage)
+            newMessageText = ""
+        } catch {
+            print("Could not send message: \(error.localizedDescription)")
+            
+            primaryAlertMessage = "Unable to send message"
+            secondaryAlertMessage = error.localizedDescription
+            showingAlert = true
+        }
     }
     
     var body: some View {
@@ -48,7 +71,7 @@ struct ChatView: View {
                             .onAppear {
                                 reader.scrollTo(messages.last?.id, anchor: .bottom)
                             }
-                            .onChange(of: messages.count) { _ in
+                            .onChange(of: newMessageText) { _ in
                                 reader.scrollTo(messages.last?.id, anchor: .bottom)
                             }
                         }
@@ -72,6 +95,13 @@ struct ChatView: View {
                 }
             }
             .padding(10)
+        }
+        .alert(isPresented: $showingAlert) {
+            Alert(
+                title: Text(primaryAlertMessage),
+                message: Text(secondaryAlertMessage),
+                dismissButton: .default(Text("OK"))
+            )
         }
         .navigationBarTitle("Chat with \(recipient.firstName) \(recipient.lastName)", displayMode: .inline)
         .onAppear {

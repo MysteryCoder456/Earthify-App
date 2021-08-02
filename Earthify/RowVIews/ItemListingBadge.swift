@@ -31,8 +31,8 @@ struct ItemListingBadge: View {
             Text(item.description)
                 .font(.caption)
                 .foregroundColor(.secondary)
-                .lineLimit(1)
         }
+        .lineLimit(1)
         .frame(width: imageSize.width)
         .onAppear {
             guard !runningForPreviews else { return }

@@ -34,7 +34,7 @@ struct SplashScreen: View {
                 Spacer()
 
                 VStack {
-                    Image(systemName: "globe")
+                    Image(systemName: "globe.europe.africa.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 55)
