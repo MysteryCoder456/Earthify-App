@@ -6,6 +6,7 @@
 //
 
 import FirebaseAuth
+import Combine
 import SwiftUI
 
 struct ChatView: View {
@@ -21,7 +22,16 @@ struct ChatView: View {
     @State var currentUser: AppUser = previewUsers[1]
     let recipient: AppUser
     
+    @State var messages: [Message] = []
+    
+    // For updating 'messages' state when MessageRepository is updated
+    @State var messagesCancellable: AnyCancellable?
+    
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+    
+    func fetchMessages() {
+        messages = runningForPreviews ? previewMessages : env.messageRepository.messages.filter({ $0.recipients.contains(recipient.uid!) })
+    }
     
     func sendMessage() {
         // Ensure that user is signed in
@@ -46,8 +56,6 @@ struct ChatView: View {
     }
     
     var body: some View {
-        let messages = runningForPreviews ? previewMessages : env.messageRepository.messages.filter({ $0.recipients.contains(recipient.uid!) })
-        
         // TODO: make background of upper messages progressively fainter
         VStack {
             if messages.isEmpty {
@@ -71,7 +79,7 @@ struct ChatView: View {
                             .onAppear {
                                 reader.scrollTo(messages.last?.id, anchor: .bottom)
                             }
-                            .onChange(of: newMessageText) { _ in
+                            .onChange(of: messages) { _ in
                                 reader.scrollTo(messages.last?.id, anchor: .bottom)
                             }
                         }
@@ -107,10 +115,18 @@ struct ChatView: View {
         .onAppear {
             if !runningForPreviews {
                 let currentUID = Auth.auth().currentUser?.uid
+                
                 if let user = env.userRepository.users.first(where: { $0.uid == currentUID }) {
                     currentUser = user
                 }
+                
+                // Update 'messages' state when MessageRepository is updated
+                messagesCancellable = env.messageRepository.$messages.sink { newMessages in
+                    messages = newMessages.filter({ $0.recipients.contains(recipient.uid!) })
+                }
             }
+            
+            fetchMessages()
         }
     }
 }
