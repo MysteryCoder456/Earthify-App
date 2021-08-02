@@ -12,7 +12,7 @@ import SwiftUI
  1. Search Bar
  2. Profile picture image loading
  3. Refreshing capabilities for browsers
-*/
+ */
 
 struct ContentView: View {
     @EnvironmentObject var env: EnvironmentObjects

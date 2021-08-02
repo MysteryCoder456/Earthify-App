@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileImage: View {
     let image: Image
     let imageSize = CGSize(width: 60, height: 60)
-    
+
     var body: some View {
         image
             .resizable()
@@ -24,7 +24,7 @@ struct ProfileImage: View {
 struct ChatRow: View {
     let user: AppUser
     let placeholderImage = ProfileImage(image: Image(systemName: "person.circle.fill"))
-    
+
     var body: some View {
         HStack {
             if let profileImageURL = user.profileImageURL {
@@ -36,7 +36,7 @@ struct ChatRow: View {
             } else {
                 placeholderImage
             }
-            
+
             Text("\(user.firstName) \(user.lastName)")
                 .font(.title3)
                 .fontWeight(.medium)

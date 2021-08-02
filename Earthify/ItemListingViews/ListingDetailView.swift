@@ -25,7 +25,7 @@ struct ListingDetailView: View {
     @State var primaryAlertMessage = ""
     @State var secondaryAlertMessage = ""
     @State var showingAlert = false
-    
+
     @State var showingChatButton = true
 
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
@@ -169,7 +169,7 @@ struct ListingDetailView: View {
             if let currentUID = Auth.auth().currentUser?.uid {
                 // Don't show chat button if user is viewing their own item
                 showingChatButton = currentUID != item.ownerID
-                
+
                 if let currentUser = env.userRepository.users.first(where: { $0.uid == currentUID }) {
                     itemIsStarred = currentUser.starredItems.contains(item.id!)
                 }

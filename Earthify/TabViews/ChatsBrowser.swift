@@ -11,20 +11,20 @@ import SwiftUI
 struct ChatsBrowser: View {
     @EnvironmentObject var env: EnvironmentObjects
     @State var chats: [AppUser] = []
-    
+
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
-    
+
     func fetchChats() {
         guard !runningForPreviews else {
             chats = previewUsers
             return
         }
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
-        
+
         chats = []
         let messages = env.messageRepository.messages
         var addedUsers: [String] = []
-        
+
         for message in messages {
             let receiverID = message.recipients[0] == currentUID ? message.recipients[1] : message.recipients[0]
             if !addedUsers.contains(receiverID) {
@@ -34,7 +34,7 @@ struct ChatsBrowser: View {
             }
         }
     }
-    
+
     var body: some View {
         NavigationView {
             VStack {
