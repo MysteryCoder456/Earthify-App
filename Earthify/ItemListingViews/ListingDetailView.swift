@@ -25,6 +25,8 @@ struct ListingDetailView: View {
     @State var primaryAlertMessage = ""
     @State var secondaryAlertMessage = ""
     @State var showingAlert = false
+    
+    @State var showingChatButton = true
 
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     let deviceDimensions = UIScreen.main.bounds.size
@@ -90,26 +92,29 @@ struct ListingDetailView: View {
             }
             .multilineTextAlignment(.center)
 
+            // FIXME: ChatView closes after sending a message when opening from here
             HStack(spacing: 18) {
-                // Chat Button
-                Button(action: {}) {
-                    Label(
-                        title: {
-                            Text("Chat")
-                                .fontWeight(.semibold)
-                        },
-                        icon: {
-                            Image(systemName: "message.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 30)
-                        }
-                    )
+                if showingChatButton {
+                    // Chat Button
+                    NavigationLink(destination: ChatView(recipient: owner)) {
+                        Label(
+                            title: {
+                                Text("Chat")
+                                    .fontWeight(.semibold)
+                            },
+                            icon: {
+                                Image(systemName: "message.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30)
+                            }
+                        )
+                    }
+                    .padding()
+                    .frame(width: deviceDimensions.width / 2.5)
+                    .background(Color.accentColor)
+                    .cornerRadius(15)
                 }
-                .padding()
-                .frame(width: deviceDimensions.width / 2.5)
-                .background(Color.accentColor)
-                .cornerRadius(15)
 
                 // Star Button
                 Button(action: itemIsStarred ? unstarItem : starItem) {
@@ -162,6 +167,9 @@ struct ListingDetailView: View {
 
             // Determine if the item has been starred by the current user or not
             if let currentUID = Auth.auth().currentUser?.uid {
+                // Don't show chat button if user is viewing their own item
+                showingChatButton = currentUID != item.ownerID
+                
                 if let currentUser = env.userRepository.users.first(where: { $0.uid == currentUID }) {
                     itemIsStarred = currentUser.starredItems.contains(item.id!)
                 }
