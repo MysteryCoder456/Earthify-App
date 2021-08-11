@@ -37,7 +37,7 @@ struct ChatRow: View {
                 placeholderImage
             }
 
-            Text("\(user.firstName) \(user.lastName)")
+            Text(user.fullName())
                 .font(.title3)
                 .fontWeight(.medium)
                 .padding(.horizontal, 6)

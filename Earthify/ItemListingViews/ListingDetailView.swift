@@ -148,7 +148,6 @@ struct ListingDetailView: View {
             // Owner details
             HStack {
                 let size: CGFloat = 40
-                let ownerFullname = "\(owner.firstName) \(owner.lastName)"
 
                 Image(uiImage: ownerProfileImage)
                     .resizable()
@@ -157,7 +156,7 @@ struct ListingDetailView: View {
                     .clipped()
                     .clipShape(Circle())
 
-                Text(ownerFullname)
+                Text(owner.fullName())
                     .font(.headline)
             }
         }

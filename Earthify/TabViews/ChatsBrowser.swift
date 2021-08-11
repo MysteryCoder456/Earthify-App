@@ -11,6 +11,7 @@ import SwiftUI
 struct ChatsBrowser: View {
     @EnvironmentObject var env: EnvironmentObjects
     @State var chats: [AppUser] = []
+    @State var searchText = ""
 
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
 
@@ -46,12 +47,15 @@ struct ChatsBrowser: View {
                     }
                     .refreshable(action: fetchChats)
                 } else {
-                    List(chats, id: \.uid) { user in
+                    let filteredChats = chats.filter({ $0.fullName().contains(searchText) })
+                    
+                    List(filteredChats, id: \.uid) { user in
                         NavigationLink(destination: ChatView(recipient: user)) {
                             ChatRow(user: user)
                         }
                     }
                     .refreshable(action: fetchChats)
+                    .searchable(text: $searchText, prompt: "Search in Chats")
                 }
             }
             .navigationTitle("Search Chats")

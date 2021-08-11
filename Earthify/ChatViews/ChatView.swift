@@ -112,7 +112,7 @@ struct ChatView: View {
                 dismissButton: .default(Text("OK"))
             )
         }
-        .navigationBarTitle("Chat with \(recipient.firstName) \(recipient.lastName)", displayMode: .inline)
+        .navigationBarTitle("Chat with \(recipient.fullName())", displayMode: .inline)
         .onAppear {
             if !runningForPreviews {
                 let currentUID = Auth.auth().currentUser?.uid

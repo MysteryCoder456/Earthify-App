@@ -15,6 +15,10 @@ struct AppUser: Codable {
     var email: String
     var profileImageURL: String?
     var starredItems: [String] = []
+    
+    func fullName() -> String {
+        return "\(firstName) \(lastName)"
+    }
 }
 
 let previewUsers = [
