@@ -47,7 +47,7 @@ struct ItemBrowser: View {
         }
 
         // Filter by search text
-        listings = listings.filter {
+        let listingsFiltered = listings.filter {
             searchText.isEmpty ||
                 $0.name.lowercased().contains(searchText.lowercased()) ||
                 $0.description.lowercased().contains(searchText.lowercased())
@@ -55,11 +55,8 @@ struct ItemBrowser: View {
 
         return NavigationView {
             ScrollView {
-                SearchBar(label: "Search for items...", text: $searchText)
-                    .padding([.horizontal, .bottom], 10)
-
                 LazyVGrid(columns: columns, spacing: 25) {
-                    ForEach(listings, id: \.self) { listing in
+                    ForEach(listingsFiltered, id: \.self) { listing in
                         let itemIsStarred = currentUser.starredItems.contains(listing.id!)
 
                         if viewStarred == itemIsStarred || !viewStarred {
@@ -70,6 +67,7 @@ struct ItemBrowser: View {
                     }
                 }
             }
+            .searchable(text: $searchText, prompt: "Search Earthify")
             .navigationTitle("Search Earthify")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

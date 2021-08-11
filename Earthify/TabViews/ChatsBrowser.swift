@@ -47,7 +47,7 @@ struct ChatsBrowser: View {
                     }
                     .refreshable(action: fetchChats)
                 } else {
-                    let filteredChats = chats.filter({ $0.fullName().contains(searchText) })
+                    let filteredChats = chats.filter({ searchText.isEmpty || $0.fullName().contains(searchText) })
                     
                     List(filteredChats, id: \.uid) { user in
                         NavigationLink(destination: ChatView(recipient: user)) {
