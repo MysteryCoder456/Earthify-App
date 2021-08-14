@@ -2397,7 +2397,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    limitations under the License.
 </string>
 			<key>License</key>
-			<string>Apache License, Version 2.0</string>
+			<string>Apache</string>
 			<key>Title</key>
 			<string>GTMAppAuth</string>
 			<key>Type</key>

@@ -147,14 +147,18 @@ struct ListingDetailView: View {
 
             // Owner details
             HStack {
-                let size: CGFloat = 40
-
-                Image(uiImage: ownerProfileImage)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: size, height: size)
-                    .clipped()
-                    .clipShape(Circle())
+                let size = CGSize(width: 40, height: 40)
+                let placeholderImage = ProfileImage(image: Image(systemName: "person.circle.fill"), imageSize: size)
+                
+                if let profileImageURL = owner.profileImageURL {
+                    AsyncImage(url: URL(string: profileImageURL)) { image in
+                        ProfileImage(image: image, imageSize: size)
+                    } placeholder: {
+                        placeholderImage
+                    }
+                } else {
+                    placeholderImage
+                }
 
                 Text(owner.fullName())
                     .font(.headline)
@@ -198,40 +202,6 @@ struct ListingDetailView: View {
 
             guard let itemOwner = env.userRepository.users.first(where: { $0.uid == item.ownerID }) else { return }
             self.owner = itemOwner
-
-            // Fetch owner's profile image
-            if let profileImageURLString = owner.profileImageURL {
-                let profileImageURL = URL(string: profileImageURLString)!
-
-                // Asynchronously fetch the owner's profile picture from Google Profile
-                let task = URLSession.shared.dataTask(with: profileImageURL) { data, response, error in
-                    // Print the HTTP response if it exists
-                    if let response = response {
-                        print(response)
-                    }
-
-                    if let error = error {
-                        print("Could not fetch item owner's profile image: \(error.localizedDescription)")
-
-                        primaryAlertMessage = "An error occured while fetching this item owner's profile picture"
-                        secondaryAlertMessage = error.localizedDescription
-                        showingAlert = true
-
-                        return
-                    }
-
-                    if let data = data {
-                        DispatchQueue.main.async {
-                            if let image = UIImage(data: data) {
-                                ownerProfileImage = image
-                            }
-                        }
-                    }
-                }
-
-                // Run the asynchronous task
-                task.resume()
-            }
         }
     }
 }

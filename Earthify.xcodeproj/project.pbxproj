@@ -11,6 +11,7 @@
 		3415D2F026AEDC6F00E8241E /* ManageListingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3415D2EF26AEDC6F00E8241E /* ManageListingsView.swift */; };
 		3415D2F226AEF5BE00E8241E /* EditListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3415D2F126AEF5BE00E8241E /* EditListingView.swift */; };
 		34386E9726AD220F0047895B /* SettingsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34386E9626AD220F0047895B /* SettingsMenu.swift */; };
+		344A748D26C8660100940ACC /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344A748C26C8660000940ACC /* ProfileImage.swift */; };
 		3491DCD42699902F002C0C80 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491DCD32699902F002C0C80 /* UserRepository.swift */; };
 		3491DCD72699905A002C0C80 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491DCD62699905A002C0C80 /* AppUser.swift */; };
 		34958103269D0806005A7B5B /* AddListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34958102269D0806005A7B5B /* AddListingView.swift */; };
@@ -45,6 +46,7 @@
 		3415D2EF26AEDC6F00E8241E /* ManageListingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageListingsView.swift; sourceTree = "<group>"; };
 		3415D2F126AEF5BE00E8241E /* EditListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListingView.swift; sourceTree = "<group>"; };
 		34386E9626AD220F0047895B /* SettingsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenu.swift; sourceTree = "<group>"; };
+		344A748C26C8660000940ACC /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		3491DCD32699902F002C0C80 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		3491DCD62699905A002C0C80 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		34958102269D0806005A7B5B /* AddListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListingView.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				34958104269D0B64005A7B5B /* ImagePickerView.swift */,
+				344A748C26C8660000940ACC /* ProfileImage.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -247,7 +250,7 @@
 				34F1FB5C2698528D0050BFE7 /* Frameworks */,
 				34F1FB5D2698528D0050BFE7 /* Resources */,
 				9760303DA197270275D14140 /* [CP] Embed Pods Frameworks */,
-				4154BCC428C44AD2082866D2 /* [CP] Copy Pods Resources */,
+				5A6BBC3E3D4C921E21B534E6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -308,7 +311,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4154BCC428C44AD2082866D2 /* [CP] Copy Pods Resources */ = {
+		5A6BBC3E3D4C921E21B534E6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -372,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34DE346626B3531A000542B3 /* ChatRow.swift in Sources */,
+				344A748D26C8660100940ACC /* ProfileImage.swift in Sources */,
 				34F1FB82269862180050BFE7 /* SplashScreen.swift in Sources */,
 				34F39E6B26B4575A00626894 /* ChatView.swift in Sources */,
 				349E62A3269A5F1300F739D7 /* ItemListing.swift in Sources */,

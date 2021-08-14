@@ -17,6 +17,6 @@ target 'Earthify' do
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Storage'
-  pod 'GoogleSignIn'
+  pod 'GoogleSignIn', '5.0.2'
 
 end

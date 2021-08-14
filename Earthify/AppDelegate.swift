@@ -9,6 +9,8 @@ import Firebase
 import GoogleSignIn
 import UIKit
 
+// TODO: Migrate to GoogleSignIn 6.x.x
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

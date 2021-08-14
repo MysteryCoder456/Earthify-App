@@ -7,29 +7,15 @@
 
 import SwiftUI
 
-struct ProfileImage: View {
-    let image: Image
-    let imageSize = CGSize(width: 60, height: 60)
-
-    var body: some View {
-        image
-            .resizable()
-            .scaledToFill()
-            .frame(width: imageSize.width, height: imageSize.height)
-            .clipped()
-            .clipShape(Circle())
-    }
-}
-
 struct ChatRow: View {
     let user: AppUser
-    let placeholderImage = ProfileImage(image: Image(systemName: "person.circle.fill"))
+    let placeholderImage = ProfileImage(image: Image(systemName: "person.circle.fill"), imageSize: CGSize(width: 60, height: 60))
 
     var body: some View {
         HStack {
             if let profileImageURL = user.profileImageURL {
                 AsyncImage(url: URL(string: profileImageURL)) { image in
-                    ProfileImage(image: image)
+                    ProfileImage(image: image, imageSize: CGSize(width: 60, height: 60))
                 } placeholder: {
                     placeholderImage
                 }
