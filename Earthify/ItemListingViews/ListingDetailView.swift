@@ -5,10 +5,10 @@
 //  Created by Rehatbir Singh on 15/07/2021.
 //
 
+import CoreLocation
 import FirebaseAuth
 import FirebaseStorage
 import GoogleSignIn
-import CoreLocation
 import SwiftUI
 
 struct ListingDetailView: View {
@@ -91,7 +91,7 @@ struct ListingDetailView: View {
                 Text(item.description)
                     .font(.subheadline)
                     .lineLimit(3)
-                
+
                 Text(itemDistance > 1000 ? "\(Int(round(itemDistance / 1000))) Km" : "\(Int(itemDistance)) m")
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -210,16 +210,16 @@ struct ListingDetailView: View {
             if let itemOwner = env.userRepository.users.first(where: { $0.uid == item.ownerID }) {
                 self.owner = itemOwner
             }
-            
+
             // Get item's distance from current position
             let geoPoint = item.location
             let itemLocation = CLLocation(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
-            
+
             // Check location authorization
             let locationManager = CLLocationManager()
             let locationAuthorization = locationManager.authorizationStatus
             let canGetLocation = (locationAuthorization == .authorizedAlways || locationAuthorization == .authorizedWhenInUse)
-            
+
             if canGetLocation {
                 if let currentLocation = locationManager.location {
                     itemDistance = currentLocation.distance(from: itemLocation)

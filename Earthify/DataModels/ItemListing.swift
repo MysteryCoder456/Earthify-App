@@ -5,10 +5,10 @@
 //  Created by Rehatbir Singh on 11/07/2021.
 //
 
+import CoreLocation
 import Firebase
 import FirebaseFirestoreSwift
 import Foundation
-import CoreLocation
 
 struct ItemListing: Codable, Hashable {
     @DocumentID var id = UUID().uuidString

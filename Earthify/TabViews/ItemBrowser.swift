@@ -5,14 +5,14 @@
 //  Created by Rehatbir Singh on 11/07/2021.
 //
 
-import FirebaseAuth
 import CoreLocation
+import FirebaseAuth
 import SwiftUI
 
 enum ListingSorting: String, CaseIterable {
     case alphabeticAscending = "A to Z"
     case alphabeticDescending = "Z to A"
-    
+
     case distanceAscending = "Nearest First"
 }
 
@@ -45,29 +45,27 @@ struct ItemBrowser: View {
             let locationManager = CLLocationManager()
             let locationAuthorization = locationManager.authorizationStatus
             let canGetLocation = (locationAuthorization == .authorizedAlways || locationAuthorization == .authorizedWhenInUse)
-            
+
             switch sortingSelection {
             case .alphabeticAscending:
                 listings = env.listingRepository.itemListingsAToZ
-                
+
             case .alphabeticDescending:
                 listings = env.listingRepository.itemListingsZToA
-                
+
             case .distanceAscending:
                 listings = env.listingRepository.itemListingsAToZ.sorted(by: { firstListing, secondListing in
                     if canGetLocation {
                         if let currentLocation = locationManager.location {
-                            
                             let firstGeoPoint = firstListing.location
                             let firstLocation = CLLocation(latitude: firstGeoPoint.latitude, longitude: firstGeoPoint.longitude)
                             let firstDistance = firstLocation.distance(from: currentLocation)
-                            
+
                             let secondGeoPoint = secondListing.location
                             let secondLocation = CLLocation(latitude: secondGeoPoint.latitude, longitude: secondGeoPoint.longitude)
                             let secondDistance = secondLocation.distance(from: currentLocation)
-                            
+
                             return firstDistance < secondDistance
-                            
                         }
                     }
                     return 0 < 1
