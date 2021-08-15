@@ -8,6 +8,7 @@
 import FirebaseAuth
 import FirebaseStorage
 import GoogleSignIn
+import CoreLocation
 import SwiftUI
 
 struct ListingDetailView: View {
@@ -16,6 +17,7 @@ struct ListingDetailView: View {
     // Other item details
     @State var itemImage = UIImage()
     @State var itemIsStarred = false
+    @State var itemDistance: Double = 0
 
     // Owner details
     @State var owner = previewUsers.first!
@@ -89,6 +91,10 @@ struct ListingDetailView: View {
                 Text(item.description)
                     .font(.subheadline)
                     .lineLimit(3)
+                
+                Text(itemDistance > 1000 ? "\((itemDistance / 1000).rounded(toPlaces: 1)) Km" : "\(Int(itemDistance)) m")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
             }
             .multilineTextAlignment(.center)
 
@@ -200,8 +206,25 @@ struct ListingDetailView: View {
                 }
             }
 
-            guard let itemOwner = env.userRepository.users.first(where: { $0.uid == item.ownerID }) else { return }
-            self.owner = itemOwner
+            // Get item owner
+            if let itemOwner = env.userRepository.users.first(where: { $0.uid == item.ownerID }) {
+                self.owner = itemOwner
+            }
+            
+            // Get item's distance from current position
+            let geoPoint = item.location
+            let itemLocation = CLLocation(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
+            
+            // Check location authorization
+            let locationManager = CLLocationManager()
+            let locationAuthorization = locationManager.authorizationStatus
+            let canGetLocation = (locationAuthorization == .authorizedAlways || locationAuthorization == .authorizedWhenInUse)
+            
+            if canGetLocation {
+                if let currentLocation = locationManager.location {
+                    itemDistance = currentLocation.distance(from: itemLocation)
+                }
+            }
         }
     }
 }
@@ -211,3 +234,12 @@ struct ListingDetailView_Previews: PreviewProvider {
         ListingDetailView(item: previewItemListings.first!)
     }
 }
+
+extension Double {
+    /// Rounds the double to decimal places value
+    func rounded(toPlaces places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+}
+
