@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         // Request Location Services
         let locationManager = CLLocationManager()
-        locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
 
         // Initialize Firebase
         FirebaseApp.configure()

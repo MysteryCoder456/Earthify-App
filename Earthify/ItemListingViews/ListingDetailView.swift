@@ -92,7 +92,7 @@ struct ListingDetailView: View {
                     .font(.subheadline)
                     .lineLimit(3)
                 
-                Text(itemDistance > 1000 ? "\((itemDistance / 1000).rounded(toPlaces: 1)) Km" : "\(Int(itemDistance)) m")
+                Text(itemDistance > 1000 ? "\(Int(round(itemDistance / 1000))) Km" : "\(Int(itemDistance)) m")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -234,12 +234,3 @@ struct ListingDetailView_Previews: PreviewProvider {
         ListingDetailView(item: previewItemListings.first!)
     }
 }
-
-extension Double {
-    /// Rounds the double to decimal places value
-    func rounded(toPlaces places: Int) -> Double {
-        let divisor = pow(10.0, Double(places))
-        return (self * divisor).rounded() / divisor
-    }
-}
-

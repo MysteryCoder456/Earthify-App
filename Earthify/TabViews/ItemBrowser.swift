@@ -6,17 +6,20 @@
 //
 
 import FirebaseAuth
+import CoreLocation
 import SwiftUI
 
 enum ListingSorting: String, CaseIterable {
-    case alphabetic = "A to Z"
-    case alphabeticReversed = "Z to A"
+    case alphabeticAscending = "A to Z"
+    case alphabeticDescending = "Z to A"
+    
+    case distanceAscending = "Nearest First"
 }
 
 struct ItemBrowser: View {
     @EnvironmentObject var env: EnvironmentObjects
     @State var searchText = ""
-    @State var sortingSelection: ListingSorting = .alphabetic
+    @State var sortingSelection: ListingSorting = .alphabeticAscending
     @State var viewStarred = false
 
     let columns = [
@@ -38,11 +41,37 @@ struct ItemBrowser: View {
         if runningForPreviews {
             listings = previewItemListings
         } else {
+            // Check location authorization
+            let locationManager = CLLocationManager()
+            let locationAuthorization = locationManager.authorizationStatus
+            let canGetLocation = (locationAuthorization == .authorizedAlways || locationAuthorization == .authorizedWhenInUse)
+            
             switch sortingSelection {
-            case .alphabetic:
+            case .alphabeticAscending:
                 listings = env.listingRepository.itemListingsAToZ
-            case .alphabeticReversed:
+                
+            case .alphabeticDescending:
                 listings = env.listingRepository.itemListingsZToA
+                
+            case .distanceAscending:
+                listings = env.listingRepository.itemListingsAToZ.sorted(by: { firstListing, secondListing in
+                    if canGetLocation {
+                        if let currentLocation = locationManager.location {
+                            
+                            let firstGeoPoint = firstListing.location
+                            let firstLocation = CLLocation(latitude: firstGeoPoint.latitude, longitude: firstGeoPoint.longitude)
+                            let firstDistance = firstLocation.distance(from: currentLocation)
+                            
+                            let secondGeoPoint = secondListing.location
+                            let secondLocation = CLLocation(latitude: secondGeoPoint.latitude, longitude: secondGeoPoint.longitude)
+                            let secondDistance = secondLocation.distance(from: currentLocation)
+                            
+                            return firstDistance < secondDistance
+                            
+                        }
+                    }
+                    return 0 < 1
+                })
             }
         }
 
