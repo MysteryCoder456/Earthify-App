@@ -5,8 +5,8 @@
 //  Created by Rehatbir Singh on 13/07/2021.
 //
 
-import FirebaseAuth
-import FirebaseStorage
+import Firebase
+import CoreLocation
 import SwiftUI
 
 struct AddListingView: View {
@@ -40,7 +40,28 @@ struct AddListingView: View {
                   !itemDescription.isEmpty,
                   itemImage.size != CGSize.zero else { return }
 
-            let newItemListing = ItemListing(name: itemName, description: itemDescription, ownerID: currentUID)
+            // Check location authorization
+            let locationManager = CLLocationManager()
+            let locationAuthorization = locationManager.authorizationStatus
+            let canGetLocation = (locationAuthorization == .authorizedAlways || locationAuthorization == .authorizedWhenInUse)
+            
+            guard canGetLocation else {
+                primaryAlertMessage = "Please enable Location Services for Earthify"
+                secondaryAlertMessage = "Earthify requires your location to show people items that are closer to them."
+                showingAlert = true;
+                
+                return
+            }
+
+            // Get current location
+            guard let currentCoordinates = locationManager.location?.coordinate else {
+                primaryAlertMessage = "Unable to get current location"
+                secondaryAlertMessage = "Something went wrong while getting your current location."
+                showingAlert = true;
+                
+                return
+            }
+            let newItemListing = ItemListing(name: itemName, description: itemDescription, ownerID: currentUID, location: GeoPoint(latitude: currentCoordinates.latitude, longitude: currentCoordinates.longitude))
 
             // Upload image to Firebase Storage
             let storageRef = Storage.storage().reference(withPath: "listingImages/\(newItemListing.id!).jpg")
