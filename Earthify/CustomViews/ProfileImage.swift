@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileImage: View {
     let image: Image
     let imageSize: CGSize
-    
+
     var body: some View {
         image
             .resizable()

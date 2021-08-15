@@ -149,7 +149,7 @@ struct ListingDetailView: View {
             HStack {
                 let size = CGSize(width: 40, height: 40)
                 let placeholderImage = ProfileImage(image: Image(systemName: "person.circle.fill"), imageSize: size)
-                
+
                 if let profileImageURL = owner.profileImageURL {
                     AsyncImage(url: URL(string: profileImageURL)) { image in
                         ProfileImage(image: image, imageSize: size)
