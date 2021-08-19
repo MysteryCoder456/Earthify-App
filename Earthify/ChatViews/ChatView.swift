@@ -57,7 +57,6 @@ struct ChatView: View {
 
     var body: some View {
         // TODO: make background of upper messages progressively fainter
-        // TODO: animated smooth scrolling
         VStack {
             if messages.isEmpty {
                 Spacer()
@@ -81,7 +80,9 @@ struct ChatView: View {
                                 reader.scrollTo(messages.last?.id, anchor: .bottom)
                             }
                             .onChange(of: messages) { _ in
-                                reader.scrollTo(messages.last?.id, anchor: .bottom)
+                                withAnimation(Animation.easeInOut) {
+                                    reader.scrollTo(messages.last?.id, anchor: .bottom)
+                                }
                             }
                         }
                     }
