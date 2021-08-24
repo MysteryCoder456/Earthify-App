@@ -13,9 +13,9 @@ import UIKit
 
 class EnvironmentObjects: ObservableObject {
     @Published var authenticated: Bool
-    @Published var userRepository: UserRepository
-    @Published var listingRepository: ItemListingRepository
-    @Published var messageRepository: MessageRepository
+    @Published var userRepository: UserRepository!
+    @Published var listingRepository: ItemListingRepository!
+    @Published var messageRepository: MessageRepository!
 
     let listingImageMaximumSize: Int64 = 3_145_728 // bytes
     var userRepoCancellable: AnyCancellable?
@@ -28,10 +28,12 @@ class EnvironmentObjects: ObservableObject {
         }
 
         authenticated = Auth.auth().currentUser != nil
+        
+        // Initialize Firestore Respositories
         userRepository = UserRepository()
         listingRepository = ItemListingRepository()
         messageRepository = MessageRepository()
-
+        
         // Notify EnvironmentObjects when published repository attributes change
         userRepoCancellable = userRepository.objectWillChange.sink { _ in
             self.objectWillChange.send()
@@ -42,11 +44,28 @@ class EnvironmentObjects: ObservableObject {
         messageRepoCancellable = messageRepository.objectWillChange.sink { _ in
             self.objectWillChange.send()
         }
-
+        
         // Listen for Sign In and Sign Out notifications
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(didUserSignIn), name: Notification.Name("UserSignedIn"), object: nil)
         nc.addObserver(self, selector: #selector(didUserSignOut), name: Notification.Name("UserSignedOut"), object: nil)
+    }
+    
+    func initRepositories() {
+        userRepository = UserRepository()
+        listingRepository = ItemListingRepository()
+        messageRepository = MessageRepository()
+        
+        // Notify EnvironmentObjects when published repository attributes change
+        userRepoCancellable = userRepository.objectWillChange.sink { _ in
+            self.objectWillChange.send()
+        }
+        listingRepoCancellable = listingRepository.objectWillChange.sink { _ in
+            self.objectWillChange.send()
+        }
+        messageRepoCancellable = messageRepository.objectWillChange.sink { _ in
+            self.objectWillChange.send()
+        }
     }
 
     @objc func didUserSignIn() {
@@ -56,6 +75,9 @@ class EnvironmentObjects: ObservableObject {
 
         if let currentUID = Auth.auth().currentUser?.uid {
             if let googleProfile = GIDSignIn.sharedInstance().currentUser.profile {
+                // Initialize Firestore Respositories
+                initRepositories()
+                
                 let userHasImage = googleProfile.hasImage
                 let imageURL = userHasImage ? googleProfile.imageURL(withDimension: 128).absoluteString : nil
 

@@ -45,7 +45,7 @@ struct ChatsBrowser: View {
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
                     }
-                    .refreshable(action: fetchChats)
+                    .refreshable(action: { fetchChats() })
                 } else {
                     let filteredChats = chats.filter { searchText.isEmpty || $0.fullName().contains(searchText) }
 
@@ -54,13 +54,13 @@ struct ChatsBrowser: View {
                             ChatRow(user: user)
                         }
                     }
-                    .refreshable(action: fetchChats)
-                    .searchable(text: $searchText, prompt: "Search in Chats")
+                    .refreshable(action: { fetchChats() })
+                    .searchable(text: $searchText, prompt: "Search Chats")
                 }
             }
-            .navigationTitle("Search Chats")
+            .navigationTitle("Chats")
         }
-        .onAppear(perform: fetchChats)
+        .onAppear(perform: { fetchChats() })
     }
 }
 
