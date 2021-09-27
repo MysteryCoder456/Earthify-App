@@ -63,11 +63,11 @@ struct SettingsMenu: View {
     var body: some View {
         NavigationView {
             List {
-                NavigationLink(destination: ManageListingsView()) {
-                    Text("Manage listings")
-                }
-
                 if env.authenticated {
+                    NavigationLink(destination: ManageListingsView()) {
+                        Text("Manage listings")
+                    }
+                    
                     Button(action: {
                         activeAlert = .signOut
                         showingAlert = true
