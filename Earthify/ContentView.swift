@@ -8,6 +8,14 @@
 import FirebaseAuth
 import SwiftUI
 
+/*
+TODO:
+ 1. Allow users to browse listings without signing in.
+ 2. Change image selection button color in AddListingView.
+ 3. Sign in with Apple.
+ 4. Show starred items in a separate tab view.
+*/
+
 struct ContentView: View {
     @EnvironmentObject var env: EnvironmentObjects
 
