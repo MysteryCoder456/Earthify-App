@@ -23,16 +23,13 @@ struct ContentView: View {
     let themeColor = Color.green // (.sRGB, red: 0.39, green: 0.77, blue: 0.21, opacity: 1.0)
 
     var body: some View {
-//        if env.authenticated {
-//            HomeScreen()
-//                .accentColor(themeColor)
-//        } else {
-//            SplashScreen()
-//                .accentColor(themeColor)
-//        }
-        
-        HomeScreen()
-            .accentColor(themeColor)
+        if env.seenSplashScreen {
+            HomeScreen()
+                .accentColor(themeColor)
+        } else {
+            SplashScreen()
+                .accentColor(themeColor)
+        }
     }
 }
 

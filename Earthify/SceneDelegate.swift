@@ -13,6 +13,7 @@ import UIKit
 
 class EnvironmentObjects: ObservableObject {
     @Published var authenticated: Bool
+    @Published var seenSplashScreen: Bool  // exists for dismissing SplashScreen without changing authenticated flag
     @Published var userRepository: UserRepository!
     @Published var listingRepository: ItemListingRepository!
     @Published var messageRepository: MessageRepository!
@@ -28,6 +29,7 @@ class EnvironmentObjects: ObservableObject {
         }
 
         authenticated = Auth.auth().currentUser != nil
+        seenSplashScreen = Auth.auth().currentUser != nil
         
         // Initialize Firestore Respositories
         userRepository = UserRepository()
