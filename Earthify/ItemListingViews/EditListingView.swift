@@ -9,7 +9,7 @@ import FirebaseAuth
 import FirebaseStorage
 import SwiftUI
 
-enum ActiveAlert {
+private enum ActiveAlert {
     case regular
     case deletion
 }
@@ -27,7 +27,7 @@ struct EditListingView: View {
     @State var primaryAlertMessage = ""
     @State var secondaryAlertMessage = ""
     @State var showingAlert = false
-    @State var activeAlert = ActiveAlert.regular
+    @State private var activeAlert = ActiveAlert.regular
 
     // Item details
     @State var itemImage = UIImage()

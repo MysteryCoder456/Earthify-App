@@ -6,15 +6,58 @@
 //
 
 import GoogleSignIn
+import FirebaseAuth
 import SwiftUI
 
+private class NotificationHandler: ObservableObject {
+    var source: () -> () = {}
+    
+    init(notificationName: String) {
+        // Listen for user sign in
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.invoke),
+            name: Notification.Name(notificationName),
+            object: nil
+        )
+    }
+    
+    func setSource(source: @escaping () -> ()) {
+        self.source = source
+    }
+    
+    @objc func invoke() {
+        source()
+    }
+}
+
+private enum ActiveAlert {
+    case signIn
+    case signOut
+}
+
 struct SettingsMenu: View {
-    @State var showingSignOutAlert = false
+    @EnvironmentObject var env: EnvironmentObjects
+    
+    @State private var activeAlert = ActiveAlert.signIn
+    @State var showingAlert = false
+    
+    @StateObject private var signInAlertCaller = NotificationHandler(notificationName: "UserSignedIn")
+    
+    func signInWithGoogle() {
+        GIDSignIn.sharedInstance().presentingViewController = UIApplication.shared.windows.first?.rootViewController
+        GIDSignIn.sharedInstance().signIn()
+    }
 
     func signOut() {
         let si = GIDSignIn.sharedInstance()
         si?.signOut()
         si?.disconnect()
+    }
+    
+    func showSignInAlert() {
+        activeAlert = .signIn
+        showingAlert = true
     }
 
     var body: some View {
@@ -24,20 +67,49 @@ struct SettingsMenu: View {
                     Text("Manage listings")
                 }
 
-                Button(action: { showingSignOutAlert = true }) {
-                    Text("Sign Out")
-                        .bold()
-                        .foregroundColor(.red)
-                }
-                .alert(isPresented: $showingSignOutAlert) {
-                    Alert(
-                        title: Text("Are you sure you want to sign out?"),
-                        primaryButton: .default(Text("Cancel")),
-                        secondaryButton: .destructive(Text("Sign Out")) { signOut() }
-                    )
+                if env.authenticated {
+                    Button(action: {
+                        activeAlert = .signOut
+                        showingAlert = true
+                    }) {
+                        Text("Sign Out")
+                            .bold()
+                            .foregroundColor(.red)
+                    }
+                } else {
+                    Button(action: signInWithGoogle) {
+                        Text("Sign in with Google")
+                            .bold()
+                            .foregroundColor(.blue)
+                    }
                 }
             }
             .navigationBarTitle("Settings", displayMode: .inline)
+        }
+        .alert(isPresented: $showingAlert) {
+            let alert: Alert
+            
+            switch activeAlert {
+            case .signIn:
+                let currentUserEmail = (Auth.auth().currentUser?.email)!
+                alert = Alert(
+                    title: Text("Sign In Successful"),
+                    message: Text("You have been signed in as \(currentUserEmail)."),
+                    dismissButton: .default(Text("OK"))
+                )
+                
+            case .signOut:
+                alert = Alert(
+                    title: Text("Are you sure you want to sign out?"),
+                    primaryButton: .default(Text("Cancel")),
+                    secondaryButton: .destructive(Text("Sign Out")) { signOut() }
+                )
+            }
+            
+            return alert
+        }
+        .onAppear {
+            signInAlertCaller.setSource(source: self.showSignInAlert)
         }
     }
 }

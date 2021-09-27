@@ -10,10 +10,11 @@ import SwiftUI
 
 /*
 TODO:
- 1. Allow users to browse listings without signing in.
- 2. Change image selection button color in AddListingView.
- 3. Sign in with Apple.
- 4. Show starred items in a separate tab view.
+ 1. Allow users to browse listings without signing in. - DONE
+ 2. Add sign in requirements in views that use sign in features.
+ 3. Change image selection button color in AddListingView.
+ 4. Sign in with Apple.
+ 5. Show starred items in a separate tab view.
 */
 
 struct ContentView: View {
@@ -22,13 +23,16 @@ struct ContentView: View {
     let themeColor = Color.green // (.sRGB, red: 0.39, green: 0.77, blue: 0.21, opacity: 1.0)
 
     var body: some View {
-        if env.authenticated {
-            HomeScreen()
-                .accentColor(themeColor)
-        } else {
-            SplashScreen()
-                .accentColor(themeColor)
-        }
+//        if env.authenticated {
+//            HomeScreen()
+//                .accentColor(themeColor)
+//        } else {
+//            SplashScreen()
+//                .accentColor(themeColor)
+//        }
+        
+        HomeScreen()
+            .accentColor(themeColor)
     }
 }
 
