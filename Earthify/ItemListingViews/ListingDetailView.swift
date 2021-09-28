@@ -99,17 +99,39 @@ struct ListingDetailView: View {
             .multilineTextAlignment(.center)
 
             // FIXME: ChatView closes after sending a message when opening from here
-            HStack(spacing: 18) {
-                if showingChatButton {
-                    // Chat Button
-                    NavigationLink(destination: ChatView(recipient: owner)) {
+            if env.authenticated {
+                HStack(spacing: 18) {
+                    if showingChatButton {
+                        // Chat Button
+                        NavigationLink(destination: ChatView(recipient: owner)) {
+                            Label(
+                                title: {
+                                    Text("Chat")
+                                        .fontWeight(.semibold)
+                                },
+                                icon: {
+                                    Image(systemName: "message.fill")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 30)
+                                }
+                            )
+                        }
+                        .padding()
+                        .frame(width: deviceDimensions.width / 2.5)
+                        .background(Color.accentColor)
+                        .cornerRadius(15)
+                    }
+
+                    // Star Button
+                    Button(action: itemIsStarred ? unstarItem : starItem) {
                         Label(
                             title: {
-                                Text("Chat")
+                                Text(itemIsStarred ? "Unstar" : "Star")
                                     .fontWeight(.semibold)
                             },
                             icon: {
-                                Image(systemName: "message.fill")
+                                Image(systemName: "star.fill")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 30)
@@ -118,32 +140,17 @@ struct ListingDetailView: View {
                     }
                     .padding()
                     .frame(width: deviceDimensions.width / 2.5)
-                    .background(Color.accentColor)
+                    .background(Color.yellow)
                     .cornerRadius(15)
                 }
-
-                // Star Button
-                Button(action: itemIsStarred ? unstarItem : starItem) {
-                    Label(
-                        title: {
-                            Text(itemIsStarred ? "Unstar" : "Star")
-                                .fontWeight(.semibold)
-                        },
-                        icon: {
-                            Image(systemName: "star.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 30)
-                        }
-                    )
-                }
-                .padding()
-                .frame(width: deviceDimensions.width / 2.5)
-                .background(Color.yellow)
-                .cornerRadius(15)
+                .foregroundColor(.white)
+                .padding(.top)
+            } else {
+                Text("Sign in to star this item or chat with the owner")
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.top)
             }
-            .foregroundColor(.white)
-            .padding(.top)
 
             Spacer()
 
