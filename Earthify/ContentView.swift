@@ -10,10 +10,10 @@ import SwiftUI
 
 /*
 TODO:
- 1. Add sign in requirements in views that use sign in features.
- 2. Change image selection button color in AddListingView.
- 3. Sign in with Apple.
- 4. Show starred items in a separate tab view.
+ 1. Change image selection button color in AddListingView.
+ 2. Sign in with Apple.
+ 3. Show starred items in a separate tab view.
+ 4. Accessiblity features
 */
 
 struct ContentView: View {
