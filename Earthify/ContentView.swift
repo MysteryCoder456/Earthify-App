@@ -14,7 +14,6 @@ TODO:
  2. Change image selection button color in AddListingView.
  3. Sign in with Apple.
  4. Show starred items in a separate tab view.
- 5. Ask for location after SplashScreen is dismissed rather than app launch
 */
 
 struct ContentView: View {

@@ -117,8 +117,10 @@ struct ItemBrowser: View {
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: AddListingView()) {
-                        Label("New Item Listing", systemImage: "plus")
+                    if env.authenticated {
+                        NavigationLink(destination: AddListingView()) {
+                            Label("New Item Listing", systemImage: "plus")
+                        }
                     }
                 }
             }
