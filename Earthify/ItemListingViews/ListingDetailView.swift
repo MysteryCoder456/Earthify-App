@@ -91,10 +91,16 @@ struct ListingDetailView: View {
                 Text(item.description)
                     .font(.subheadline)
                     .lineLimit(3)
-
-                Text(itemDistance > 1000 ? "\(Int(round(itemDistance / 1000))) Km" : "\(Int(itemDistance)) m")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                
+                if itemDistance <= 0 {
+                    Text("Unable to access location")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                } else {
+                    Text(itemDistance > 1000 ? "\(Int(round(itemDistance / 1000))) Km" : "\(Int(itemDistance)) m")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
             }
             .multilineTextAlignment(.center)
 
