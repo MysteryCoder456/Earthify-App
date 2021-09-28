@@ -5,7 +5,6 @@
 //  Created by Rehatbir Singh on 09/07/2021.
 //
 
-import CoreLocation
 import Firebase
 import GoogleSignIn
 import UIKit
@@ -16,11 +15,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-
-        // Request Location Services
-        let locationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
 
         // Initialize Firebase
         FirebaseApp.configure()

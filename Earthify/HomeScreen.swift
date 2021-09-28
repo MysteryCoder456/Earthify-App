@@ -5,6 +5,7 @@
 //  Created by Rehatbir Singh on 11/07/2021.
 //
 
+import CoreLocation
 import SwiftUI
 
 struct HomeScreen: View {
@@ -24,6 +25,12 @@ struct HomeScreen: View {
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
+        }
+        .onAppear {
+            // Request Location Services
+            let locationManager = CLLocationManager()
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
         }
     }
 }

@@ -32,9 +32,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>To click pictures for item listings</string>
+	<string>Camera Access is used to click pictures for item listings</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>To show users items that are geographically closer to them</string>
+	<string>Location Access is used to show users items that are geographically closer to them</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-Bold.ttf</string>
