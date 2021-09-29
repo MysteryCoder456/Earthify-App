@@ -86,6 +86,7 @@ struct SettingsMenu: View {
             }
             .navigationBarTitle("Settings", displayMode: .inline)
         }
+        .navigationViewStyle(.stack)
         .alert(isPresented: $showingAlert) {
             let alert: Alert
             

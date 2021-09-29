@@ -70,7 +70,8 @@ struct ChatsBrowser: View {
             }
             .navigationTitle("Chats")
         }
-        .onAppear(perform: { fetchChats() })
+        .navigationViewStyle(.stack)
+        .onAppear { fetchChats() }
     }
 }
 

@@ -125,6 +125,7 @@ struct ItemBrowser: View {
                 }
             }
         }
+        .navigationViewStyle(.stack)
     }
 }
 
