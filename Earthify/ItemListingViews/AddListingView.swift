@@ -152,7 +152,7 @@ struct AddListingView: View {
                 }
                 .aspectRatio(contentMode: .fit)
                 .frame(maxWidth: maxImageSize.width, maxHeight: maxImageSize.height)
-                .background(Color(.sRGB, red: 0.2, green: 0.8, blue: 0.2, opacity: 1.0))
+                .background(Color.secondary)
                 .cornerRadius(30)
                 .actionSheet(isPresented: $showingImageSourceSelector) {
                     ActionSheet(
