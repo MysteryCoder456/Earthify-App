@@ -10,10 +10,9 @@ import SwiftUI
 
 /*
 TODO:
- 1. Change image selection button color in AddListingView.
- 2. Sign in with Apple.
- 3. Show starred items in a separate tab view.
- 4. Accessiblity features
+ 1. Sign in with Apple.
+ 2. Show starred items in a separate tab view.
+ 3. Accessiblity features
 */
 
 struct ContentView: View {
