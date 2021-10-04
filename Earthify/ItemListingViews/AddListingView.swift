@@ -170,6 +170,7 @@ struct AddListingView: View {
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
+            .accessibilityElement(children: .combine)
 
             // Item Name
             VStack {
@@ -185,6 +186,7 @@ struct AddListingView: View {
                     )
             }
             .padding()
+            .accessibilityElement(children: .combine)
 
             // Item Description
             VStack {
@@ -200,6 +202,7 @@ struct AddListingView: View {
                     )
             }
             .padding()
+            .accessibilityElement(children: .combine)
 
             // Add Item Button
             Button(action: addItemListing) {
@@ -210,7 +213,7 @@ struct AddListingView: View {
                             .fontWeight(.semibold)
                     },
                     icon: {
-                        Image(systemName: "archivebox")
+                        Image(systemName: "plus.square")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 30)
