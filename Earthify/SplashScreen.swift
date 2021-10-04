@@ -15,12 +15,11 @@ struct SplashScreen: View {
     var body: some View {
         ZStack {
             VStack {
-                Image("forest")
+                Image(decorative: "forest")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(height: deviceDimensions.height * 0.5)
                     .ignoresSafeArea()
-                    .accessibility(hidden: true)
 
                 Spacer()
             }

@@ -23,17 +23,21 @@ struct ItemListingBadge: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: imageSize.width, height: imageSize.height)
                 .cornerRadius(15)
+                .accessibility(hidden: true)
 
             Text(item.name)
                 .font(.headline)
                 .foregroundColor(.primary)
+                .accessibility(label: Text("Name: \(item.name)"))
 
             Text(item.description)
                 .font(.caption)
                 .foregroundColor(.secondary)
+                .accessibility(label: Text("Description: \(item.description)"))
         }
         .lineLimit(1)
         .frame(width: imageSize.width)
+        .accessibilityElement(children: .combine)
         .onAppear {
             guard !runningForPreviews else { return }
 
