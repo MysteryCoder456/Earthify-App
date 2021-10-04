@@ -83,23 +83,30 @@ struct ListingDetailView: View {
                         dismissButton: .default(Text("OK"))
                     )
                 }
+                .accessibility(hidden: true)
 
             VStack(spacing: 10) {
                 Text(item.name)
                     .font(.largeTitle)
+                    .accessibility(label: Text("Name: \(item.name)"))
 
                 Text(item.description)
                     .font(.subheadline)
                     .lineLimit(3)
+                    .accessibility(label: Text("Description: \(item.description)"))
                 
                 if itemDistance <= 0 {
                     Text("Unable to access location")
                         .font(.caption)
                         .foregroundColor(.secondary)
+                        .accessibility(label: Text("Could not determine how far away this item is from your current location"))
                 } else {
-                    Text(itemDistance > 1000 ? "\(Int(round(itemDistance / 1000))) Km" : "\(Int(itemDistance)) m")
+                    let distanceString = itemDistance > 1000 ? "\(Int(round(itemDistance / 1000))) Km" : "\(Int(itemDistance)) m"
+                    
+                    Text(distanceString)
                         .font(.caption)
                         .foregroundColor(.secondary)
+                        .accessibility(label: Text("This item is \(distanceString) away from your current location"))
                 }
             }
             .multilineTextAlignment(.center)
@@ -160,28 +167,32 @@ struct ListingDetailView: View {
 
             Spacer()
 
-            Text("Item By")
-                .font(.footnote)
-                .foregroundColor(.secondary)
+            VStack {
+                Text("Item By")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
 
-            // Owner details
-            HStack {
-                let size = CGSize(width: 40, height: 40)
-                let placeholderImage = ProfileImage(image: Image(systemName: "person.circle.fill"), imageSize: size)
+                // Owner details
+                HStack {
+                    let size = CGSize(width: 40, height: 40)
+                    let placeholderImage = ProfileImage(image: Image(systemName: "person.circle.fill"), imageSize: size)
 
-                if let profileImageURL = owner.profileImageURL {
-                    AsyncImage(url: URL(string: profileImageURL)) { image in
-                        ProfileImage(image: image, imageSize: size)
-                    } placeholder: {
+                    if let profileImageURL = owner.profileImageURL {
+                        AsyncImage(url: URL(string: profileImageURL)) { image in
+                            ProfileImage(image: image, imageSize: size)
+                        } placeholder: {
+                            placeholderImage
+                        }
+                    } else {
                         placeholderImage
                     }
-                } else {
-                    placeholderImage
-                }
 
-                Text(owner.fullName())
-                    .font(.headline)
+                    Text(owner.fullName())
+                        .font(.headline)
+                }
             }
+            .accessibilityElement(children: .combine)
+            .accessibility(label: Text("This item has been provided by \(owner.fullName())"))
         }
         .navigationBarTitle("Item Listing Details", displayMode: .inline)
         .onAppear {
