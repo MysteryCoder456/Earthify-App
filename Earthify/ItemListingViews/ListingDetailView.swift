@@ -18,6 +18,7 @@ struct ListingDetailView: View {
     @State var itemImage = UIImage()
     @State var itemIsStarred = false
     @State var itemDistance: Double = 0
+    @State var canGetLocation = false
 
     // Owner details
     @State var owner = previewUsers.first!
@@ -95,18 +96,18 @@ struct ListingDetailView: View {
                     .lineLimit(3)
                     .accessibility(label: Text("Description: \(item.description)"))
                 
-                if itemDistance <= 0 {
-                    Text("Unable to access location")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                        .accessibility(label: Text("Could not determine how far away this item is from your current location"))
-                } else {
+                if canGetLocation {
                     let distanceString = itemDistance > 1000 ? "\(Int(round(itemDistance / 1000))) Km" : "\(Int(itemDistance)) m"
                     
                     Text(distanceString)
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .accessibility(label: Text("This item is \(distanceString) away from your current location"))
+                } else {
+                    Text("Unable to access location")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .accessibility(label: Text("Could not determine how far away this item is from your current location"))
                 }
             }
             .multilineTextAlignment(.center)
@@ -242,7 +243,7 @@ struct ListingDetailView: View {
             // Check location authorization
             let locationManager = CLLocationManager()
             let locationAuthorization = locationManager.authorizationStatus
-            let canGetLocation = (locationAuthorization == .authorizedAlways || locationAuthorization == .authorizedWhenInUse)
+            canGetLocation = (locationAuthorization == .authorizedAlways || locationAuthorization == .authorizedWhenInUse)
 
             if canGetLocation {
                 if let currentLocation = locationManager.location {
