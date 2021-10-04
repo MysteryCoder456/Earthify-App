@@ -56,7 +56,7 @@ struct SplashScreen: View {
                     .background(Color.accentColor)
                     .cornerRadius(12)
                     .padding(.top, 50)
-                    .accessibilityLabel("Continue to app")
+                    .accessibility(label: Text("Continue to app"))
                 }
                 .frame(width: deviceDimensions.width, height: deviceDimensions.height * 0.55, alignment: .center)
                 .background(Color.primary.colorInvert())

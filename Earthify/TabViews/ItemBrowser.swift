@@ -108,7 +108,7 @@ struct ItemBrowser: View {
                     label: {
                         Label("Sort Items", systemImage: "arrow.up.arrow.down")
                     }
-                    .accessibilityLabel(Text("Sort Item Listings"))
+                    .accessibility(label: Text("Sort Item Listings"))
                 }
 
                 ToolbarItem(placement: .navigationBarLeading) {

@@ -30,6 +30,8 @@ struct ChatRow: View {
                 .lineLimit(1)
         }
         .padding(.vertical)
+        .accessibilityElement(children: .combine)
+        .accessibility(label: Text("Chat with \(user.fullName())"))
     }
 }
 
