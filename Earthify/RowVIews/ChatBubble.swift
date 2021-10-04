@@ -51,5 +51,7 @@ struct ChatBubble: View {
             }
         }
         .padding(.horizontal, 8)
+        .accessibilityElement(children: .combine)
+        .accessibility(label: Text("\(author) says: \(content)"))
     }
 }
