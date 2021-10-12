@@ -31,7 +31,7 @@ jobs:
         uses: devbotsxyz/xcode-build@v1.0.0
         with:
           # Workspace
-          workspace: ""
+          workspace: "Earthify.xcworkspace"
           # Project
           project: "Earthify.xcodeproj"
           # Scheme
@@ -39,4 +39,4 @@ jobs:
           # Configuration
           configuration: ""
           # Code sign identity
-          code-sign-identity: "rehatbir.singh@gmail.com"
+          code-sign-identity: "Apple Development: rehatbir.singh@gmail.com"
