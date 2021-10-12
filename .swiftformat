@@ -1,2 +1,2 @@
 # file options
---exclude Pods
+--exclude Earthify/SceneDelegate.swift
