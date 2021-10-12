@@ -39,4 +39,4 @@ jobs:
           # Configuration
           configuration: ""
           # Code sign identity
-          code-sign-identity: "Apple Development: rehatbir.singh@gmail.com"
+          code-sign-identity: "rehatbir.singh@gmail.com"
