@@ -18,14 +18,16 @@ class EnvironmentObjects: ObservableObject {
     @Published var listingRepository: ItemListingRepository!
     @Published var messageRepository: MessageRepository!
 
+    let googleAuthHandler = GoogleAuthHandler()
+    
     let listingImageMaximumSize: Int64 = 3_145_728 // bytes
     var userRepoCancellable: AnyCancellable?
     var listingRepoCancellable: AnyCancellable?
     var messageRepoCancellable: AnyCancellable?
 
     init() {
-        if GIDSignIn.sharedInstance().hasPreviousSignIn() {
-            GIDSignIn.sharedInstance().restorePreviousSignIn()
+        if GIDSignIn.sharedInstance.hasPreviousSignIn() {
+            googleAuthHandler.restorePreviousSignIn()
         }
 
         authenticated = Auth.auth().currentUser != nil
@@ -76,14 +78,14 @@ class EnvironmentObjects: ObservableObject {
         // Add/Update user details in Firestore
 
         if let currentUID = Auth.auth().currentUser?.uid {
-            if let googleProfile = GIDSignIn.sharedInstance().currentUser.profile {
+            if let googleProfile = GIDSignIn.sharedInstance.currentUser?.profile {
                 // Initialize Firestore Respositories
                 initRepositories()
                 
                 let userHasImage = googleProfile.hasImage
-                let imageURL = userHasImage ? googleProfile.imageURL(withDimension: 128).absoluteString : nil
+                let imageURL = userHasImage ? googleProfile.imageURL(withDimension: 128)?.absoluteString : nil
 
-                var user = AppUser(uid: currentUID, firstName: googleProfile.givenName, lastName: googleProfile.familyName, email: googleProfile.email, profileImageURL: imageURL)
+                var user = AppUser(uid: currentUID, firstName: googleProfile.givenName!, lastName: googleProfile.familyName!, email: googleProfile.email, profileImageURL: imageURL)
 
                 // Preserve user details not related to Google Account
                 if let existingUserEntry = userRepository.users.first(where: { $0.uid == currentUID }) {

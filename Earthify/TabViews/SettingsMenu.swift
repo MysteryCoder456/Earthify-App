@@ -5,7 +5,6 @@
 //  Created by Rehatbir Singh on 25/07/2021.
 //
 
-import GoogleSignIn
 import FirebaseAuth
 import SwiftUI
 
@@ -45,14 +44,11 @@ struct SettingsMenu: View {
     @StateObject private var signInAlertCaller = NotificationHandler(notificationName: "UserSignedIn")
     
     func signInWithGoogle() {
-        GIDSignIn.sharedInstance().presentingViewController = UIApplication.shared.windows.first?.rootViewController
-        GIDSignIn.sharedInstance().signIn()
+        env.googleAuthHandler.signInWithGoogle()
     }
 
     func signOut() {
-        let si = GIDSignIn.sharedInstance()
-        si?.signOut()
-        si?.disconnect()
+        env.googleAuthHandler.signOut()
     }
     
     func showSignInAlert() {
@@ -103,7 +99,7 @@ struct SettingsMenu: View {
                 alert = Alert(
                     title: Text("Are you sure you want to sign out?"),
                     primaryButton: .default(Text("Cancel")),
-                    secondaryButton: .destructive(Text("Sign Out")) { signOut() }
+                    secondaryButton: .destructive(Text("Sign Out"), action: signOut)
                 )
             }
             

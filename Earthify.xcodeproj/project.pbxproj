@@ -3,17 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2703C6A2B6E6271CB6372299 /* Pods_Earthify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6CA30F38E7D30DEEB77EFC /* Pods_Earthify.framework */; };
 		3415D2F026AEDC6F00E8241E /* ManageListingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3415D2EF26AEDC6F00E8241E /* ManageListingsView.swift */; };
 		3415D2F226AEF5BE00E8241E /* EditListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3415D2F126AEF5BE00E8241E /* EditListingView.swift */; };
 		34386E9726AD220F0047895B /* SettingsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34386E9626AD220F0047895B /* SettingsMenu.swift */; };
 		344A748D26C8660100940ACC /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344A748C26C8660000940ACC /* ProfileImage.swift */; };
 		3491DCD42699902F002C0C80 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491DCD32699902F002C0C80 /* UserRepository.swift */; };
 		3491DCD72699905A002C0C80 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491DCD62699905A002C0C80 /* AppUser.swift */; };
+		34932DC12715F06C00C8C76F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 34932DC02715F06C00C8C76F /* GoogleSignIn */; };
+		34932DC42715F22900C8C76F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 34932DC32715F22900C8C76F /* FirebaseAnalytics */; };
+		34932DC62715F22900C8C76F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 34932DC52715F22900C8C76F /* FirebaseAuth */; };
+		34932DC82715F22900C8C76F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 34932DC72715F22900C8C76F /* FirebaseFirestore */; };
+		34932DCA2715F22900C8C76F /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 34932DC92715F22900C8C76F /* FirebaseFirestoreSwift-Beta */; };
+		34932DCC2715F22900C8C76F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 34932DCB2715F22900C8C76F /* FirebaseStorage */; };
+		34932DD12715F80400C8C76F /* GoogleAuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34932DD02715F80400C8C76F /* GoogleAuthHandler.swift */; };
 		34958103269D0806005A7B5B /* AddListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34958102269D0806005A7B5B /* AddListingView.swift */; };
 		34958105269D0B64005A7B5B /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34958104269D0B64005A7B5B /* ImagePickerView.swift */; };
 		349E629D269A4C6E00F739D7 /* ItemBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E629C269A4C6D00F739D7 /* ItemBrowser.swift */; };
@@ -42,13 +48,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		036A8436C01959B24F2C2DBF /* Pods-Earthify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Earthify.release.xcconfig"; path = "Target Support Files/Pods-Earthify/Pods-Earthify.release.xcconfig"; sourceTree = "<group>"; };
 		3415D2EF26AEDC6F00E8241E /* ManageListingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageListingsView.swift; sourceTree = "<group>"; };
 		3415D2F126AEF5BE00E8241E /* EditListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListingView.swift; sourceTree = "<group>"; };
 		34386E9626AD220F0047895B /* SettingsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenu.swift; sourceTree = "<group>"; };
 		344A748C26C8660000940ACC /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		3491DCD32699902F002C0C80 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		3491DCD62699905A002C0C80 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		34932DD02715F80400C8C76F /* GoogleAuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthHandler.swift; sourceTree = "<group>"; };
 		34958102269D0806005A7B5B /* AddListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListingView.swift; sourceTree = "<group>"; };
 		34958104269D0B64005A7B5B /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		349E629C269A4C6D00F739D7 /* ItemBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBrowser.swift; sourceTree = "<group>"; };
@@ -76,8 +82,6 @@
 		34F1FB7D269861D30050BFE7 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		34F1FB81269862180050BFE7 /* SplashScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		34F39E6A26B4575A00626894 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
-		6B6CA30F38E7D30DEEB77EFC /* Pods_Earthify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Earthify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFAD6CF667B4CD3120654361 /* Pods-Earthify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Earthify.debug.xcconfig"; path = "Target Support Files/Pods-Earthify/Pods-Earthify.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,21 +89,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2703C6A2B6E6271CB6372299 /* Pods_Earthify.framework in Frameworks */,
+				34932DC42715F22900C8C76F /* FirebaseAnalytics in Frameworks */,
+				34932DC82715F22900C8C76F /* FirebaseFirestore in Frameworks */,
+				34932DCA2715F22900C8C76F /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				34932DC62715F22900C8C76F /* FirebaseAuth in Frameworks */,
+				34932DC12715F06C00C8C76F /* GoogleSignIn in Frameworks */,
+				34932DCC2715F22900C8C76F /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1EC25EC58D2A49320ABDC627 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6B6CA30F38E7D30DEEB77EFC /* Pods_Earthify.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		3491DCD226999012002C0C80 /* DataRepositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +119,14 @@
 				34DE345B26B26B1A000542B3 /* Message.swift */,
 			);
 			path = DataModels;
+			sourceTree = "<group>";
+		};
+		34932DCF2715F7EE00C8C76F /* AuthHandlers */ = {
+			isa = PBXGroup;
+			children = (
+				34932DD02715F80400C8C76F /* GoogleAuthHandler.swift */,
+			);
+			path = AuthHandlers;
 			sourceTree = "<group>";
 		};
 		349580F7269CF90F005A7B5B /* CustomViews */ = {
@@ -165,8 +174,6 @@
 			children = (
 				34F1FB612698528D0050BFE7 /* Earthify */,
 				34F1FB602698528D0050BFE7 /* Products */,
-				8D9CFB96670BFC71C355BD37 /* Pods */,
-				1EC25EC58D2A49320ABDC627 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,6 +200,7 @@
 				349580F7269CF90F005A7B5B /* CustomViews */,
 				3491DCD526999049002C0C80 /* DataModels */,
 				3491DCD226999012002C0C80 /* DataRepositories */,
+				34932DCF2715F7EE00C8C76F /* AuthHandlers */,
 				34F1FB682698528E0050BFE7 /* Assets.xcassets */,
 				34F1FB7A269861C00050BFE7 /* Fonts */,
 				34F1FB6D2698528E0050BFE7 /* LaunchScreen.storyboard */,
@@ -229,15 +237,6 @@
 			path = ChatViews;
 			sourceTree = "<group>";
 		};
-		8D9CFB96670BFC71C355BD37 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				DFAD6CF667B4CD3120654361 /* Pods-Earthify.debug.xcconfig */,
-				036A8436C01959B24F2C2DBF /* Pods-Earthify.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -245,18 +244,23 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34F1FB732698528F0050BFE7 /* Build configuration list for PBXNativeTarget "Earthify" */;
 			buildPhases = (
-				F5E958B807E4494D465AA4F9 /* [CP] Check Pods Manifest.lock */,
 				34F1FB5B2698528D0050BFE7 /* Sources */,
 				34F1FB5C2698528D0050BFE7 /* Frameworks */,
 				34F1FB5D2698528D0050BFE7 /* Resources */,
-				9760303DA197270275D14140 /* [CP] Embed Pods Frameworks */,
-				5A6BBC3E3D4C921E21B534E6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Earthify;
+			packageProductDependencies = (
+				34932DC02715F06C00C8C76F /* GoogleSignIn */,
+				34932DC32715F22900C8C76F /* FirebaseAnalytics */,
+				34932DC52715F22900C8C76F /* FirebaseAuth */,
+				34932DC72715F22900C8C76F /* FirebaseFirestore */,
+				34932DC92715F22900C8C76F /* FirebaseFirestoreSwift-Beta */,
+				34932DCB2715F22900C8C76F /* FirebaseStorage */,
+			);
 			productName = Earthify;
 			productReference = 34F1FB5F2698528D0050BFE7 /* Earthify.app */;
 			productType = "com.apple.product-type.application";
@@ -284,6 +288,10 @@
 				Base,
 			);
 			mainGroup = 34F1FB562698528C0050BFE7;
+			packageReferences = (
+				34932DBF2715F06C00C8C76F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				34932DC22715F22900C8C76F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 34F1FB602698528D0050BFE7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -310,70 +318,12 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		5A6BBC3E3D4C921E21B534E6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9760303DA197270275D14140 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F5E958B807E4494D465AA4F9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Earthify-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		34F1FB5B2698528D0050BFE7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34932DD12715F80400C8C76F /* GoogleAuthHandler.swift in Sources */,
 				34DE346626B3531A000542B3 /* ChatRow.swift in Sources */,
 				344A748D26C8660100940ACC /* ProfileImage.swift in Sources */,
 				34F1FB82269862180050BFE7 /* SplashScreen.swift in Sources */,
@@ -533,7 +483,6 @@
 		};
 		34F1FB742698528F0050BFE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFAD6CF667B4CD3120654361 /* Pods-Earthify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -558,7 +507,6 @@
 		};
 		34F1FB752698528F0050BFE7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 036A8436C01959B24F2C2DBF /* Pods-Earthify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -603,6 +551,58 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		34932DBF2715F06C00C8C76F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		34932DC22715F22900C8C76F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		34932DC02715F06C00C8C76F /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34932DBF2715F06C00C8C76F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		34932DC32715F22900C8C76F /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34932DC22715F22900C8C76F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		34932DC52715F22900C8C76F /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34932DC22715F22900C8C76F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		34932DC72715F22900C8C76F /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34932DC22715F22900C8C76F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		34932DC92715F22900C8C76F /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34932DC22715F22900C8C76F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		34932DCB2715F22900C8C76F /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34932DC22715F22900C8C76F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 34F1FB572698528C0050BFE7 /* Project object */;
 }
