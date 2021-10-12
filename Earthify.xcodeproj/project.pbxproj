@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2703C6A2B6E6271CB6372299 /* Pods_Earthify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6CA30F38E7D30DEEB77EFC /* Pods_Earthify.framework */; };
 		3415D2F026AEDC6F00E8241E /* ManageListingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3415D2EF26AEDC6F00E8241E /* ManageListingsView.swift */; };
 		3415D2F226AEF5BE00E8241E /* EditListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3415D2F126AEF5BE00E8241E /* EditListingView.swift */; };
 		34386E9726AD220F0047895B /* SettingsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34386E9626AD220F0047895B /* SettingsMenu.swift */; };
@@ -42,7 +41,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		036A8436C01959B24F2C2DBF /* Pods-Earthify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Earthify.release.xcconfig"; path = "Target Support Files/Pods-Earthify/Pods-Earthify.release.xcconfig"; sourceTree = "<group>"; };
 		3415D2EF26AEDC6F00E8241E /* ManageListingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageListingsView.swift; sourceTree = "<group>"; };
 		3415D2F126AEF5BE00E8241E /* EditListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListingView.swift; sourceTree = "<group>"; };
 		34386E9626AD220F0047895B /* SettingsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenu.swift; sourceTree = "<group>"; };
@@ -76,8 +74,6 @@
 		34F1FB7D269861D30050BFE7 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		34F1FB81269862180050BFE7 /* SplashScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		34F39E6A26B4575A00626894 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
-		6B6CA30F38E7D30DEEB77EFC /* Pods_Earthify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Earthify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFAD6CF667B4CD3120654361 /* Pods-Earthify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Earthify.debug.xcconfig"; path = "Target Support Files/Pods-Earthify/Pods-Earthify.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,21 +81,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2703C6A2B6E6271CB6372299 /* Pods_Earthify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1EC25EC58D2A49320ABDC627 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6B6CA30F38E7D30DEEB77EFC /* Pods_Earthify.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		3491DCD226999012002C0C80 /* DataRepositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,7 +153,6 @@
 				34F1FB612698528D0050BFE7 /* Earthify */,
 				34F1FB602698528D0050BFE7 /* Products */,
 				8D9CFB96670BFC71C355BD37 /* Pods */,
-				1EC25EC58D2A49320ABDC627 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,8 +218,6 @@
 		8D9CFB96670BFC71C355BD37 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				DFAD6CF667B4CD3120654361 /* Pods-Earthify.debug.xcconfig */,
-				036A8436C01959B24F2C2DBF /* Pods-Earthify.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -245,12 +229,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34F1FB732698528F0050BFE7 /* Build configuration list for PBXNativeTarget "Earthify" */;
 			buildPhases = (
-				F5E958B807E4494D465AA4F9 /* [CP] Check Pods Manifest.lock */,
 				34F1FB5B2698528D0050BFE7 /* Sources */,
 				34F1FB5C2698528D0050BFE7 /* Frameworks */,
 				34F1FB5D2698528D0050BFE7 /* Resources */,
-				9760303DA197270275D14140 /* [CP] Embed Pods Frameworks */,
-				5A6BBC3E3D4C921E21B534E6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -309,65 +290,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		5A6BBC3E3D4C921E21B534E6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9760303DA197270275D14140 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Earthify/Pods-Earthify-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F5E958B807E4494D465AA4F9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Earthify-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		34F1FB5B2698528D0050BFE7 /* Sources */ = {
@@ -533,7 +455,6 @@
 		};
 		34F1FB742698528F0050BFE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFAD6CF667B4CD3120654361 /* Pods-Earthify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -558,7 +479,6 @@
 		};
 		34F1FB752698528F0050BFE7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 036A8436C01959B24F2C2DBF /* Pods-Earthify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
