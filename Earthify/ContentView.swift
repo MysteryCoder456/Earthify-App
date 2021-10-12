@@ -9,11 +9,10 @@ import FirebaseAuth
 import SwiftUI
 
 /*
-TODO:
- 1. Sign in with Apple.
- 2. Show starred items in a separate tab view.
- 3. Accessiblity features
-*/
+ TODO:
+  1. Sign in with Apple.
+  2. Show starred items in a separate tab view.
+ */
 
 struct ContentView: View {
     @EnvironmentObject var env: EnvironmentObjects

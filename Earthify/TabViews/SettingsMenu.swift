@@ -9,22 +9,22 @@ import FirebaseAuth
 import SwiftUI
 
 private class NotificationHandler: ObservableObject {
-    var source: () -> () = {}
-    
+    var source: () -> Void = {}
+
     init(notificationName: String) {
         // Listen for user sign in
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(self.invoke),
+            selector: #selector(invoke),
             name: Notification.Name(notificationName),
             object: nil
         )
     }
-    
-    func setSource(source: @escaping () -> ()) {
+
+    func setSource(source: @escaping () -> Void) {
         self.source = source
     }
-    
+
     @objc func invoke() {
         source()
     }
@@ -37,12 +37,12 @@ private enum ActiveAlert {
 
 struct SettingsMenu: View {
     @EnvironmentObject var env: EnvironmentObjects
-    
+
     @State private var activeAlert = ActiveAlert.signIn
     @State var showingAlert = false
-    
+
     @StateObject private var signInAlertCaller = NotificationHandler(notificationName: "UserSignedIn")
-    
+
     func signInWithGoogle() {
         env.googleAuthHandler.signInWithGoogle()
     }
@@ -50,7 +50,7 @@ struct SettingsMenu: View {
     func signOut() {
         env.googleAuthHandler.signOut()
     }
-    
+
     func showSignInAlert() {
         activeAlert = .signIn
         showingAlert = true
@@ -63,7 +63,7 @@ struct SettingsMenu: View {
                     NavigationLink(destination: ManageListingsView()) {
                         Text("Manage listings")
                     }
-                    
+
                     Button(action: {
                         activeAlert = .signOut
                         showingAlert = true
@@ -85,7 +85,7 @@ struct SettingsMenu: View {
         .navigationViewStyle(.stack)
         .alert(isPresented: $showingAlert) {
             let alert: Alert
-            
+
             switch activeAlert {
             case .signIn:
                 let currentUserEmail = (Auth.auth().currentUser?.email)!
@@ -94,7 +94,7 @@ struct SettingsMenu: View {
                     message: Text("You have been signed in as \(currentUserEmail)."),
                     dismissButton: .default(Text("OK"))
                 )
-                
+
             case .signOut:
                 alert = Alert(
                     title: Text("Are you sure you want to sign out?"),
@@ -102,7 +102,7 @@ struct SettingsMenu: View {
                     secondaryButton: .destructive(Text("Sign Out"), action: signOut)
                 )
             }
-            
+
             return alert
         }
         .onAppear {

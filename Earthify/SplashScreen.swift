@@ -44,7 +44,7 @@ struct SplashScreen: View {
 
                     Text("Share your things with others\nHelp to reduce resource wastage")
                         .font(.custom("Montserrat", size: 18))
-                    
+
                     Button(action: { env.seenSplashScreen = true }) {
                         Text("Continue")
                             .font(.custom("Montserrat", size: 20))

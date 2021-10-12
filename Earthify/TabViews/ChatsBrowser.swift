@@ -40,22 +40,19 @@ struct ChatsBrowser: View {
         NavigationView {
             VStack {
                 if !env.authenticated {
-                    
                     Text("Please sign in to view chats")
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
-                    
+
                 } else if chats.isEmpty {
-                    
                     List {
                         Text("You don't have any chats yet\nStart a conversation from an item's page")
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
                     }
                     .refreshable(action: { fetchChats() })
-                    
+
                 } else {
-                    
                     let filteredChats = chats.filter { searchText.isEmpty || $0.fullName().contains(searchText) }
 
                     List(filteredChats, id: \.uid) { user in
@@ -65,7 +62,6 @@ struct ChatsBrowser: View {
                     }
                     .refreshable(action: { fetchChats() })
                     .searchable(text: $searchText, prompt: "Search Chats")
-                    
                 }
             }
             .navigationTitle("Chats")

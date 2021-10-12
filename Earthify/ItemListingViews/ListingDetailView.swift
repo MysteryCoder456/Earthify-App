@@ -95,10 +95,10 @@ struct ListingDetailView: View {
                     .font(.subheadline)
                     .lineLimit(3)
                     .accessibility(label: Text("Description: \(item.description)"))
-                
+
                 if canGetLocation {
                     let distanceString = itemDistance > 1000 ? "\(Int(round(itemDistance / 1000))) Km" : "\(Int(itemDistance)) m"
-                    
+
                     Text(distanceString)
                         .font(.caption)
                         .foregroundColor(.secondary)
