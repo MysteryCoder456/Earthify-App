@@ -99,27 +99,28 @@ struct ItemBrowser: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
-                        Picker("Sort Listings", selection: $sortingSelection) {
+                        Picker("Sort Items", selection: $sortingSelection) {
                             ForEach(ListingSorting.allCases, id: \.self) {
                                 Text($0.rawValue)
                             }
                         }
                     }
                     label: {
-                        Label("Add", systemImage: "arrow.up.arrow.down")
+                        Label("Sort Items", systemImage: "arrow.up.arrow.down")
                     }
+                    .accessibility(label: Text("Sort Item Listings"))
                 }
 
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: { viewStarred.toggle() }) {
-                        Label("View Starred", systemImage: viewStarred ? "star.fill" : "star")
+                        Label("View Starred Items", systemImage: viewStarred ? "star.fill" : "star")
                     }
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if env.authenticated {
                         NavigationLink(destination: AddListingView()) {
-                            Label("New Item Listing", systemImage: "plus")
+                            Label("Add New Item", systemImage: "plus")
                         }
                     }
                 }
