@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		344A748D26C8660100940ACC /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344A748C26C8660000940ACC /* ProfileImage.swift */; };
 		3491DCD42699902F002C0C80 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491DCD32699902F002C0C80 /* UserRepository.swift */; };
 		3491DCD72699905A002C0C80 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491DCD62699905A002C0C80 /* AppUser.swift */; };
+		34932DC12715F06C00C8C76F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 34932DC02715F06C00C8C76F /* GoogleSignIn */; };
 		34958103269D0806005A7B5B /* AddListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34958102269D0806005A7B5B /* AddListingView.swift */; };
 		34958105269D0B64005A7B5B /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34958104269D0B64005A7B5B /* ImagePickerView.swift */; };
 		349E629D269A4C6E00F739D7 /* ItemBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E629C269A4C6D00F739D7 /* ItemBrowser.swift */; };
@@ -81,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34932DC12715F06C00C8C76F /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +154,6 @@
 			children = (
 				34F1FB612698528D0050BFE7 /* Earthify */,
 				34F1FB602698528D0050BFE7 /* Products */,
-				8D9CFB96670BFC71C355BD37 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -215,13 +216,6 @@
 			path = ChatViews;
 			sourceTree = "<group>";
 		};
-		8D9CFB96670BFC71C355BD37 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -238,6 +232,9 @@
 			dependencies = (
 			);
 			name = Earthify;
+			packageProductDependencies = (
+				34932DC02715F06C00C8C76F /* GoogleSignIn */,
+			);
 			productName = Earthify;
 			productReference = 34F1FB5F2698528D0050BFE7 /* Earthify.app */;
 			productType = "com.apple.product-type.application";
@@ -265,6 +262,9 @@
 				Base,
 			);
 			mainGroup = 34F1FB562698528C0050BFE7;
+			packageReferences = (
+				34932DBF2715F06C00C8C76F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
 			productRefGroup = 34F1FB602698528D0050BFE7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -523,6 +523,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		34932DBF2715F06C00C8C76F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		34932DC02715F06C00C8C76F /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34932DBF2715F06C00C8C76F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 34F1FB572698528C0050BFE7 /* Project object */;
 }
