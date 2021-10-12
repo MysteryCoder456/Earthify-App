@@ -171,11 +171,14 @@ struct AddListingView: View {
                     .foregroundColor(.secondary)
             }
             .accessibilityElement(children: .combine)
+            .accessibilityAddTraits(.isButton)
+            .accessibilityHint(Text("Opens a dialogue to choose image source"))
 
             // Item Name
             VStack {
                 Text("Enter a title for your listing:")
                     .font(.headline)
+                    .accessibilityHidden(true)
 
                 TextField("Title", text: $itemName)
                     .padding(7)
@@ -184,14 +187,15 @@ struct AddListingView: View {
                             .stroke(lineWidth: 1.5)
                             .fill(Color.secondary)
                     )
+                    .accessibilityLabel(Text("Enter a title for your listing"))
             }
             .padding()
-            .accessibilityElement(children: .combine)
 
             // Item Description
             VStack {
                 Text("Enter a short description of your item:")
                     .font(.headline)
+                    .accessibilityHidden(true)
 
                 TextField("Description", text: $itemDescription)
                     .padding(7)
@@ -200,9 +204,9 @@ struct AddListingView: View {
                             .stroke(lineWidth: 1.5)
                             .fill(Color.secondary)
                     )
+                    .accessibilityLabel(Text("Enter a short description of your item"))
             }
             .padding()
-            .accessibilityElement(children: .combine)
 
             // Add Item Button
             Button(action: addItemListing) {

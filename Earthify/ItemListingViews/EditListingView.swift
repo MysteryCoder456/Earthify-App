@@ -180,11 +180,15 @@ struct EditListingView: View {
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityAddTraits(.isButton)
+            .accessibilityHint(Text("Opens a dialogue to choose image source"))
 
             // Item Name
             VStack {
                 Text("Enter a title for your listing:")
                     .font(.headline)
+                    .accessibilityHidden(true)
 
                 TextField("Title", text: $item.name)
                     .padding(7)
@@ -193,6 +197,8 @@ struct EditListingView: View {
                             .stroke(lineWidth: 1.5)
                             .fill(Color.secondary)
                     )
+                    .accessibilityLabel(Text("Enter a title for your listing"))
+                    .accessibilityValue(Text("Current title: \(item.name)"))
             }
             .padding()
 
@@ -200,6 +206,7 @@ struct EditListingView: View {
             VStack {
                 Text("Enter a short description of your item:")
                     .font(.headline)
+                    .accessibilityHidden(true)
 
                 TextField("Description", text: $item.description)
                     .padding(7)
@@ -208,6 +215,8 @@ struct EditListingView: View {
                             .stroke(lineWidth: 1.5)
                             .fill(Color.secondary)
                     )
+                    .accessibilityLabel(Text("Enter a short description of your item"))
+                    .accessibilityValue(Text("Current description: \(item.description)"))
             }
             .padding()
 
@@ -295,7 +304,7 @@ struct EditListingView: View {
                     activeAlert = .deletion
                     showingAlert = true
                 }) {
-                    Label("Delete", systemImage: "trash")
+                    Label("Delete Listing", systemImage: "trash")
                 }
             }
         }
