@@ -60,7 +60,7 @@ jobs:
           # Fails the build if any warnings in *non test targets*.
           warnings-as-errors: false
           # One of `xcpretty`, `quiet` or `verbose`.
-          verbosity: verbose
+          verbosity: xcpretty
           # One of `always` or `on-failure`. Consider `always` if you want access to your coverage-reports. Beware that artifacts count against your GitHub Actions storage limits.
 
           upload-logs: on-failure
