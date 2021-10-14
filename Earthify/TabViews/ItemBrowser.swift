@@ -18,9 +18,9 @@ enum ListingSorting: String, CaseIterable {
 
 struct ItemBrowser: View {
     @EnvironmentObject var env: EnvironmentObjects
+    
     @State var searchText = ""
     @State var sortingSelection: ListingSorting = .alphabeticAscending
-    @State var viewStarred = false
 
     let columns = [
         GridItem(.adaptive(minimum: 150, maximum: 175)),
@@ -29,14 +29,7 @@ struct ItemBrowser: View {
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
 
     var body: some View {
-        var currentUser: AppUser = previewUsers.first!
         var listings: [ItemListing]
-
-        if !runningForPreviews {
-            if let currentUID = Auth.auth().currentUser?.uid {
-                currentUser = env.userRepository.users.first(where: { $0.uid == currentUID }) ?? previewUsers.first!
-            }
-        }
 
         if runningForPreviews {
             listings = previewItemListings
@@ -84,12 +77,8 @@ struct ItemBrowser: View {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 25) {
                     ForEach(listingsFiltered, id: \.self) { listing in
-                        let itemIsStarred = currentUser.starredItems.contains(listing.id!)
-
-                        if viewStarred == itemIsStarred || !viewStarred {
-                            NavigationLink(destination: ListingDetailView(item: listing)) {
-                                ItemListingBadge(item: listing)
-                            }
+                        NavigationLink(destination: ListingDetailView(item: listing)) {
+                            ItemListingBadge(item: listing)
                         }
                     }
                 }
@@ -109,12 +98,6 @@ struct ItemBrowser: View {
                         Label("Sort Items", systemImage: "arrow.up.arrow.down")
                     }
                     .accessibility(label: Text("Sort Item Listings"))
-                }
-
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: { viewStarred.toggle() }) {
-                        Label("View Starred Items", systemImage: viewStarred ? "star.fill" : "star")
-                    }
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {

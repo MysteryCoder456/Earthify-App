@@ -15,6 +15,11 @@ struct HomeScreen: View {
                 .tabItem {
                     Label("Item Browser", systemImage: "magnifyingglass")
                 }
+            
+            StarredListings()
+                .tabItem {
+                    Label("Starred", systemImage: "star.fill")
+                }
 
             ChatsBrowser()
                 .tabItem {
