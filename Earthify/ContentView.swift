@@ -11,7 +11,6 @@ import SwiftUI
 /*
  TODO:
   1. Sign in with Apple.
-  2. Make an "About" Section
  */
 
 struct ContentView: View {
