@@ -46,9 +46,13 @@ struct ChatsBrowser: View {
 
                 } else if chats.isEmpty {
                     List {
-                        Text("You don't have any chats yet\nStart a conversation from an item's page")
-                            .foregroundColor(.secondary)
-                            .multilineTextAlignment(.center)
+                        HStack {
+                            Spacer()
+                            Text("You don't have any chats yet\nStart a conversation from an item's page")
+                                .foregroundColor(.secondary)
+                                .multilineTextAlignment(.center)
+                            Spacer()
+                        }
                     }
                     .refreshable(action: { fetchChats() })
 
