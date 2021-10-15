@@ -18,7 +18,7 @@ enum ListingSorting: String, CaseIterable {
 
 struct ItemBrowser: View {
     @EnvironmentObject var env: EnvironmentObjects
-    
+
     @State var searchText = ""
     @State var sortingSelection: ListingSorting = .alphabeticAscending
 

@@ -64,7 +64,7 @@ struct SettingsMenu: View {
                         Text("Manage listings")
                     }
                 }
-                
+
                 NavigationLink(destination: AboutView()) {
                     Text("About")
                 }
