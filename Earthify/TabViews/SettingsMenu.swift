@@ -63,7 +63,13 @@ struct SettingsMenu: View {
                     NavigationLink(destination: ManageListingsView()) {
                         Text("Manage listings")
                     }
+                }
+                
+                NavigationLink(destination: AboutView()) {
+                    Text("About")
+                }
 
+                if env.authenticated {
                     Button(action: {
                         activeAlert = .signOut
                         showingAlert = true
