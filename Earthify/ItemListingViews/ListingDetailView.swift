@@ -112,7 +112,6 @@ struct ListingDetailView: View {
             }
             .multilineTextAlignment(.center)
 
-            // FIXME: ChatView closes after sending a message when opening from here
             if env.authenticated {
                 HStack(spacing: 18) {
                     if showingChatButton {
