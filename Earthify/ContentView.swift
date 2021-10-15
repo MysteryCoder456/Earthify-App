@@ -11,8 +11,7 @@ import SwiftUI
 /*
  TODO:
   1. Sign in with Apple.
-  2. Show starred items in a separate tab view.
-  3. Make an "About" Section
+  2. Make an "About" Section
  */
 
 struct ContentView: View {
