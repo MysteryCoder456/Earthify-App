@@ -233,7 +233,8 @@ struct ListingDetailView: View {
                 // Image exists in cache
                 itemImage = image
             } else {
-                // Image does not exist in cache. Fetch from Firebase Storage
+                // Image does not exist in cache, fetch from Firebase Storage
+                
                 let storageRef = Storage.storage().reference(withPath: "listingImages/\(item.id!).jpg")
                 let sizeLimit = env.listingImageMaximumSize
                 
@@ -250,8 +251,7 @@ struct ListingDetailView: View {
                     
                     if let data = data {
                         if let image = UIImage(data: data) {
-                            // Save to local cache
-                            env.listingImageCache[item.id!] = image
+                            env.listingImageCache[item.id!] = image  // Save to local cache
                             itemImage = image
                         }
                     }
