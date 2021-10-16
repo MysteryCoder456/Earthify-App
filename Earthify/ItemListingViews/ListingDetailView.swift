@@ -208,28 +208,6 @@ struct ListingDetailView: View {
                 }
             }
 
-            let storageRef = Storage.storage().reference(withPath: "listingImages/\(item.id!).jpg")
-            let sizeLimit = env.listingImageMaximumSize
-
-            // Fetch item image
-            storageRef.getData(maxSize: sizeLimit) { data, error in
-                if let error = error {
-                    print("Could not fetch item listing image: \(error.localizedDescription)")
-
-                    primaryAlertMessage = "An error occured while fetching this item's image"
-                    secondaryAlertMessage = error.localizedDescription
-                    showingAlert = true
-
-                    return
-                }
-
-                if let data = data {
-                    if let image = UIImage(data: data) {
-                        itemImage = image
-                    }
-                }
-            }
-
             // Get item owner
             if let itemOwner = env.userRepository.users.first(where: { $0.uid == item.ownerID }) {
                 self.owner = itemOwner
@@ -247,6 +225,36 @@ struct ListingDetailView: View {
             if canGetLocation {
                 if let currentLocation = locationManager.location {
                     itemDistance = currentLocation.distance(from: itemLocation)
+                }
+            }
+            
+            // Get item image
+            if let image = env.listingImageCache[item.id!] {
+                // Image exists in cache
+                itemImage = image
+            } else {
+                // Image does not exist in cache. Fetch from Firebase Storage
+                let storageRef = Storage.storage().reference(withPath: "listingImages/\(item.id!).jpg")
+                let sizeLimit = env.listingImageMaximumSize
+                
+                storageRef.getData(maxSize: sizeLimit) { data, error in
+                    if let error = error {
+                        print("Could not fetch item listing image: \(error.localizedDescription)")
+                        
+                        primaryAlertMessage = "An error occured while fetching this item's image"
+                        secondaryAlertMessage = error.localizedDescription
+                        showingAlert = true
+                        
+                        return
+                    }
+                    
+                    if let data = data {
+                        if let image = UIImage(data: data) {
+                            // Save to local cache
+                            env.listingImageCache[item.id!] = image
+                            itemImage = image
+                        }
+                    }
                 }
             }
         }
