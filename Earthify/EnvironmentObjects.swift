@@ -7,6 +7,7 @@
 
 import Combine
 import FirebaseAuth
+import FirebaseFirestore
 import GoogleSignIn
 
 class EnvironmentObjects: ObservableObject {
@@ -82,20 +83,41 @@ class EnvironmentObjects: ObservableObject {
                 // Initialize Firestore Respositories
                 initRepositories()
                 
-                let userHasImage = googleProfile.hasImage
-                let imageURL = userHasImage ? googleProfile.imageURL(withDimension: 128)?.absoluteString : nil
-                
-                var user = AppUser(uid: currentUID, firstName: googleProfile.givenName!, lastName: googleProfile.familyName!, email: googleProfile.email, profileImageURL: imageURL)
-                
-                // Preserve user details not related to Google Account
-                if let existingUserEntry = userRepository.users.first(where: { $0.uid == currentUID }) {
-                    user.starredItems = existingUserEntry.starredItems
-                }
-                
-                do {
-                    try userRepository.updateUser(user: user)
-                } catch {
-                    print("Failed to update user details in Firestore: \(error.localizedDescription)")
+                // Manually fetching Firestore data in case repositories haven't initialized in time
+                let docRef = Firestore.firestore().collection("users").document(currentUID)
+                docRef.getDocument { document, error in
+                    if let error = error {
+                        print("Unable to fetch user data. Error: \(error)")
+                        return
+                    }
+                    
+                    guard let document = document else { return }
+                    
+                    let userHasImage = googleProfile.hasImage
+                    let imageURL = userHasImage ? googleProfile.imageURL(withDimension: 128)?.absoluteString : nil
+                    var user = AppUser(firstName: "", lastName: "", email: "")
+                    
+                    if document.exists {
+                        do {
+                            user = try document.data(as: AppUser.self)!
+                            
+                            // Update Google Profile details
+                            user.firstName = googleProfile.givenName!
+                            user.lastName = googleProfile.familyName!
+                            user.email = googleProfile.email
+                            user.profileImageURL = imageURL
+                        } catch {
+                            print("Failed to decode document as AppUser. Error: \(error.localizedDescription)")
+                        }
+                    } else {
+                        user = AppUser(uid: currentUID, firstName: googleProfile.givenName!, lastName: googleProfile.familyName!, email: googleProfile.email, profileImageURL: imageURL)
+                    }
+                    
+                    do {
+                        try self.userRepository.updateUser(user: user)
+                    } catch {
+                        print("Failed to update user details in Firestore. Error: \(error.localizedDescription)")
+                    }
                 }
             }
         }
