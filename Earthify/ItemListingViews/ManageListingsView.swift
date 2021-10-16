@@ -31,7 +31,7 @@ struct ManageListingsView: View {
 
         return ScrollView {
             LazyVGrid(columns: columns, spacing: 25) {
-                ForEach(listings, id: \.self) { listing in
+                ForEach(listings, id: \.id) { listing in
                     NavigationLink(destination: EditListingView(item: listing)) {
                         ItemListingBadge(item: listing)
                     }

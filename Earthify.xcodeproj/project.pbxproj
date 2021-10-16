@@ -157,9 +157,9 @@
 			isa = PBXGroup;
 			children = (
 				349E629C269A4C6D00F739D7 /* ItemBrowser.swift */,
-				34386E9626AD220F0047895B /* SettingsMenu.swift */,
-				34DE345D26B31091000542B3 /* ChatsBrowser.swift */,
 				34ACCB4C2718587300944642 /* StarredListings.swift */,
+				34DE345D26B31091000542B3 /* ChatsBrowser.swift */,
+				34386E9626AD220F0047895B /* SettingsMenu.swift */,
 			);
 			path = TabViews;
 			sourceTree = "<group>";

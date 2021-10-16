@@ -76,7 +76,7 @@ struct ItemBrowser: View {
         return NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 25) {
-                    ForEach(listingsFiltered, id: \.self) { listing in
+                    ForEach(listingsFiltered, id: \.id) { listing in
                         NavigationLink(destination: ListingDetailView(item: listing)) {
                             ItemListingBadge(item: listing)
                         }
