@@ -9,6 +9,8 @@ import CoreLocation
 import Firebase
 import SwiftUI
 
+// TODO: Localize here onwards
+
 struct AddListingView: View {
     @EnvironmentObject var env: EnvironmentObjects
 
