@@ -13,7 +13,7 @@ struct SplashScreen: View {
     let deviceDimensions = UIScreen.main.bounds.size
     
     let l_title = NSLocalizedString("splashscreen.title", comment: "Welcome to Earthify")
-    let l_subtitle = NSLocalizedString("splashscreen.subtitle", comment: "Subtitle")
+    let l_subtitle = NSLocalizedString("splashscreen.subtitle", comment: "Share your things with others\nHelp to reduce resource wastage")
     let l_continueButton = NSLocalizedString("splashscreen.continue", comment: "Continue")
     let l_continueAccessibility = NSLocalizedString("splashscreen_acc.continue", comment: "Continue to app")
 
