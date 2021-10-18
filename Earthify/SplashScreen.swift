@@ -11,6 +11,11 @@ struct SplashScreen: View {
     @EnvironmentObject var env: EnvironmentObjects
 
     let deviceDimensions = UIScreen.main.bounds.size
+    
+    let l_title = NSLocalizedString("splashscreen.title", comment: "Title")
+    let l_subtitle = NSLocalizedString("splashscreen.subtitle", comment: "Subtitle")
+    let l_continueButton = NSLocalizedString("splashscreen.continue", comment: "Continue button")
+    let l_continueAccessibility = NSLocalizedString("splashscreen_acc.continue", comment: "'Continue to app'")
 
     var body: some View {
         ZStack {
@@ -36,17 +41,17 @@ struct SplashScreen: View {
                         .padding(.bottom)
                         .accessibility(hidden: true)
 
-                    Text("Welcome to Earthify")
+                    Text(l_title)
                         .font(.custom("Montserrat", size: 31))
                         .bold()
                         .padding(.horizontal)
                         .padding(.bottom, 20)
 
-                    Text("Share your things with others\nHelp to reduce resource wastage")
+                    Text(l_subtitle)
                         .font(.custom("Montserrat", size: 18))
 
                     Button(action: { env.seenSplashScreen = true }) {
-                        Text("Continue")
+                        Text(l_continueButton)
                             .font(.custom("Montserrat", size: 20))
                             .foregroundColor(.white)
                             .fontWeight(.semibold)
@@ -56,7 +61,7 @@ struct SplashScreen: View {
                     .background(Color.accentColor)
                     .cornerRadius(12)
                     .padding(.top, 50)
-                    .accessibility(label: Text("Continue to app"))
+                    .accessibility(label: Text(l_continueAccessibility))
                 }
                 .frame(width: deviceDimensions.width, height: deviceDimensions.height * 0.55, alignment: .center)
                 .background(Color.primary.colorInvert())

@@ -9,26 +9,31 @@ import CoreLocation
 import SwiftUI
 
 struct HomeScreen: View {
+    let l_itemBrowser = NSLocalizedString("homescreen.itembrowser", comment: "Item Browser")
+    let l_starred = NSLocalizedString("homescreen.starred", comment: "Favourites")
+    let l_chats = NSLocalizedString("homescreen.chats", comment: "Chats")
+    let l_settings = NSLocalizedString("homescreen.settings", comment: "Settings/Options")
+    
     var body: some View {
         TabView {
             ItemBrowser()
                 .tabItem {
-                    Label("Item Browser", systemImage: "magnifyingglass")
+                    Label(l_itemBrowser, systemImage: "magnifyingglass")
                 }
 
             StarredListings()
                 .tabItem {
-                    Label("Starred", systemImage: "star.fill")
+                    Label(l_starred, systemImage: "star.fill")
                 }
 
             ChatsBrowser()
                 .tabItem {
-                    Label("Chats", systemImage: "message.fill")
+                    Label(l_chats, systemImage: "message.fill")
                 }
 
             SettingsMenu()
                 .tabItem {
-                    Label("Settings", systemImage: "gear")
+                    Label(l_settings, systemImage: "gear")
                 }
         }
         .onAppear {
