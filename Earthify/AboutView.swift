@@ -10,9 +10,9 @@ import SwiftUI
 struct AboutView: View {
     let currentAge: Int
     
-    let l_aboutEarthifyTitle = NSLocalizedString("aboutview.about_earthify_title", comment: "About Earthify Title")
+    let l_aboutEarthifyTitle = NSLocalizedString("aboutview.about_earthify_title", comment: "About Earthify")
     let l_aboutEarthifyContent = NSLocalizedString("aboutview.about_earthify_content", comment: "About Earthify Content")
-    let l_aboutDeveloperTitle = NSLocalizedString("aboutview.about_developer_title", comment: "About The Developer Title")
+    let l_aboutDeveloperTitle = NSLocalizedString("aboutview.about_developer_title", comment: "About The Developer")
     let l_aboutDeveloperContent: String
 
     init() {

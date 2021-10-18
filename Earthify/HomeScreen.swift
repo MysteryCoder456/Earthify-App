@@ -10,9 +10,9 @@ import SwiftUI
 
 struct HomeScreen: View {
     let l_itemBrowser = NSLocalizedString("homescreen.item_browser", comment: "Item Browser")
-    let l_starred = NSLocalizedString("homescreen.starred", comment: "Favourites")
+    let l_starred = NSLocalizedString("homescreen.starred", comment: "Starred")
     let l_chats = NSLocalizedString("homescreen.chats", comment: "Chats")
-    let l_settings = NSLocalizedString("homescreen.settings", comment: "Settings/Options")
+    let l_settings = NSLocalizedString("homescreen.settings", comment: "Settings")
     
     var body: some View {
         TabView {

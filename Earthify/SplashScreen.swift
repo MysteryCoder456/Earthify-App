@@ -12,10 +12,10 @@ struct SplashScreen: View {
 
     let deviceDimensions = UIScreen.main.bounds.size
     
-    let l_title = NSLocalizedString("splashscreen.title", comment: "Title")
+    let l_title = NSLocalizedString("splashscreen.title", comment: "Welcome to Earthify")
     let l_subtitle = NSLocalizedString("splashscreen.subtitle", comment: "Subtitle")
-    let l_continueButton = NSLocalizedString("splashscreen.continue", comment: "Continue button")
-    let l_continueAccessibility = NSLocalizedString("splashscreen_acc.continue", comment: "'Continue to app'")
+    let l_continueButton = NSLocalizedString("splashscreen.continue", comment: "Continue")
+    let l_continueAccessibility = NSLocalizedString("splashscreen_acc.continue", comment: "Continue to app")
 
     var body: some View {
         ZStack {
