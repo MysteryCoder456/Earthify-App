@@ -9,7 +9,7 @@ import CoreLocation
 import SwiftUI
 
 struct HomeScreen: View {
-    let l_itemBrowser = NSLocalizedString("homescreen.itembrowser", comment: "Item Browser")
+    let l_itemBrowser = NSLocalizedString("homescreen.item_browser", comment: "Item Browser")
     let l_starred = NSLocalizedString("homescreen.starred", comment: "Favourites")
     let l_chats = NSLocalizedString("homescreen.chats", comment: "Chats")
     let l_settings = NSLocalizedString("homescreen.settings", comment: "Settings/Options")

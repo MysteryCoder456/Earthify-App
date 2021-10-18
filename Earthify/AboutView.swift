@@ -9,6 +9,11 @@ import SwiftUI
 
 struct AboutView: View {
     let currentAge: Int
+    
+    let l_aboutEarthifyTitle = NSLocalizedString("aboutview.about_earthify_title", comment: "About Earthify Title")
+    let l_aboutEarthifyContent = NSLocalizedString("aboutview.about_earthify_content", comment: "About Earthify Content")
+    let l_aboutDeveloperTitle = NSLocalizedString("aboutview.about_developer_title", comment: "About The Developer Title")
+    let l_aboutDeveloperContent: String
 
     init() {
         // Dynamically calculate age from birthday
@@ -18,6 +23,8 @@ struct AboutView: View {
         components.year = 2006
         let birthDate = Calendar.current.date(from: components)!
         currentAge = Int(birthDate.timeIntervalSinceNow / -31_536_000)
+        
+        l_aboutDeveloperContent = NSLocalizedString("aboutview.about_developer_content \(currentAge)", comment: "About The Developer Content")
     }
 
     var body: some View {
@@ -25,14 +32,10 @@ struct AboutView: View {
             Spacer()
 
             VStack(spacing: 7) {
-                Text("About Earthify")
+                Text(l_aboutEarthifyTitle)
                     .font(.custom("Montserrat-Bold", size: 25))
 
-                Text(
-                    "Earthify is an app where you can share the things you no longer need. " +
-                        "Something that is no longer of any use to you might be life changing for " +
-                        "someone else!"
-                )
+                Text(l_aboutEarthifyContent)
             }
             .padding()
             .background(Color.secondary.opacity(0.2))
@@ -42,13 +45,10 @@ struct AboutView: View {
             Spacer()
 
             VStack(spacing: 7) {
-                Text("About The Developer")
+                Text(l_aboutDeveloperTitle)
                     .font(.custom("Montserrat-Bold", size: 25))
 
-                Text(
-                    "Rehatbir Singh is a \(currentAge) year old programmer. He likes to code, " +
-                        "play guitar, and play video games. He makes iOS apps and does some game dev too."
-                )
+                Text(l_aboutDeveloperContent)
             }
             .padding()
             .background(Color.secondary.opacity(0.2))
