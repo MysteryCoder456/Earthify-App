@@ -103,7 +103,7 @@ struct ListingDetailView: View {
                 Text(item.description)
                     .font(.subheadline)
                     .lineLimit(3)
-                    .accessibility(label: Text("listingdetailview_acc.item_description \(item.description)", comment: "Description: item.description"))
+                    .accessibility(label: Text("listingdetailview_acc.item_description \(item.description)", comment: "Description: description"))
 
                 if canGetLocation {
                     let distanceString = itemDistance > 1000 ? "\(Int(round(itemDistance / 1000))) Km" : "\(Int(itemDistance)) m"
