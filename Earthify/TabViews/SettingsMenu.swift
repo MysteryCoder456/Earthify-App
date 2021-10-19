@@ -42,12 +42,6 @@ struct SettingsMenu: View {
     @State var showingAlert = false
 
     @StateObject private var signInAlertCaller = NotificationHandler(notificationName: "UserSignedIn")
-    
-    let l_manageListings = NSLocalizedString("settingsmenu.manage_listings", comment: "Manage listings")
-    let l_about = NSLocalizedString("settingsmenu.about", comment: "About")
-    let l_signOut = NSLocalizedString("settingsmenu.sign_out", comment: "Sign Out")
-    let l_googleSignIn = NSLocalizedString("settingsmenu.google_sign_in", comment: "Sign in with Google")
-    let l_navTitle = NSLocalizedString("settingsmenu.nav_title", comment: "Settings")
 
     func signInWithGoogle() {
         env.googleAuthHandler.signInWithGoogle()
@@ -67,12 +61,12 @@ struct SettingsMenu: View {
             List {
                 if env.authenticated {
                     NavigationLink(destination: ManageListingsView()) {
-                        Text(l_manageListings)
+                        Text("settingsmenu.manage_listings", comment: "Manage listings")
                     }
                 }
 
                 NavigationLink(destination: AboutView()) {
-                    Text(l_about)
+                    Text("settingsmenu.about", comment: "About")
                 }
 
                 if env.authenticated {
@@ -80,19 +74,19 @@ struct SettingsMenu: View {
                         activeAlert = .signOut
                         showingAlert = true
                     }) {
-                        Text(l_signOut)
+                        Text("settingsmenu.sign_out", comment: "Sign Out")
                             .bold()
                             .foregroundColor(.red)
                     }
                 } else {
                     Button(action: signInWithGoogle) {
-                        Text(l_googleSignIn)
+                        Text("settingsmenu.google_sign_in", comment: "Sign in with Google")
                             .bold()
                             .foregroundColor(.blue)
                     }
                 }
             }
-            .navigationBarTitle(l_navTitle, displayMode: .inline)
+            .navigationBarTitle(Text("settingsmenu.nav_title", comment: "Settings"), displayMode: .inline)
         }
         .navigationViewStyle(.stack)
         .alert(isPresented: $showingAlert) {

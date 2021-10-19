@@ -30,7 +30,6 @@ struct ItemBrowser: View {
     
     let l_searchEarthify = NSLocalizedString("itembrowser.search_earthify", comment: "Search Earthify")
     let l_sortPickerLabel = NSLocalizedString("itembrowser.sort_picker_label", comment: "Sort Items")
-    let l_sortPickerAccessibility = NSLocalizedString("itembrowser_acc.sort_picker_label", comment: "Sort Item Listings")
     let l_addItemLabel = NSLocalizedString("itembrowser.add_item_label", comment: "Add New Item")
 
     var body: some View {
@@ -89,7 +88,7 @@ struct ItemBrowser: View {
                 }
             }
             .searchable(text: $searchText, prompt: l_searchEarthify)
-            .navigationTitle(l_searchEarthify)
+            .navigationTitle(Text("itembrowser.nav_title", comment: "Earthify"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
@@ -102,7 +101,7 @@ struct ItemBrowser: View {
                     label: {
                         Label(l_sortPickerLabel, systemImage: "arrow.up.arrow.down")
                     }
-                    .accessibility(label: Text(l_sortPickerAccessibility))
+                    .accessibility(label: Text("itembrowser_acc.sort_picker_label", comment: "Sort Item Listings"))
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {

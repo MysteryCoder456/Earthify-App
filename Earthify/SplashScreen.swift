@@ -11,11 +11,6 @@ struct SplashScreen: View {
     @EnvironmentObject var env: EnvironmentObjects
 
     let deviceDimensions = UIScreen.main.bounds.size
-    
-    let l_title = NSLocalizedString("splashscreen.title", comment: "Welcome to Earthify")
-    let l_subtitle = NSLocalizedString("splashscreen.subtitle", comment: "Share your things with others\nHelp to reduce resource wastage")
-    let l_continueButton = NSLocalizedString("splashscreen.continue", comment: "Continue")
-    let l_continueAccessibility = NSLocalizedString("splashscreen_acc.continue", comment: "Continue to app")
 
     var body: some View {
         ZStack {
@@ -41,17 +36,17 @@ struct SplashScreen: View {
                         .padding(.bottom)
                         .accessibility(hidden: true)
 
-                    Text(l_title)
+                    Text("splashscreen.title", comment: "Welcome to Earthify")
                         .font(.custom("Montserrat", size: 31))
                         .bold()
                         .padding(.horizontal)
                         .padding(.bottom, 20)
 
-                    Text(l_subtitle)
+                    Text("splashscreen.subtitle", comment: "Share your things with others\nHelp to reduce resource wastage")
                         .font(.custom("Montserrat", size: 18))
 
                     Button(action: { env.seenSplashScreen = true }) {
-                        Text(l_continueButton)
+                        Text("splashscreen.continue", comment: "Continue")
                             .font(.custom("Montserrat", size: 20))
                             .foregroundColor(.white)
                             .fontWeight(.semibold)
@@ -61,7 +56,7 @@ struct SplashScreen: View {
                     .background(Color.accentColor)
                     .cornerRadius(12)
                     .padding(.top, 50)
-                    .accessibility(label: Text(l_continueAccessibility))
+                    .accessibility(label: Text("splashscreen_acc.continue", comment: "Continue to app"))
                 }
                 .frame(width: deviceDimensions.width, height: deviceDimensions.height * 0.55, alignment: .center)
                 .background(Color.primary.colorInvert())

@@ -9,11 +9,6 @@ import SwiftUI
 
 struct AboutView: View {
     let currentAge: Int
-    
-    let l_aboutEarthifyTitle = NSLocalizedString("aboutview.about_earthify_title", comment: "About Earthify")
-    let l_aboutEarthifyContent = NSLocalizedString("aboutview.about_earthify_content", comment: "About Earthify Content")
-    let l_aboutDeveloperTitle = NSLocalizedString("aboutview.about_developer_title", comment: "About The Developer")
-    let l_aboutDeveloperContent: String
 
     init() {
         // Dynamically calculate age from birthday
@@ -23,8 +18,6 @@ struct AboutView: View {
         components.year = 2006
         let birthDate = Calendar.current.date(from: components)!
         currentAge = Int(birthDate.timeIntervalSinceNow / -31_536_000)
-        
-        l_aboutDeveloperContent = NSLocalizedString("aboutview.about_developer_content \(currentAge)", comment: "About The Developer Content")
     }
 
     var body: some View {
@@ -32,10 +25,10 @@ struct AboutView: View {
             Spacer()
 
             VStack(spacing: 7) {
-                Text(l_aboutEarthifyTitle)
+                Text("aboutview.about_earthify_title", comment: "About Earthify")
                     .font(.custom("Montserrat-Bold", size: 25))
 
-                Text(l_aboutEarthifyContent)
+                Text("aboutview.about_earthify_content", comment: "About Earthify Content")
             }
             .padding()
             .background(Color.secondary.opacity(0.2))
@@ -45,10 +38,10 @@ struct AboutView: View {
             Spacer()
 
             VStack(spacing: 7) {
-                Text(l_aboutDeveloperTitle)
+                Text("aboutview.about_developer_title", comment: "About The Developer")
                     .font(.custom("Montserrat-Bold", size: 25))
 
-                Text(l_aboutDeveloperContent)
+                Text("aboutview.about_developer_content \(currentAge)", comment: "About The Developer Content")
             }
             .padding()
             .background(Color.secondary.opacity(0.2))

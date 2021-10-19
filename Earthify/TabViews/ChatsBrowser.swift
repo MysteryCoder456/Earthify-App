@@ -15,10 +15,7 @@ struct ChatsBrowser: View {
 
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     
-    let l_signInMsg = NSLocalizedString("chatsbrowser.sign_in_msg", comment: "Please sign in to view chats")
-    let l_noChatsMsg = NSLocalizedString("chatsbrowser.no_chats_msg", comment: "You don't have any chats yet\nStart a conversation from an item's page")
     let l_searchPrompt = NSLocalizedString("chatsbrowser.search_prompt", comment: "Search Chats")
-    let l_navTitle = NSLocalizedString("chatsbrowser.nav_title", comment: "Chats")
 
     func fetchChats() {
         guard !runningForPreviews else {
@@ -45,7 +42,7 @@ struct ChatsBrowser: View {
         NavigationView {
             VStack {
                 if !env.authenticated {
-                    Text(l_signInMsg)
+                    Text("chatsbrowser.sign_in_msg", comment: "Please sign in to view chats")
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
 
@@ -53,7 +50,7 @@ struct ChatsBrowser: View {
                     List {
                         HStack {
                             Spacer()
-                            Text(l_noChatsMsg)
+                            Text("chatsbrowser.no_chats_msg", comment: "You don't have any chats yet\nStart a conversation from an item's page")
                                 .foregroundColor(.secondary)
                                 .multilineTextAlignment(.center)
                             Spacer()
@@ -73,7 +70,7 @@ struct ChatsBrowser: View {
                     .searchable(text: $searchText, prompt: l_searchPrompt)
                 }
             }
-            .navigationTitle(l_navTitle)
+            .navigationTitle(Text("chatsbrowser.nav_title", comment: "Chats"))
         }
         .navigationViewStyle(.stack)
         .onAppear { fetchChats() }
