@@ -52,6 +52,6 @@ struct ChatBubble: View {
         }
         .padding(.horizontal, 8)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(Text("\(author) says: \(content)"))
+        .accessibilityLabel(Text("chatbubble.\(author) says \(content)", comment: "author says: content"))
     }
 }

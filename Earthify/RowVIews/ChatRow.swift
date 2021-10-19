@@ -31,7 +31,7 @@ struct ChatRow: View {
         }
         .padding(.vertical)
         .accessibilityElement(children: .combine)
-        .accessibility(label: Text("Chat with \(user.fullName())"))
+        .accessibility(label: Text("chatrow_acc.chat_with \(user.fullName())", comment: "Chat with user"))
     }
 }
 

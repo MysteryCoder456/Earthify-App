@@ -28,12 +28,12 @@ struct ItemListingBadge: View {
             Text(item.name)
                 .font(.headline)
                 .foregroundColor(.primary)
-                .accessibility(label: Text("Name: \(item.name)"))
+                .accessibility(label: Text("listingdetailview_acc.item_name \(item.name)", comment: "Name: name"))
 
             Text(item.description)
                 .font(.caption)
                 .foregroundColor(.secondary)
-                .accessibility(label: Text("Description: \(item.description)"))
+                .accessibility(label: Text("listingdetailview_acc.item_description \(item.description)", comment: "Description: description"))
         }
         .lineLimit(1)
         .frame(width: imageSize.width)
