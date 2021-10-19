@@ -271,6 +271,8 @@ struct AddListingView: View {
 
 struct AddListingView_Previews: PreviewProvider {
     static var previews: some View {
-        AddListingView()
+        NavigationView {
+            AddListingView()
+        }
     }
 }
