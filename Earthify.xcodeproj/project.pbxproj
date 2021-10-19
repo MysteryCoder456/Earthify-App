@@ -54,6 +54,7 @@
 /* Begin PBXFileReference section */
 		3415D2EF26AEDC6F00E8241E /* ManageListingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageListingsView.swift; sourceTree = "<group>"; };
 		3415D2F126AEF5BE00E8241E /* EditListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListingView.swift; sourceTree = "<group>"; };
+		342EFB82271EF339002FFD16 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		34386E9626AD220F0047895B /* SettingsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenu.swift; sourceTree = "<group>"; };
 		344A748C26C8660000940ACC /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		3489BDF2271AC20A00C75DC1 /* EnvironmentObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentObjects.swift; sourceTree = "<group>"; };
@@ -316,6 +317,7 @@
 				en,
 				Base,
 				fr,
+				ar,
 			);
 			mainGroup = 34F1FB562698528C0050BFE7;
 			packageReferences = (
@@ -393,6 +395,7 @@
 			children = (
 				34BAA8EF271D9F3C00DA8FCA /* en */,
 				34BAA8F2271D9FD800DA8FCA /* fr */,
+				342EFB82271EF339002FFD16 /* ar */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
