@@ -38,7 +38,7 @@ struct ManageListingsView: View {
                 }
             }
         }
-        .navigationBarTitle("Manage Listings", displayMode: .inline)
+        .navigationBarTitle(Text("managelistingsview.nav_title", comment: "Manage Listings"), displayMode: .inline)
     }
 }
 
