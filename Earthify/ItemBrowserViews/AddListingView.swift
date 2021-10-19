@@ -28,6 +28,22 @@ struct AddListingView: View {
     @State var itemDescription = ""
 
     let maxImageSize = CGSize(width: 250, height: 172)
+    
+    let l_titleFieldHint = NSLocalizedString("addlistingview.title_field.hint", comment: "Title")
+    let l_descriptionFieldHint = NSLocalizedString("addlistingview.description_field.hint", comment: "Description")
+    
+    let l_locationAlertTitle = NSLocalizedString("addlistingview.location_alert.title", comment: "Please enable Location Services for Earthify")
+    let l_locationAlertMsg = NSLocalizedString("addlistingview.location_alert.msg", comment: "Earthify requires your location to show people items that are closer to them.")
+    
+    let l_locationErrorAlertTitle = NSLocalizedString("addlistingview.location_error_alert.title", comment: "Unable to get current location")
+    let l_locationErrorAlertMsg = NSLocalizedString("addlistingview.location_error_alert.msg", comment: "Something went wrong while getting your current location.")
+    
+    let l_uploadErrorAlertTitle = NSLocalizedString("addlistingview.upload_error_alert.title", comment: "Unable to upload image")
+    
+    let l_addSuccessAlertTitle = NSLocalizedString("addlistingview.add_success_alert.title", comment: "Item Added Successfully")
+    let l_addSuccessAlertMsg = NSLocalizedString("addlistingview.add_success_alert.msg", comment: "Check it out in the Item Browser!")
+    
+    let l_addFailureAlertTitle = NSLocalizedString("addlistingview.add_failure_alert.title", comment: "Unable to add a new listing")
 
     func addItemListing() {
         if let currentUID = Auth.auth().currentUser?.uid {
@@ -46,8 +62,8 @@ struct AddListingView: View {
             let canGetLocation = (locationAuthorization == .authorizedAlways || locationAuthorization == .authorizedWhenInUse)
 
             guard canGetLocation else {
-                primaryAlertMessage = "Please enable Location Services for Earthify"
-                secondaryAlertMessage = "Earthify requires your location to show people items that are closer to them."
+                primaryAlertMessage = l_locationAlertTitle
+                secondaryAlertMessage = l_locationAlertMsg
                 showingAlert = true
 
                 return
@@ -55,8 +71,8 @@ struct AddListingView: View {
 
             // Get current location
             guard let currentCoordinates = locationManager.location?.coordinate else {
-                primaryAlertMessage = "Unable to get current location"
-                secondaryAlertMessage = "Something went wrong while getting your current location."
+                primaryAlertMessage = l_locationErrorAlertTitle
+                secondaryAlertMessage = l_locationErrorAlertMsg
                 showingAlert = true
 
                 return
@@ -75,8 +91,10 @@ struct AddListingView: View {
             if imageData.count > sizeLimit {
                 print("Could not upload item listing image: Image is more than \(sizeLimitMB) MB")
 
-                primaryAlertMessage = "Unable to upload image"
-                secondaryAlertMessage = "Image must be smaller than \(sizeLimitMB) MB"
+                let l_msg = NSLocalizedString("addlistingview.image_size_alert.msg %lld", comment: "Image must be smaller than %lld MB")
+                
+                primaryAlertMessage = l_uploadErrorAlertTitle
+                secondaryAlertMessage = String(format: l_msg, sizeLimitMB)
                 showingAlert = true
 
                 return
@@ -89,7 +107,7 @@ struct AddListingView: View {
                 if let error = error {
                     print("Could not upload item listing image: \(error.localizedDescription)")
 
-                    primaryAlertMessage = "Unable to upload image"
+                    primaryAlertMessage = l_uploadErrorAlertTitle
                     secondaryAlertMessage = error.localizedDescription
                     showingAlert = true
 
@@ -108,13 +126,13 @@ struct AddListingView: View {
                     itemName = ""
                     itemDescription = ""
 
-                    primaryAlertMessage = "Item Added Successfully"
-                    secondaryAlertMessage = "Check it out in the Item Browser!"
+                    primaryAlertMessage = l_addSuccessAlertTitle
+                    secondaryAlertMessage = l_addSuccessAlertMsg
                     showingAlert = true
                 } catch {
                     print("Could not add new item listing: \(error.localizedDescription)")
 
-                    primaryAlertMessage = "Unable to add a new listing"
+                    primaryAlertMessage = l_addFailureAlertTitle
                     secondaryAlertMessage = error.localizedDescription
                     showingAlert = true
 
@@ -133,7 +151,7 @@ struct AddListingView: View {
         VStack(spacing: 5) {
             // Image Picker
             VStack {
-                Text("Click a picture of your item:")
+                Text("addlistingview.image_picker.title", comment: "Click a picture of your item:")
                     .font(.headline)
 
                 Button(action: { showingImageSourceSelector = true }) {
@@ -156,55 +174,55 @@ struct AddListingView: View {
                 .cornerRadius(30)
                 .actionSheet(isPresented: $showingImageSourceSelector) {
                     ActionSheet(
-                        title: Text("Select Image Source"),
+                        title: Text("addlistingview.source_selector_msg", comment: "Select Image Source"),
                         buttons: [
                             .cancel { print("Cancelled source selection") },
-                            .default(Text("Camera")) { imageSource = .camera; showingImagePicker = true },
-                            .default(Text("Photo Library")) { imageSource = .photoLibrary; showingImagePicker = true },
+                            .default(Text("addlistingview.camera", comment: "Camera")) { imageSource = .camera; showingImagePicker = true },
+                            .default(Text("addlistingview.photo_library", comment: "Photo Library")) { imageSource = .photoLibrary; showingImagePicker = true },
                         ]
                     )
                 }
 
-                Text("Make sure that your item is clearly visible in the picture")
+                Text("addlistingview.image_picker.subtitle", comment: "Make sure that your item is clearly visible in the picture")
                     .multilineTextAlignment(.center)
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
             .accessibilityElement(children: .combine)
             .accessibilityAddTraits(.isButton)
-            .accessibilityHint(Text("Opens a dialogue to choose image source"))
+            .accessibilityHint(Text("addlistingview_acc.image_picker.hint", comment: "Opens a dialogue to choose image source"))
 
             // Item Name
             VStack {
-                Text("Enter a title for your listing:")
+                Text("addlistingview.title_field.header", comment: "Enter a title for your listing:")
                     .font(.headline)
                     .accessibilityHidden(true)
 
-                TextField("Title", text: $itemName)
+                TextField(l_titleFieldHint, text: $itemName)
                     .padding(7)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(lineWidth: 1.5)
                             .fill(Color.secondary)
                     )
-                    .accessibilityLabel(Text("Enter a title for your listing"))
+                    .accessibilityLabel(Text("addlistingview_acc.title_field", comment: "Enter a title for your listing"))
             }
             .padding()
 
             // Item Description
             VStack {
-                Text("Enter a short description of your item:")
+                Text("addlistingview.description_field.header", comment: "Enter a short description of your item:")
                     .font(.headline)
                     .accessibilityHidden(true)
 
-                TextField("Description", text: $itemDescription)
+                TextField(l_descriptionFieldHint, text: $itemDescription)
                     .padding(7)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(lineWidth: 1.5)
                             .fill(Color.secondary)
                     )
-                    .accessibilityLabel(Text("Enter a short description of your item"))
+                    .accessibilityLabel(Text("addlistingview_acc.description_field", comment: "Enter a short description of your item"))
             }
             .padding()
 
@@ -212,7 +230,7 @@ struct AddListingView: View {
             Button(action: addItemListing) {
                 Label(
                     title: {
-                        Text("Add Listing")
+                        Text("addlistingview.add_btn", comment: "Add Listing")
                             .font(.title2)
                             .fontWeight(.semibold)
                     },
@@ -233,11 +251,11 @@ struct AddListingView: View {
                 Alert(
                     title: Text(primaryAlertMessage),
                     message: Text(secondaryAlertMessage),
-                    dismissButton: .default(Text("OK"))
+                    dismissButton: .default(Text("alert_dismiss", comment: "OK"))
                 )
             }
         }
-        .navigationTitle("New Item Listing")
+        .navigationTitle(Text("addlistingview.nav_title", comment: "New Item Listing"))
         .sheet(isPresented: $showingImagePicker) {
             if let source = imageSource {
                 ImagePickerView(sourceType: source) { image in
@@ -250,6 +268,8 @@ struct AddListingView: View {
 
 struct AddListingView_Previews: PreviewProvider {
     static var previews: some View {
-        AddListingView()
+        NavigationView {
+            AddListingView()
+        }
     }
 }

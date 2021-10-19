@@ -61,12 +61,12 @@ struct SettingsMenu: View {
             List {
                 if env.authenticated {
                     NavigationLink(destination: ManageListingsView()) {
-                        Text("Manage listings")
+                        Text("settingsmenu.manage_listings", comment: "Manage listings")
                     }
                 }
 
                 NavigationLink(destination: AboutView()) {
-                    Text("About")
+                    Text("settingsmenu.about", comment: "About")
                 }
 
                 if env.authenticated {
@@ -74,19 +74,19 @@ struct SettingsMenu: View {
                         activeAlert = .signOut
                         showingAlert = true
                     }) {
-                        Text("Sign Out")
+                        Text("settingsmenu.sign_out", comment: "Sign Out")
                             .bold()
                             .foregroundColor(.red)
                     }
                 } else {
                     Button(action: signInWithGoogle) {
-                        Text("Sign in with Google")
+                        Text("settingsmenu.google_sign_in", comment: "Sign in with Google")
                             .bold()
                             .foregroundColor(.blue)
                     }
                 }
             }
-            .navigationBarTitle("Settings", displayMode: .inline)
+            .navigationBarTitle(Text("settingsmenu.nav_title", comment: "Settings"), displayMode: .inline)
         }
         .navigationViewStyle(.stack)
         .alert(isPresented: $showingAlert) {
@@ -95,17 +95,19 @@ struct SettingsMenu: View {
             switch activeAlert {
             case .signIn:
                 let currentUserEmail = (Auth.auth().currentUser?.email)!
+                
                 alert = Alert(
-                    title: Text("Sign In Successful"),
-                    message: Text("You have been signed in as \(currentUserEmail)."),
-                    dismissButton: .default(Text("OK"))
+                    title: Text("settingsmenu.sign_in_alert.success", comment: "Sign In Successful"),
+                    message: Text("settingsmenu.sign_in_alert.success_msg \(currentUserEmail)", comment: "You have been signed in as email."),
+                    dismissButton: .default(Text("alert_dismiss", comment: "OK"))
                 )
 
             case .signOut:
+                
                 alert = Alert(
-                    title: Text("Are you sure you want to sign out?"),
-                    primaryButton: .default(Text("Cancel")),
-                    secondaryButton: .destructive(Text("Sign Out"), action: signOut)
+                    title: Text("settingsmenu.sign_out_alert", comment: "Are you sure you want to sign out?"),
+                    primaryButton: .default(Text("alert_cancel", comment: "Cancel")),
+                    secondaryButton: .destructive(Text("settingsmenu.sign_out_alert.sign_out", comment: "Sign Out"), action: signOut)
                 )
             }
 

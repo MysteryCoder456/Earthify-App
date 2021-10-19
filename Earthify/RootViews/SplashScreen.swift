@@ -36,17 +36,17 @@ struct SplashScreen: View {
                         .padding(.bottom)
                         .accessibility(hidden: true)
 
-                    Text("Welcome to Earthify")
+                    Text("splashscreen.title", comment: "Welcome to Earthify")
                         .font(.custom("Montserrat", size: 31))
                         .bold()
                         .padding(.horizontal)
                         .padding(.bottom, 20)
 
-                    Text("Share your things with others\nHelp to reduce resource wastage")
+                    Text("splashscreen.subtitle", comment: "Share your things with others\nHelp to reduce resource wastage")
                         .font(.custom("Montserrat", size: 18))
 
                     Button(action: { env.seenSplashScreen = true }) {
-                        Text("Continue")
+                        Text("splashscreen.continue", comment: "Continue")
                             .font(.custom("Montserrat", size: 20))
                             .foregroundColor(.white)
                             .fontWeight(.semibold)
@@ -56,7 +56,7 @@ struct SplashScreen: View {
                     .background(Color.accentColor)
                     .cornerRadius(12)
                     .padding(.top, 50)
-                    .accessibility(label: Text("Continue to app"))
+                    .accessibility(label: Text("splashscreen_acc.continue", comment: "Continue to app"))
                 }
                 .frame(width: deviceDimensions.width, height: deviceDimensions.height * 0.55, alignment: .center)
                 .background(Color.primary.colorInvert())

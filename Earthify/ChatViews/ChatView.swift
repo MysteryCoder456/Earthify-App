@@ -28,6 +28,10 @@ struct ChatView: View {
     @State var messagesCancellable: AnyCancellable?
 
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+    
+    let l_textFieldHint = NSLocalizedString("chatview.text_field.hint", comment: "Send message")
+    
+    let l_sendErrorAlertTitle = NSLocalizedString("chatview.send_error_alert.title", comment: "Unable to send message")
 
     func fetchMessages() {
         messages = runningForPreviews ? previewMessages : env.messageRepository.messages.filter { $0.recipients.contains(recipient.uid!) }
@@ -49,7 +53,7 @@ struct ChatView: View {
         } catch {
             print("Could not send message: \(error.localizedDescription)")
 
-            primaryAlertMessage = "Unable to send message"
+            primaryAlertMessage = l_sendErrorAlertTitle
             secondaryAlertMessage = error.localizedDescription
             showingAlert = true
         }
@@ -61,7 +65,7 @@ struct ChatView: View {
             if messages.isEmpty {
                 Spacer()
 
-                Text("This is the beginning of your conversation with \(recipient.firstName). Say hi!")
+                Text("chatview.no_chats_msg \(recipient.firstName)", comment: "This is the beginning of your conversation with recipient. Say hi!")
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
             } else {
@@ -92,7 +96,7 @@ struct ChatView: View {
             Spacer()
 
             HStack {
-                TextField("Send message", text: $newMessageText)
+                TextField(l_textFieldHint, text: $newMessageText)
                     .padding(8)
                     .background(Color.secondary.opacity(0.4))
                     .cornerRadius(10)
@@ -110,10 +114,10 @@ struct ChatView: View {
             Alert(
                 title: Text(primaryAlertMessage),
                 message: Text(secondaryAlertMessage),
-                dismissButton: .default(Text("OK"))
+                dismissButton: .default(Text("alert_dismiss", comment: "OK"))
             )
         }
-        .navigationBarTitle("Chat with \(recipient.fullName())", displayMode: .inline)
+        .navigationBarTitle(Text("chatview.chat_with \(recipient.fullName())", comment: "Chat with recipient"), displayMode: .inline)
         .onAppear {
             if !runningForPreviews {
                 let currentUID = Auth.auth().currentUser?.uid

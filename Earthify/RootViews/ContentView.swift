@@ -11,6 +11,7 @@ import SwiftUI
 /*
  TODO:
   1. Sign in with Apple.
+  2. Fill localization tables
  */
 
 struct ContentView: View {

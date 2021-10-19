@@ -19,6 +19,8 @@ struct StarredListings: View {
 
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     
+    let l_searchPrompt = NSLocalizedString("starredlistings.search_prompt", comment: "Search Starred")
+    
     func fetchStarredListings() {
         guard !runningForPreviews else {
             starredListings = previewStarredListings
@@ -44,7 +46,7 @@ struct StarredListings: View {
         NavigationView {
             VStack {
                 if !env.authenticated {
-                    Text("Please sign in to view starred listings")
+                    Text("starredlistings.sign_in_msg", comment: "Please sign in to view starred listings")
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
 
@@ -52,12 +54,13 @@ struct StarredListings: View {
                     List {
                         HStack {
                             Spacer()
-                            Text("You haven't starred any items yet\nStar an item from its page")
+                            Text("starredlistings.no_stars_msg", comment: "You haven't starred any items yet\nStar an item from its page")
                                 .foregroundColor(.secondary)
                                 .multilineTextAlignment(.center)
                             Spacer()
                         }
                     }
+                    .refreshable { fetchStarredListings() }
                 } else {
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 25) {
@@ -68,10 +71,10 @@ struct StarredListings: View {
                             }
                         }
                     }
-                    .searchable(text: $searchText, prompt: "Search Starred")
+                    .searchable(text: $searchText, prompt: l_searchPrompt)
                 }
             }
-            .navigationTitle("Starred Listings")
+            .navigationTitle(Text("starredlistings.nav_title", comment: "Starred Listings"))
         }
         .navigationViewStyle(.stack)
         .onAppear { fetchStarredListings() }

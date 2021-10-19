@@ -25,14 +25,10 @@ struct AboutView: View {
             Spacer()
 
             VStack(spacing: 7) {
-                Text("About Earthify")
+                Text("aboutview.about_earthify_title", comment: "About Earthify")
                     .font(.custom("Montserrat-Bold", size: 25))
 
-                Text(
-                    "Earthify is an app where you can share the things you no longer need. " +
-                        "Something that is no longer of any use to you might be life changing for " +
-                        "someone else!"
-                )
+                Text("aboutview.about_earthify_content", comment: "About Earthify Content")
             }
             .padding()
             .background(Color.secondary.opacity(0.2))
@@ -42,13 +38,10 @@ struct AboutView: View {
             Spacer()
 
             VStack(spacing: 7) {
-                Text("About The Developer")
+                Text("aboutview.about_developer_title", comment: "About The Developer")
                     .font(.custom("Montserrat-Bold", size: 25))
 
-                Text(
-                    "Rehatbir Singh is a \(currentAge) year old programmer. He likes to code, " +
-                        "play guitar, and play video games. He makes iOS apps and does some game dev too."
-                )
+                Text("aboutview.about_developer_content \(currentAge)", comment: "About The Developer Content")
             }
             .padding()
             .background(Color.secondary.opacity(0.2))

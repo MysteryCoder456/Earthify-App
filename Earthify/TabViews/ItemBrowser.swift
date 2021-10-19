@@ -27,6 +27,10 @@ struct ItemBrowser: View {
     ]
 
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+    
+    let l_searchEarthify = NSLocalizedString("itembrowser.search_earthify", comment: "Search Earthify")
+    let l_sortPickerLabel = NSLocalizedString("itembrowser.sort_picker_label", comment: "Sort Items")
+    let l_addItemLabel = NSLocalizedString("itembrowser.add_item_label", comment: "Add New Item")
 
     var body: some View {
         var listings: [ItemListing]
@@ -83,27 +87,27 @@ struct ItemBrowser: View {
                     }
                 }
             }
-            .searchable(text: $searchText, prompt: "Search Earthify")
-            .navigationTitle("Search Earthify")
+            .searchable(text: $searchText, prompt: l_searchEarthify)
+            .navigationTitle(Text("itembrowser.nav_title", comment: "Earthify"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
-                        Picker("Sort Items", selection: $sortingSelection) {
+                        Picker(l_sortPickerLabel, selection: $sortingSelection) {
                             ForEach(ListingSorting.allCases, id: \.self) {
                                 Text($0.rawValue)
                             }
                         }
                     }
                     label: {
-                        Label("Sort Items", systemImage: "arrow.up.arrow.down")
+                        Label(l_sortPickerLabel, systemImage: "arrow.up.arrow.down")
                     }
-                    .accessibility(label: Text("Sort Item Listings"))
+                    .accessibility(label: Text("itembrowser_acc.sort_picker_label", comment: "Sort Item Listings"))
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if env.authenticated {
                         NavigationLink(destination: AddListingView()) {
-                            Label("Add New Item", systemImage: "plus")
+                            Label(l_addItemLabel, systemImage: "plus")
                         }
                     }
                 }
