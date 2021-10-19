@@ -93,10 +93,9 @@ struct AddListingView: View {
             if imageData.count > sizeLimit {
                 print("Could not upload item listing image: Image is more than \(sizeLimitMB) MB")
 
-                let l_title = NSLocalizedString("addlistingview.image_size_alert.title", comment: "Unable to upload image")
                 let l_msg = NSLocalizedString("addlistingview.image_size_alert.msg \(sizeLimitMB)", comment: "Image must be smaller than \(sizeLimitMB) MB")
                 
-                primaryAlertMessage = l_title
+                primaryAlertMessage = l_uploadErrorAlertTitle
                 secondaryAlertMessage = l_msg
                 showingAlert = true
 

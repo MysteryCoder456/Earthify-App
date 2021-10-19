@@ -35,6 +35,21 @@ struct EditListingView: View {
 
     let maxImageSize = CGSize(width: 250, height: 172)
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+    
+    let l_titleFieldHint = NSLocalizedString("addlistingview.title_field.hint", comment: "Title")
+    let l_descriptionFieldHint = NSLocalizedString("addlistingview.description_field.hint", comment: "Description")
+    let l_deleteListing = NSLocalizedString("editlistingview.delete_listing", comment: "Delete Listing")
+    
+    let l_deleteFailureAlertTitle = NSLocalizedString("editlistingview.delete_failure_alert.title", comment: "Unable to delete item listing image")
+    
+    let l_uploadErrorAlertTitle = NSLocalizedString("addlistingview.upload_error_alert.title", comment: "Unable to upload image")
+    
+    let l_updateSuccessAlertTitle = NSLocalizedString("editlistingview.update_success_alert.title", comment: "Item Updated Successfully")
+    let l_updateSuccessAlertMsg = NSLocalizedString("addlistingview.add_success_alert.msg", comment: "Check it out in the Item Browser!")
+    
+    let l_updateFailureAlertTitle = NSLocalizedString("editlistingview.update_failure_alert.title", comment: "Unable to update listing")
+    
+    let l_fetchErrorAlertTitle = NSLocalizedString("editlistingview.fetch_error_alert.title", comment: "An error occured while fetching this item's image")
 
     func deleteItemListing() {
         let storageRef = Storage.storage().reference(withPath: "listingImages/\(item.id!).jpg")
@@ -43,7 +58,7 @@ struct EditListingView: View {
             if let error = error {
                 print("Could not delete item listing image: \(error.localizedDescription)")
 
-                primaryAlertMessage = "Unable to delete item listing image"
+                primaryAlertMessage = l_deleteFailureAlertTitle
                 secondaryAlertMessage = error.localizedDescription
                 activeAlert = .regular
                 showingAlert = true
@@ -86,9 +101,11 @@ struct EditListingView: View {
             // Check if the image is within the size limit
             if imageData.count > sizeLimit {
                 print("Could not upload item listing image: Image is more than \(sizeLimitMB) MB")
+                
+                let l_msg = NSLocalizedString("addlistingview.image_size_alert.msg \(sizeLimitMB)", comment: "Image must be smaller than \(sizeLimitMB) MB")
 
-                primaryAlertMessage = "Unable to upload image"
-                secondaryAlertMessage = "Image must be smaller than \(sizeLimitMB) MB"
+                primaryAlertMessage = l_uploadErrorAlertTitle
+                secondaryAlertMessage = l_msg
                 activeAlert = .regular
                 showingAlert = true
 
@@ -104,7 +121,7 @@ struct EditListingView: View {
                 if let error = error {
                     print("Could not upload item listing image: \(error.localizedDescription)")
 
-                    primaryAlertMessage = "Unable to upload image"
+                    primaryAlertMessage = l_uploadErrorAlertTitle
                     secondaryAlertMessage = error.localizedDescription
                     showingAlert = true
 
@@ -118,13 +135,13 @@ struct EditListingView: View {
                     try env.listingRepository.updateListing(item)
                     print("Listing \(item.id!) updated successfully")
 
-                    primaryAlertMessage = "Item Updated Successfully"
-                    secondaryAlertMessage = "Check it out in the Item Browser!"
+                    primaryAlertMessage = l_updateSuccessAlertTitle
+                    secondaryAlertMessage = l_updateSuccessAlertMsg
                     showingAlert = true
                 } catch {
                     print("Could not update listing \(item.id!): \(error.localizedDescription)")
 
-                    primaryAlertMessage = "Unable to update listing"
+                    primaryAlertMessage = l_updateFailureAlertTitle
                     secondaryAlertMessage = error.localizedDescription
                     showingAlert = true
 
@@ -143,7 +160,7 @@ struct EditListingView: View {
         VStack(spacing: 5) {
             // Image Picker
             VStack {
-                Text("Click a picture of your item:")
+                Text("addlistingview.image_picker.title", comment: "Click a picture of your item:")
                     .font(.headline)
 
                 Button(action: { showingImageSourceSelector = true }) {
@@ -162,61 +179,61 @@ struct EditListingView: View {
                 }
                 .aspectRatio(contentMode: .fit)
                 .frame(maxWidth: maxImageSize.width, maxHeight: maxImageSize.height)
-                .background(Color(.sRGB, red: 0.2, green: 0.8, blue: 0.2, opacity: 1.0))
+                .background(Color.secondary)
                 .cornerRadius(30)
                 .actionSheet(isPresented: $showingImageSourceSelector) {
                     ActionSheet(
-                        title: Text("Select Image Source"),
+                        title: Text("addlistingview.source_selector_msg", comment: "Select Image Source"),
                         buttons: [
                             .cancel { print("Cancelled source selection") },
-                            .default(Text("Camera")) { imageSource = .camera; showingImagePicker = true },
-                            .default(Text("Photo Library")) { imageSource = .photoLibrary; showingImagePicker = true },
+                            .default(Text("addlistingview.camera", comment: "Camera")) { imageSource = .camera; showingImagePicker = true },
+                            .default(Text("addlistingview.photo_library", comment: "Photo Library")) { imageSource = .photoLibrary; showingImagePicker = true },
                         ]
                     )
                 }
 
-                Text("Make sure that your item is clearly visible in the picture")
+                Text("addlistingview.image_picker.subtitle", comment: "Make sure that your item is clearly visible in the picture")
                     .multilineTextAlignment(.center)
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
             .accessibilityElement(children: .combine)
             .accessibilityAddTraits(.isButton)
-            .accessibilityHint(Text("Opens a dialogue to choose image source"))
+            .accessibilityHint(Text("addlistingview_acc.image_picker.hint", comment: "Opens a dialogue to choose image source"))
 
             // Item Name
             VStack {
-                Text("Enter a title for your listing:")
+                Text("addlistingview.title_field.header", comment: "Enter a title for your listing:")
                     .font(.headline)
                     .accessibilityHidden(true)
 
-                TextField("Title", text: $item.name)
+                TextField(l_titleFieldHint, text: $item.name)
                     .padding(7)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(lineWidth: 1.5)
                             .fill(Color.secondary)
                     )
-                    .accessibilityLabel(Text("Enter a title for your listing"))
-                    .accessibilityValue(Text("Current title: \(item.name)"))
+                    .accessibilityLabel(Text("addlistingview_acc.title_field", comment: "Enter a title for your listing"))
+                    .accessibilityValue(Text("editlistingview_acc.title_field.current_value \(item.name)", comment: "Current title: title"))
             }
             .padding()
 
             // Item Description
             VStack {
-                Text("Enter a short description of your item:")
+                Text("addlistingview.description_field.header", comment: "Enter a short description of your item:")
                     .font(.headline)
                     .accessibilityHidden(true)
 
-                TextField("Description", text: $item.description)
+                TextField(l_descriptionFieldHint, text: $item.description)
                     .padding(7)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(lineWidth: 1.5)
                             .fill(Color.secondary)
                     )
-                    .accessibilityLabel(Text("Enter a short description of your item"))
-                    .accessibilityValue(Text("Current description: \(item.description)"))
+                    .accessibilityLabel(Text("addlistingview_acc.description_field", comment: "Enter a short description of your item"))
+                    .accessibilityValue(Text("editlistingview_acc.description_field.current_value \(item.description)", comment: "Current description: description"))
             }
             .padding()
 
@@ -224,7 +241,7 @@ struct EditListingView: View {
             Button(action: updateItemListing) {
                 Label(
                     title: {
-                        Text("Update Listing")
+                        Text("editlistingview.update_btn", comment: "Update Listing")
                             .font(.title2)
                             .fontWeight(.semibold)
                     },
@@ -242,7 +259,7 @@ struct EditListingView: View {
             .background(Color.accentColor)
             .cornerRadius(12)
         }
-        .navigationBarTitle("Update Listing", displayMode: .inline)
+        .navigationBarTitle(Text("editlistingview.nav_title", comment: "Update Listing"), displayMode: .inline)
         .sheet(isPresented: $showingImagePicker) {
             if let source = imageSource {
                 ImagePickerView(sourceType: source) { image in
@@ -258,14 +275,14 @@ struct EditListingView: View {
                 alert = Alert(
                     title: Text(primaryAlertMessage),
                     message: Text(secondaryAlertMessage),
-                    dismissButton: .default(Text("OK"))
+                    dismissButton: .default(Text("alert_dismiss", comment: "OK"))
                 )
             case .deletion:
                 alert = Alert(
-                    title: Text("Are you sure you want to delete this listing?"),
-                    message: Text("This action cannot be undone."),
-                    primaryButton: .destructive(Text("Delete"), action: deleteItemListing),
-                    secondaryButton: .default(Text("Cancel"))
+                    title: Text("editlistingview.deletion_alert.title", comment: "Are you sure you want to delete this listing?"),
+                    message: Text("editlistingview.deletion_alert.msg", comment: "This action cannot be undone."),
+                    primaryButton: .destructive(Text("editlistingview.deletion_alert.delete", comment: "Delete"), action: deleteItemListing),
+                    secondaryButton: .default(Text("alert_cancel", comment: "Cancel"))
                 )
             }
 
@@ -284,7 +301,7 @@ struct EditListingView: View {
                 if let error = error {
                     print("Could not fetch item listing image for \(item.id!): \(error.localizedDescription)")
 
-                    primaryAlertMessage = "An error occured while fetching this item's image"
+                    primaryAlertMessage = l_fetchErrorAlertTitle
                     secondaryAlertMessage = error.localizedDescription
                     showingAlert = true
 
@@ -304,7 +321,7 @@ struct EditListingView: View {
                     activeAlert = .deletion
                     showingAlert = true
                 }) {
-                    Label("Delete Listing", systemImage: "trash")
+                    Label(l_deleteListing, systemImage: "trash")
                 }
             }
         }
