@@ -96,25 +96,18 @@ struct SettingsMenu: View {
             case .signIn:
                 let currentUserEmail = (Auth.auth().currentUser?.email)!
                 
-                let l_title = NSLocalizedString("settingsmenu.sign_in_alert.success", comment: "Sign In Successful")
-                let l_msg = NSLocalizedString("settingsmenu.sign_in_alert.success_msg \(currentUserEmail)", comment: "You have been signed in as \(currentUserEmail).")
-                let l_dismissBtn = NSLocalizedString("settingsmenu.sign_in_alert.dismiss", comment: "OK")
-                
                 alert = Alert(
-                    title: Text(l_title),
-                    message: Text(l_msg),
-                    dismissButton: .default(Text(l_dismissBtn))
+                    title: Text("settingsmenu.sign_in_alert.success", comment: "Sign In Successful"),
+                    message: Text("settingsmenu.sign_in_alert.success_msg \(currentUserEmail)", comment: "You have been signed in as email."),
+                    dismissButton: .default(Text("alert_dismiss", comment: "OK"))
                 )
 
             case .signOut:
-                let l_title = NSLocalizedString("settingsmenu.sign_out_alert", comment: "Are you sure you want to sign out?")
-                let l_cancelBtn = NSLocalizedString("settingsmenu.sign_out_alert.cancel", comment: "Cancel")
-                let l_signOutBtn = NSLocalizedString("settingsmenu.sign_out_alert.sign_out", comment: "Sign Out")
                 
                 alert = Alert(
-                    title: Text(l_title),
-                    primaryButton: .default(Text(l_cancelBtn)),
-                    secondaryButton: .destructive(Text(l_signOutBtn), action: signOut)
+                    title: Text("settingsmenu.sign_out_alert", comment: "Are you sure you want to sign out?"),
+                    primaryButton: .default(Text("alert_cancel", comment: "Cancel")),
+                    secondaryButton: .destructive(Text("settingsmenu.sign_out_alert.sign_out", comment: "Sign Out"), action: signOut)
                 )
             }
 
