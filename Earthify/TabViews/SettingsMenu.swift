@@ -103,7 +103,7 @@ struct SettingsMenu: View {
                 let currentUserEmail = (Auth.auth().currentUser?.email)!
                 
                 let l_title = NSLocalizedString("settingsmenu.sign_in_alert.success", comment: "Sign In Successful")
-                let l_msg = NSLocalizedString("settingsmenu.sign_in_alert.success_msg", comment: "You have been signed in as \(currentUserEmail).")
+                let l_msg = NSLocalizedString("settingsmenu.sign_in_alert.success_msg \(currentUserEmail)", comment: "You have been signed in as \(currentUserEmail).")
                 let l_dismissBtn = NSLocalizedString("settingsmenu.sign_in_alert.dismiss", comment: "OK")
                 
                 alert = Alert(
