@@ -1,0 +1,66 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: macOS-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: mxcl/Xcodebuild
+        # You may pin to the exact commit or the version.
+        # uses: mxcl/xcodebuild@d76d476983823aac9a5f66042456cad90fc7393d
+        uses: mxcl/xcodebuild@v1.9.2
+        with:
+          xcode: 13.0
+          # A semantic version range, eg. ^5, ~5.4 or 5.4.1
+          swift: 5.5
+          # Either `iOS`, `tvOS`, `macOS`, `watchOS` or (more rarely) `mac-catalyst` Leave unset and `xcodebuild` decides itself.
+
+          platform: iOS
+          # * The most common actions are `test`, `build`. * See the `xcodebuild` manual for available actions. * Specifying `none` skips the explicit `xcodebuild` step allowing you to use this (GitHub) Action solely for selecting an Xcode version. * Specifying `''`, `null` or `~` will cause xcodebuild to behave as it does without an action specified (usually `build`)
+
+          action: build
+          # Enables code coverage
+          code-coverage: ""
+
+          code-sign-certificate: ""
+          # The passphrase used to protect the code signing certificate. Pass this in as a GitHub Encrypted Secret.
+
+          code-sign-certificate-passphrase: ""
+          # Identity to be used for code signing. If your project specifies a `CODE_SIGN_IDENTITY`, this will override it.
+
+          code-sign-identity: ""
+          # …
+          working-directory: ""
+          # Typically `Release` or `Debug`. Leave unset and `xcodebuild` decides itself.
+
+          configuration: ""
+          # A scheme defined by an Xcode project or workspace. If not specified, xcodebuild builds only the first target.
+
+          scheme: Earthify
+          # Fails the build if any warnings in *non test targets*.
+          warnings-as-errors: false
+          # One of `xcpretty`, `quiet` or `verbose`.
+          verbosity: xcpretty
+          # One of `always` or `on-failure`. Consider `always` if you want access to your coverage-reports. Beware that artifacts count against your GitHub Actions storage limits.
+
+          upload-logs: on-failure
