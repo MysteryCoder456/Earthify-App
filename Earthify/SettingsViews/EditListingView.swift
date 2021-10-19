@@ -49,7 +49,7 @@ struct EditListingView: View {
     
     let l_updateFailureAlertTitle = NSLocalizedString("editlistingview.update_failure_alert.title", comment: "Unable to update listing")
     
-    let l_fetchErrorAlertTitle = NSLocalizedString("editlistingview.fetch_error_alert.title", comment: "An error occured while fetching this item's image")
+    let l_fetchErrorAlertTitle = NSLocalizedString("editlistingview.fetch_error_alert.title", comment: "An error occurred while fetching this item's image")
 
     func deleteItemListing() {
         let storageRef = Storage.storage().reference(withPath: "listingImages/\(item.id!).jpg")
@@ -102,7 +102,7 @@ struct EditListingView: View {
             if imageData.count > sizeLimit {
                 print("Could not upload item listing image: Image is more than \(sizeLimitMB) MB")
                 
-                let l_msg = NSLocalizedString("addlistingview.image_size_alert.msg %@", comment: "Image must be smaller than %@ MB")
+                let l_msg = NSLocalizedString("addlistingview.image_size_alert.msg %lld", comment: "Image must be smaller than %lld MB")
 
                 primaryAlertMessage = l_uploadErrorAlertTitle
                 secondaryAlertMessage = String(format: l_msg, sizeLimitMB)
