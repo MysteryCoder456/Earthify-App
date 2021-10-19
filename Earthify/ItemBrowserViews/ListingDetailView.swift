@@ -42,7 +42,7 @@ struct ListingDetailView: View {
     
     let l_unstarErrorAlertTitle = NSLocalizedString("listingdetailview.unstar_error_alert.title", comment: "Unable to unstar item")
     
-    let l_fetchErrorAlertTitle = NSLocalizedString("editlistingview.fetch_error_alert.title", comment: "An error occured while fetching this item's image")
+    let l_fetchErrorAlertTitle = NSLocalizedString("editlistingview.fetch_error_alert.title", comment: "An error occurred while fetching this item's image")
 
     func starItem() {
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
