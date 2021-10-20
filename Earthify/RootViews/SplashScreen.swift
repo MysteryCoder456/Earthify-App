@@ -64,6 +64,7 @@ struct SplashScreen: View {
                 .multilineTextAlignment(.center)
             }
         }
+        .statusBar(hidden: true)
     }
 }
 
