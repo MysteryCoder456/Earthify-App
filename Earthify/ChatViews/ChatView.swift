@@ -76,8 +76,16 @@ struct ChatView: View {
                                 let sentByCurrentUser = currentUser.uid == message.senderID
                                 let author = sentByCurrentUser ? currentUser : recipient
                                 let position: MessagePosition = sentByCurrentUser ? .primary : .secondary
+                                let msgIndex = messages.firstIndex(of: message)!
 
-                                ChatBubble(content: message.content, author: author.firstName, position: position)
+                                if msgIndex != messages.endIndex - 1 {
+                                    let nextMsg = messages[msgIndex + 1]
+                                    let showAuthor = nextMsg.senderID != author.uid
+                                    ChatBubble(content: message.content, author: author.firstName, position: position, showAuthor: showAuthor)
+                                } else {
+                                    ChatBubble(content: message.content, author: author.firstName, position: position, showAuthor: true)
+                                }
+                                    
                             }
                             // Scroll to bottom
                             .onAppear {

@@ -193,7 +193,6 @@
 			children = (
 				349E62A9269AEAD500F739D7 /* ItemListingBadge.swift */,
 				34DE346526B3531A000542B3 /* ChatRow.swift */,
-				34C3693526B4978200F4E811 /* ChatBubble.swift */,
 			);
 			path = RowVIews;
 			sourceTree = "<group>";
@@ -263,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				34F39E6A26B4575A00626894 /* ChatView.swift */,
+				34C3693526B4978200F4E811 /* ChatBubble.swift */,
 			);
 			path = ChatViews;
 			sourceTree = "<group>";

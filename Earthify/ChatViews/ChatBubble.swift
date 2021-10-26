@@ -26,6 +26,7 @@ struct ChatBubble: View {
     let content: String
     let author: String
     let position: MessagePosition
+    let showAuthor: Bool
 
     var body: some View {
         HStack {
@@ -40,9 +41,11 @@ struct ChatBubble: View {
                     .background(position == .primary ? Color.accentColor : Color.secondary)
                     .clipShape(BubbleShape(position: position))
 
-                Text(author)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                if showAuthor {
+                    Text(author)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
             }
             .multilineTextAlignment(position == .primary ? .trailing : .leading)
 
