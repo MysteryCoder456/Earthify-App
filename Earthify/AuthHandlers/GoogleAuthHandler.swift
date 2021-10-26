@@ -8,6 +8,7 @@
 import Firebase
 import Foundation
 import GoogleSignIn
+import UIKit
 
 class GoogleAuthHandler: ObservableObject {
     private func didUserSignIn(didSignInFor user: GIDGoogleUser?, withError error: Error?) {
@@ -57,7 +58,7 @@ class GoogleAuthHandler: ObservableObject {
 
     func signInWithGoogle() {
         let configuration = GIDConfiguration(clientID: (FirebaseApp.app()?.options.clientID)!)
-        GIDSignIn.sharedInstance.signIn(with: configuration, presenting: (UIApplication.shared.windows.first?.rootViewController)!, callback: didUserSignIn)
+        GIDSignIn.sharedInstance.signIn(with: configuration, presenting: (UIApplication.shared.keyWindow?.rootViewController)!, callback: didUserSignIn)
     }
 
     func signOut() {
@@ -69,4 +70,21 @@ class GoogleAuthHandler: ObservableObject {
     func restorePreviousSignIn() {
         GIDSignIn.sharedInstance.restorePreviousSignIn(callback: didUserSignIn)
     }
+}
+
+extension UIApplication {
+    
+    var keyWindow: UIWindow? {
+        // Get connected scenes
+        return UIApplication.shared.connectedScenes
+        // Keep only active scenes, onscreen and visible to the user
+            .filter { $0.activationState == .foregroundActive }
+        // Keep only the first `UIWindowScene`
+            .first(where: { $0 is UIWindowScene })
+        // Get its associated windows
+            .flatMap({ $0 as? UIWindowScene })?.windows
+        // Finally, keep only the key window
+            .first(where: \.isKeyWindow)
+    }
+    
 }
