@@ -18,27 +18,27 @@ struct StarredListings: View {
     ]
 
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
-    
+
     let l_searchPrompt = NSLocalizedString("starredlistings.search_prompt", comment: "Search Starred")
-    
+
     func fetchStarredListings() {
         guard !runningForPreviews else {
             starredListings = previewStarredListings
             return
         }
-        
+
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
         let currentUser = env.userRepository.users.first(where: { $0.uid == currentUID })!
-        
+
         // Filter by search text and starred
         starredListings = env.listingRepository.itemListingsAToZ.filter {
             // First filter by search text...
             (searchText.isEmpty ||
-             $0.name.lowercased().contains(searchText.lowercased()) ||
-             $0.description.lowercased().contains(searchText.lowercased())
+                $0.name.lowercased().contains(searchText.lowercased()) ||
+                $0.description.lowercased().contains(searchText.lowercased())
             )
-            // ...then by user's starred items
-            && currentUser.starredItems.contains($0.id!)
+                // ...then by user's starred items
+                && currentUser.starredItems.contains($0.id!)
         }
     }
 

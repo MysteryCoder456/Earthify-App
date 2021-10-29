@@ -13,7 +13,7 @@ struct HomeScreen: View {
     let l_starred = NSLocalizedString("homescreen.starred", comment: "Starred")
     let l_chats = NSLocalizedString("homescreen.chats", comment: "Chats")
     let l_settings = NSLocalizedString("homescreen.settings", comment: "Settings")
-    
+
     var body: some View {
         TabView {
             ItemBrowser()

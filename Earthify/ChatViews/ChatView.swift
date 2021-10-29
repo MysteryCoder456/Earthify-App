@@ -28,9 +28,9 @@ struct ChatView: View {
     @State var messagesCancellable: AnyCancellable?
 
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
-    
+
     let l_textFieldHint = NSLocalizedString("chatview.text_field.hint", comment: "Send message")
-    
+
     let l_sendErrorAlertTitle = NSLocalizedString("chatview.send_error_alert.title", comment: "Unable to send message")
 
     func fetchMessages() {
@@ -86,7 +86,6 @@ struct ChatView: View {
                                 } else {
                                     ChatBubble(content: message.content, author: authorString, position: position, showAuthor: true)
                                 }
-                                    
                             }
                             // Scroll to bottom
                             .onAppear {

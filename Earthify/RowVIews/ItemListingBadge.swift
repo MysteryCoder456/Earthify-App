@@ -40,14 +40,14 @@ struct ItemListingBadge: View {
         .accessibilityElement(children: .combine)
         .onAppear {
             guard !runningForPreviews else { return }
-            
+
             // Get item image
             if let image = env.listingImageCache[item.id!] {
                 // Image exists in cache
                 itemImage = image
             } else {
                 // Image does not exist in cache, fetch from Firebase Storage
-                
+
                 let storageRef = Storage.storage().reference(withPath: "listingImages/\(item.id!).jpg")
                 let sizeLimit = env.listingImageMaximumSize
 
@@ -59,7 +59,7 @@ struct ItemListingBadge: View {
 
                     if let data = data {
                         if let image = UIImage(data: data) {
-                            env.listingImageCache[item.id!] = image  // Save to local cache
+                            env.listingImageCache[item.id!] = image // Save to local cache
                             itemImage = image
                         }
                     }

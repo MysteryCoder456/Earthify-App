@@ -24,4 +24,4 @@ let previewItemListings = [
     ItemListing(id: "2", name: "Item 2", description: "Found this in my drawer the other day.", ownerID: "1", location: blankGeoPoint),
     ItemListing(id: "3", name: "Item 3", description: "Vintage hardware that I used 20 years ago.", ownerID: "2", location: blankGeoPoint),
 ]
-let previewStarredListings = Array(previewItemListings[0...2])
+let previewStarredListings = Array(previewItemListings[0 ... 2])

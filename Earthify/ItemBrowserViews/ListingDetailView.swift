@@ -34,14 +34,14 @@ struct ListingDetailView: View {
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     let deviceDimensions = UIScreen.main.bounds.size
     var item: ItemListing
-    
+
     let l_star = NSLocalizedString("listingdetailview.star", comment: "Star")
     let l_unstar = NSLocalizedString("listingdetailview.unstar", comment: "Unstar")
-    
+
     let l_starErrorAlertTitle = NSLocalizedString("listingdetailview.star_error_alert.title", comment: "Unable to star item")
-    
+
     let l_unstarErrorAlertTitle = NSLocalizedString("listingdetailview.unstar_error_alert.title", comment: "Unable to unstar item")
-    
+
     let l_fetchErrorAlertTitle = NSLocalizedString("editlistingview.fetch_error_alert.title", comment: "An error occurred while fetching this item's image")
 
     func starItem() {
@@ -236,31 +236,31 @@ struct ListingDetailView: View {
                     itemDistance = currentLocation.distance(from: itemLocation)
                 }
             }
-            
+
             // Get item image
             if let image = env.listingImageCache[item.id!] {
                 // Image exists in cache
                 itemImage = image
             } else {
                 // Image does not exist in cache, fetch from Firebase Storage
-                
+
                 let storageRef = Storage.storage().reference(withPath: "listingImages/\(item.id!).jpg")
                 let sizeLimit = env.listingImageMaximumSize
-                
+
                 storageRef.getData(maxSize: sizeLimit) { data, error in
                     if let error = error {
                         print("Could not fetch item listing image: \(error.localizedDescription)")
-                        
+
                         primaryAlertMessage = l_fetchErrorAlertTitle
                         secondaryAlertMessage = error.localizedDescription
                         showingAlert = true
-                        
+
                         return
                     }
-                    
+
                     if let data = data {
                         if let image = UIImage(data: data) {
-                            env.listingImageCache[item.id!] = image  // Save to local cache
+                            env.listingImageCache[item.id!] = image // Save to local cache
                             itemImage = image
                         }
                     }

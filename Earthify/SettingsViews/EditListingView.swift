@@ -35,20 +35,20 @@ struct EditListingView: View {
 
     let maxImageSize = CGSize(width: 250, height: 172)
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
-    
+
     let l_titleFieldHint = NSLocalizedString("addlistingview.title_field.hint", comment: "Title")
     let l_descriptionFieldHint = NSLocalizedString("addlistingview.description_field.hint", comment: "Description")
     let l_deleteListing = NSLocalizedString("editlistingview.delete_listing", comment: "Delete Listing")
-    
+
     let l_deleteFailureAlertTitle = NSLocalizedString("editlistingview.delete_failure_alert.title", comment: "Unable to delete item listing image")
-    
+
     let l_uploadErrorAlertTitle = NSLocalizedString("addlistingview.upload_error_alert.title", comment: "Unable to upload image")
-    
+
     let l_updateSuccessAlertTitle = NSLocalizedString("editlistingview.update_success_alert.title", comment: "Item Updated Successfully")
     let l_updateSuccessAlertMsg = NSLocalizedString("addlistingview.add_success_alert.msg", comment: "Check it out in the Item Browser!")
-    
+
     let l_updateFailureAlertTitle = NSLocalizedString("editlistingview.update_failure_alert.title", comment: "Unable to update listing")
-    
+
     let l_fetchErrorAlertTitle = NSLocalizedString("editlistingview.fetch_error_alert.title", comment: "An error occurred while fetching this item's image")
 
     func deleteItemListing() {
@@ -101,7 +101,7 @@ struct EditListingView: View {
             // Check if the image is within the size limit
             if imageData.count > sizeLimit {
                 print("Could not upload item listing image: Image is more than \(sizeLimitMB) MB")
-                
+
                 let l_msg = NSLocalizedString("addlistingview.image_size_alert.msg %lld", comment: "Image must be smaller than %lld MB")
 
                 primaryAlertMessage = l_uploadErrorAlertTitle

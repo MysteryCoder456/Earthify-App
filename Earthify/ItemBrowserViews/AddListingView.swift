@@ -28,21 +28,21 @@ struct AddListingView: View {
     @State var itemDescription = ""
 
     let maxImageSize = CGSize(width: 250, height: 172)
-    
+
     let l_titleFieldHint = NSLocalizedString("addlistingview.title_field.hint", comment: "Title")
     let l_descriptionFieldHint = NSLocalizedString("addlistingview.description_field.hint", comment: "Description")
-    
+
     let l_locationAlertTitle = NSLocalizedString("addlistingview.location_alert.title", comment: "Please enable Location Services for Earthify")
     let l_locationAlertMsg = NSLocalizedString("addlistingview.location_alert.msg", comment: "Earthify requires your location to show people items that are closer to them.")
-    
+
     let l_locationErrorAlertTitle = NSLocalizedString("addlistingview.location_error_alert.title", comment: "Unable to get current location")
     let l_locationErrorAlertMsg = NSLocalizedString("addlistingview.location_error_alert.msg", comment: "Something went wrong while getting your current location.")
-    
+
     let l_uploadErrorAlertTitle = NSLocalizedString("addlistingview.upload_error_alert.title", comment: "Unable to upload image")
-    
+
     let l_addSuccessAlertTitle = NSLocalizedString("addlistingview.add_success_alert.title", comment: "Item Added Successfully")
     let l_addSuccessAlertMsg = NSLocalizedString("addlistingview.add_success_alert.msg", comment: "Check it out in the Item Browser!")
-    
+
     let l_addFailureAlertTitle = NSLocalizedString("addlistingview.add_failure_alert.title", comment: "Unable to add a new listing")
 
     func addItemListing() {
@@ -92,7 +92,7 @@ struct AddListingView: View {
                 print("Could not upload item listing image: Image is more than \(sizeLimitMB) MB")
 
                 let l_msg = NSLocalizedString("addlistingview.image_size_alert.msg %lld", comment: "Image must be smaller than %lld MB")
-                
+
                 primaryAlertMessage = l_uploadErrorAlertTitle
                 secondaryAlertMessage = String(format: l_msg, sizeLimitMB)
                 showingAlert = true

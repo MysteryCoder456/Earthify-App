@@ -27,7 +27,7 @@ struct ItemBrowser: View {
     ]
 
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
-    
+
     let l_searchEarthify = NSLocalizedString("itembrowser.search_earthify", comment: "Search Earthify")
     let l_sortPickerLabel = NSLocalizedString("itembrowser.sort_picker_label", comment: "Sort Items")
     let l_addItemLabel = NSLocalizedString("itembrowser.add_item_label", comment: "Add New Item")

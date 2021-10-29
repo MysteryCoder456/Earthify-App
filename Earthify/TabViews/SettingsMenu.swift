@@ -95,7 +95,7 @@ struct SettingsMenu: View {
             switch activeAlert {
             case .signIn:
                 let currentUserEmail = (Auth.auth().currentUser?.email)!
-                
+
                 alert = Alert(
                     title: Text("settingsmenu.sign_in_alert.success", comment: "Sign In Successful"),
                     message: Text("settingsmenu.sign_in_alert.success_msg \(currentUserEmail)", comment: "You have been signed in as email."),
@@ -103,7 +103,7 @@ struct SettingsMenu: View {
                 )
 
             case .signOut:
-                
+
                 alert = Alert(
                     title: Text("settingsmenu.sign_out_alert", comment: "Are you sure you want to sign out?"),
                     primaryButton: .default(Text("alert_cancel", comment: "Cancel")),

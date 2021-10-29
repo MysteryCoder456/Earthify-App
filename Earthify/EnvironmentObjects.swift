@@ -16,29 +16,29 @@ class EnvironmentObjects: ObservableObject {
     @Published var userRepository: UserRepository!
     @Published var listingRepository: ItemListingRepository!
     @Published var messageRepository: MessageRepository!
-    
+
     let googleAuthHandler = GoogleAuthHandler()
-    
+
     let listingImageMaximumSize: Int64 = 3_145_728 // bytes
     var userRepoCancellable: AnyCancellable?
     var listingRepoCancellable: AnyCancellable?
     var messageRepoCancellable: AnyCancellable?
-    
+
     var listingImageCache: [String: UIImage] = [:]
-    
+
     init() {
         if GIDSignIn.sharedInstance.hasPreviousSignIn() {
             googleAuthHandler.restorePreviousSignIn()
         }
-        
+
         authenticated = Auth.auth().currentUser != nil
         seenSplashScreen = Auth.auth().currentUser != nil
-        
+
         // Initialize Firestore Respositories
         userRepository = UserRepository()
         listingRepository = ItemListingRepository()
         messageRepository = MessageRepository()
-        
+
         // Notify EnvironmentObjects when published repository attributes change
         userRepoCancellable = userRepository.objectWillChange.sink { _ in
             self.objectWillChange.send()
@@ -49,18 +49,18 @@ class EnvironmentObjects: ObservableObject {
         messageRepoCancellable = messageRepository.objectWillChange.sink { _ in
             self.objectWillChange.send()
         }
-        
+
         // Listen for Sign In and Sign Out notifications
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(didUserSignIn), name: Notification.Name("UserSignedIn"), object: nil)
         nc.addObserver(self, selector: #selector(didUserSignOut), name: Notification.Name("UserSignedOut"), object: nil)
     }
-    
+
     func initRepositories() {
         userRepository = UserRepository()
         listingRepository = ItemListingRepository()
         messageRepository = MessageRepository()
-        
+
         // Notify EnvironmentObjects when published repository attributes change
         userRepoCancellable = userRepository.objectWillChange.sink { _ in
             self.objectWillChange.send()
@@ -72,17 +72,17 @@ class EnvironmentObjects: ObservableObject {
             self.objectWillChange.send()
         }
     }
-    
+
     @objc func didUserSignIn() {
         authenticated = true
-        
+
         // Add/Update user details in Firestore
-        
+
         if let currentUID = Auth.auth().currentUser?.uid {
             if let googleProfile = GIDSignIn.sharedInstance.currentUser?.profile {
                 // Initialize Firestore Respositories
                 initRepositories()
-                
+
                 // Manually fetching Firestore data in case repositories haven't initialized in time
                 let docRef = Firestore.firestore().collection("users").document(currentUID)
                 docRef.getDocument { document, error in
@@ -90,17 +90,17 @@ class EnvironmentObjects: ObservableObject {
                         print("Unable to fetch user data. Error: \(error)")
                         return
                     }
-                    
+
                     guard let document = document else { return }
-                    
+
                     let userHasImage = googleProfile.hasImage
                     let imageURL = userHasImage ? googleProfile.imageURL(withDimension: 128)?.absoluteString : nil
                     var user = AppUser(firstName: "", lastName: "", email: "")
-                    
+
                     if document.exists {
                         do {
                             user = try document.data(as: AppUser.self)!
-                            
+
                             // Update Google Profile details
                             user.firstName = googleProfile.givenName!
                             user.lastName = googleProfile.familyName!
@@ -112,7 +112,7 @@ class EnvironmentObjects: ObservableObject {
                     } else {
                         user = AppUser(uid: currentUID, firstName: googleProfile.givenName!, lastName: googleProfile.familyName!, email: googleProfile.email, profileImageURL: imageURL)
                     }
-                    
+
                     do {
                         try self.userRepository.updateUser(user: user)
                     } catch {
@@ -122,7 +122,7 @@ class EnvironmentObjects: ObservableObject {
             }
         }
     }
-    
+
     @objc func didUserSignOut() {
         authenticated = false
     }

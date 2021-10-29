@@ -14,7 +14,7 @@ struct ChatsBrowser: View {
     @State var searchText = ""
 
     let runningForPreviews = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
-    
+
     let l_searchPrompt = NSLocalizedString("chatsbrowser.search_prompt", comment: "Search Chats")
 
     func fetchChats() {
