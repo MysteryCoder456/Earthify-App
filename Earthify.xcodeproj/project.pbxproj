@@ -12,6 +12,7 @@
 		34386E9726AD220F0047895B /* SettingsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34386E9626AD220F0047895B /* SettingsMenu.swift */; };
 		344A748D26C8660100940ACC /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344A748C26C8660000940ACC /* ProfileImage.swift */; };
 		3489BDF3271AC20A00C75DC1 /* EnvironmentObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3489BDF2271AC20A00C75DC1 /* EnvironmentObjects.swift */; };
+		348BF2632768936F009DE21E /* LicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF2622768936F009DE21E /* LicenseView.swift */; };
 		3491DCD42699902F002C0C80 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491DCD32699902F002C0C80 /* UserRepository.swift */; };
 		3491DCD72699905A002C0C80 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491DCD62699905A002C0C80 /* AppUser.swift */; };
 		34932DC12715F06C00C8C76F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 34932DC02715F06C00C8C76F /* GoogleSignIn */; };
@@ -58,6 +59,7 @@
 		34386E9626AD220F0047895B /* SettingsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenu.swift; sourceTree = "<group>"; };
 		344A748C26C8660000940ACC /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		3489BDF2271AC20A00C75DC1 /* EnvironmentObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentObjects.swift; sourceTree = "<group>"; };
+		348BF2622768936F009DE21E /* LicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseView.swift; sourceTree = "<group>"; };
 		3491DCD32699902F002C0C80 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		3491DCD62699905A002C0C80 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		34932DD02715F80400C8C76F /* GoogleAuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthHandler.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				3415D2EF26AEDC6F00E8241E /* ManageListingsView.swift */,
 				3415D2F126AEF5BE00E8241E /* EditListingView.swift */,
 				34EC30E027198114009D0C67 /* AboutView.swift */,
+				348BF2622768936F009DE21E /* LicenseView.swift */,
 			);
 			path = SettingsViews;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				34A537B0269F80800010530A /* ListingDetailView.swift in Sources */,
 				34F1FB652698528D0050BFE7 /* SceneDelegate.swift in Sources */,
 				349E629F269A4D0F00F739D7 /* HomeScreen.swift in Sources */,
+				348BF2632768936F009DE21E /* LicenseView.swift in Sources */,
 				3491DCD42699902F002C0C80 /* UserRepository.swift in Sources */,
 				34958103269D0806005A7B5B /* AddListingView.swift in Sources */,
 				34EC30E127198114009D0C67 /* AboutView.swift in Sources */,

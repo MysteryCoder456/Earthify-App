@@ -68,6 +68,10 @@ struct SettingsMenu: View {
                 NavigationLink(destination: AboutView()) {
                     Text("settingsmenu.about", comment: "About")
                 }
+                
+                NavigationLink(destination: LicenseView()) {
+                    Text("settingsmenu.license", comment: "License")
+                }
 
                 if env.authenticated {
                     Button(action: {
