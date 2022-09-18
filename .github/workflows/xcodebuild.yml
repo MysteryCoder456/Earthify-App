@@ -28,7 +28,7 @@ jobs:
       - name: mxcl/Xcodebuild
         # You may pin to the exact commit or the version.
         # uses: mxcl/xcodebuild@d76d476983823aac9a5f66042456cad90fc7393d
-        uses: mxcl/xcodebuild@v1.9.2
+        uses: mxcl/xcodebuild@v1.11.0
         with:
           xcode: 13.0
           # A semantic version range, eg. ^5, ~5.4 or 5.4.1
