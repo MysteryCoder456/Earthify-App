@@ -99,7 +99,7 @@ class EnvironmentObjects: ObservableObject {
 
                     if document.exists {
                         do {
-                            user = try document.data(as: AppUser.self)!
+                            user = try document.data(as: AppUser.self)
 
                             // Update Google Profile details
                             user.firstName = googleProfile.givenName!
