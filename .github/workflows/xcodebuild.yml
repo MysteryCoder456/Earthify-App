@@ -30,7 +30,7 @@ jobs:
         # uses: mxcl/xcodebuild@d76d476983823aac9a5f66042456cad90fc7393d
         uses: mxcl/xcodebuild@v1.11.0
         with:
-          xcode: 13.0
+          xcode: 14.0
           # A semantic version range, eg. ^5, ~5.4 or 5.4.1
           swift: 5.5
           # Either `iOS`, `tvOS`, `macOS`, `watchOS` or (more rarely) `mac-catalyst` Leave unset and `xcodebuild` decides itself.
