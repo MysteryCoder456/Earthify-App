@@ -13,7 +13,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
@@ -28,11 +28,11 @@ jobs:
       - name: mxcl/Xcodebuild
         # You may pin to the exact commit or the version.
         # uses: mxcl/xcodebuild@d76d476983823aac9a5f66042456cad90fc7393d
-        uses: mxcl/xcodebuild@v1.9.2
+        uses: mxcl/xcodebuild@v2.0.0
         with:
-          xcode: 13.0
+          xcode: 15.0
           # A semantic version range, eg. ^5, ~5.4 or 5.4.1
-          swift: 5.5
+          swift: 5.9
           # Either `iOS`, `tvOS`, `macOS`, `watchOS` or (more rarely) `mac-catalyst` Leave unset and `xcodebuild` decides itself.
 
           platform: iOS
