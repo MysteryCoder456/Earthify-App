@@ -7,6 +7,7 @@
 
 import CoreLocation
 import Firebase
+import FirebaseStorage
 import SwiftUI
 
 struct AddListingView: View {
