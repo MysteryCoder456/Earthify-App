@@ -32,7 +32,7 @@ jobs:
         with:
           xcode: 15.0
           # A semantic version range, eg. ^5, ~5.4 or 5.4.1
-          swift: 5.9
+          swift: ^5
           # Either `iOS`, `tvOS`, `macOS`, `watchOS` or (more rarely) `mac-catalyst` Leave unset and `xcodebuild` decides itself.
 
           platform: iOS
